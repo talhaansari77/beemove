@@ -22,6 +22,7 @@ import AppCat from './config/AppCat';
 import { FirebaseConfig } from './config/FirebaseConfig';
 import { colors } from './src/common/theme';
 import { Settings } from 'react-native-fbsdk-next';
+import RootNavigator from './src/navigation';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -107,13 +108,14 @@ export default function App() {
   }
 
   return (
-    <Provider store={store}>
-      <FirebaseProvider config={FirebaseConfig} appcat={AppCat}>
-        <AppCommon>
-          <AppContainer />
-        </AppCommon>
-      </FirebaseProvider>
-    </Provider>
+    <RootNavigator/>
+    // <Provider store={store}>
+    //   <FirebaseProvider config={FirebaseConfig} appcat={AppCat}>
+    //     <AppCommon>
+    //       <AppContainer />
+    //     </AppCommon>
+    //   </FirebaseProvider>
+    // </Provider>
   );
 }
 
