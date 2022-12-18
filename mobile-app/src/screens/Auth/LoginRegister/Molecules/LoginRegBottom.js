@@ -50,7 +50,6 @@ const LoginRegBottom = ({onRegister}) => {
         <SepratorLine height={0.7} />
       </View>
       <Spacer height={20} />
-
       <View
         style={{ ...styles.btnContainer, width: "45%", alignSelf: "center" }}
       >
