@@ -10,7 +10,7 @@ const Home = () => {
     <View style={commonStyles.PH30}>
 
       <TopHeader 
-      img={require("../../../assets/images/appLogo.png")}
+      img={require("../../../assets/images/delivery.png")}
       label1={"Hi Lexton!"}
       label2={"How can we help you today?"}
       

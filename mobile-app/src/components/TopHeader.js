@@ -15,7 +15,7 @@ import { moderateScale, verticalScale } from "react-native-size-matters";
 import CustomText from "./CustomText";
 import { colors } from "../../Utils/Colors";
 
-const TopHeader = ({ navigation,label1,label2,img }) => {
+const TopHeader = ({ navigation,label1,label2,img,imgHeight }) => {
   return (
       <>
    
@@ -35,12 +35,12 @@ const TopHeader = ({ navigation,label1,label2,img }) => {
           resizeMode="contain"
           style={{
             width: 250,
-            height: verticalScale(100),
+            height: verticalScale( imgHeight || 70),
             alignSelf: "center",
           }}
           source={img}
         />
-        <PercentageSpacer height={"8%"} />
+        <PercentageSpacer height={"15%"} />
         <CustomText
           label={label1}
           color={colors.lightBlack}
