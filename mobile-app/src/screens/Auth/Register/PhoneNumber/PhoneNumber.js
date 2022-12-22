@@ -21,7 +21,7 @@ const PhoneNumber = ({navigation}) => {
 
             </TouchableOpacity>
         <PercentageSpacer height={"5%"}/>
-        <PhoneMainContainer/>
+        <PhoneMainContainer navigation={navigation}/>
 
 
         </View>

@@ -10,7 +10,7 @@ import CustomTextInput from "../../../../../components/CustomTextInput";
 import PhoneInput from "react-native-phone-number-input";
 import CustomButton from "../../../../../components/CustomButton";
 
-const PhoneMainContainer = () => {
+const PhoneMainContainer = ({navigation}) => {
   const [show, setShow] = useState(false);
   const [countryCode, setCountryCode] = useState("");
   return (
@@ -71,6 +71,7 @@ const PhoneMainContainer = () => {
           fontFamily={"Roboto-Medium"}
           color={"#1B1B1E"}
           fontSize={12}
+          onPress={()=>navigation.navigate("Register")}
         />
       </View>
     </>

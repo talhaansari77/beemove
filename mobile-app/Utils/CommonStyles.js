@@ -12,6 +12,20 @@ const commonStyles = ScaledSheet.create({
     flex: 1,
     backgroundColor:colors.white
   },
+  container1:{
+    flexDirection: "column",
+    flex: 1,
+    backgroundColor:colors.gray1,
+    paddingHorizontal:scale(30)
+
+  },
+  container2:{
+    flexDirection: "column",
+    flex: 1,
+    backgroundColor:"white",
+    paddingHorizontal:scale(30)
+
+  },
 
   rowMain: {
     justifyContent: "center",

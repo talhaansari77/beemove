@@ -15,6 +15,7 @@ import {
 } from "react-native-size-matters";
 import CustomText from "./CustomText";
 import { colors } from "../../Utils/Colors";
+import commonStyles from "../../Utils/CommonStyles";
 
 const CustomTextInput = ({
   eyeClick,
@@ -23,11 +24,26 @@ const CustomTextInput = ({
   error,
   leftLabel,
   children,
+  withLabel,
+  rightLabel,
   ...props
 }) => {
   return (
-    <View>
-    
+    <View style={{ width: props.mainWidth,marginTop:props.mainTop }}>
+      {withLabel ? (
+        <CustomText
+          label={withLabel}
+          fontSize={verticalScale(9)}
+          color={colors.labelColor}
+          fontFamily={"Roboto-Regular"}
+          fontWeight={"700"}
+          marginBottom={verticalScale(7)}
+          marginLeft={20}
+        />
+      ) : (
+        <></>
+      )}
+
       <TouchableOpacity
         onPress={props.onPress}
         disabled={!props.onPress}
@@ -36,37 +52,30 @@ const CustomTextInput = ({
             width: props.width || "100%",
             height: props.height || verticalScale(45),
             borderRadius: props.borderRadius || moderateScale(7),
-            backgroundColor: props.backgroundColor ||"#F9F9F9",
+            backgroundColor: props.backgroundColor || "#F9F9F9",
             marginTop: props.marginTop || verticalScale(0),
             flexDirection: "row",
-            borderWidth:props.borderWidth || 0.5,
-            borderColor: props.borderColor  || "#707070",
-            alignItems: "center",
+            borderWidth: props.borderWidth || 0.5,
+            borderColor: props.borderColor || "#707070",
+            alignItems: props.alignItems || "center",
             paddingLeft: props.paddingLeft,
           },
         ]}
       >
-          {leftLabel ? (
-        <View>
-          {children}
-          
-        </View>
-      
-      ) : null}
 
         <TextInput
           style={[
             {
-              width:  password || eyeClick||props.mic || props.downArrow? props.inputWidth  : "95%",
+              width:  rightLabel?"82%":"95%",
               height: props.inputHeight || "100%",
               marginLeft: props.inputLeftMargin || 10,
+              marginTop:props.marginTop,
               paddingRight: props.paddingRight || 10,
               paddingHorizontal: props.paddingHorizontal,
               fontFamily: props.fontFamily || "Roboto-Regular",
               color: props.color || colors.black,
-              fontSize: verticalScale(13),
+              fontSize: verticalScale(props.fontSize || 13),
               // textAlign: props.textAlign || "center",
-              multiline: props.multiline
               // alignSelf: props.alignItems || "center"
             },
           ]}
@@ -80,31 +89,12 @@ const CustomTextInput = ({
           placeholderTextColor={props.placeholderTextColor}
           secureTextEntry={props.secureTextEntry}
         />
-        {/* {rightIcon ? (
-          <TouchableOpacity
-            activeOpacity={0.6}
-            disabled={!onPress}
-            onPress={() => {
-              setRightIcon(!rightIcon);
-            }}
-          >
-            {eyeClick ? (
-              <Ionicons
-                name="eye-off"
-                size={moderateScale(22)}
-                style={{ opacity: 0.5 }}
-                color={colors.primary}
-              />
-            ) : (
-              <Ionicons
-                name="eye"
-                size={moderateScale(22)}
-                style={{ opacity: 0.5 }}
-                color={colors.primary}
-              />
-            )}
-          </TouchableOpacity>
-        ) : null} */}
+
+{rightLabel ? <View style={{width:20,height:20}}>
+<Image source={rightLabel} style={{...commonStyles.img,tintColor:"#C8C8C8"}}/>
+
+
+</View> : null}
 
       </TouchableOpacity>
       {error ? (
