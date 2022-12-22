@@ -71,6 +71,9 @@ const commonStyles = ScaledSheet.create({
   PH30: {
     paddingHorizontal: scale(30),
   },
+  PH40: {
+    paddingHorizontal: scale(40),
+  },
 });
 
 export default commonStyles;

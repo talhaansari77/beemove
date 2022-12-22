@@ -11,7 +11,7 @@ import OTPTextInput from "react-native-otp-textinput";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { scale, verticalScale } from "react-native-size-matters";
 
-const OtpScreen = () => {
+const OtpScreen = ({navigation}) => {
   const [otpCode, setOtpCode] = useState("");
 
   return (
@@ -46,7 +46,13 @@ const OtpScreen = () => {
       </View>
 
       <PercentageSpacer height={"10%"} />
-      <CustomButton title="Verify Now" fontFamily={"Roboto-Regular"} />
+      <CustomButton
+        title="Verify Now"
+        fontFamily={"Roboto-Regular"}
+        onPress={() =>
+          navigation.navigate("MainStack", { screen: "HomeScreen" })
+        }
+      />
       <Spacer height={20} />
 
       <View

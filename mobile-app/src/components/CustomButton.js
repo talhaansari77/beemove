@@ -36,7 +36,8 @@ function CustomButton({
   marginHorizontal,
   alignSelf,
   borderWidth,
-  borderColor
+  borderColor,
+  fontWeight
  
 }) {
   return (
@@ -67,7 +68,7 @@ function CustomButton({
           style={[
             {
               color: color || colors.black,
-              fontWeight:"300",
+              fontWeight:fontWeight||"300",
               fontSize: verticalScale(fontSize || 14),
               fontFamily: fontFamily || "Roboto-Light" ,
             },

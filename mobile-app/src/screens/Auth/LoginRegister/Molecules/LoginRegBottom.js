@@ -17,6 +17,7 @@ const LoginRegBottom = ({onRegister}) => {
           title="LOGIN"
           color={"#1B1B1E"}
           fontSize={12}
+          fontWeight={'bold'}
         />
 
         <CustomButton
@@ -29,6 +30,7 @@ const LoginRegBottom = ({onRegister}) => {
           borderColor={colors.primary}
           color={colors.primary}
           borderWidth={1}
+          fontWeight={'bold'}
         />
       </View>
       <Spacer height={40} />
@@ -87,6 +89,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor:colors.white,
+    elevation:2
   },
   img: {
     width: 30,

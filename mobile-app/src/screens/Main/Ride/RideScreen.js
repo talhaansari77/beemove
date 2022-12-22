@@ -10,8 +10,19 @@ import { colors } from "../../../../Utils/Colors";
 import { ScrollView } from "react-native-gesture-handler";
 import RideBottomContainer from "./Molecules/RideBottomContainer";
 
-const RideScreen = ({route}) => {
-
+import MapView, { Marker } from "react-native-maps";
+// import LocationModal from "./Molecules/LocationModal";
+// import DrawerContainer from "./Molecules/DrawerContainer";
+import { AntDesign } from "@expo/vector-icons";
+import { scale, verticalScale } from "react-native-size-matters";
+// import { colors } from "../../../utils/Colors";
+const RideScreen = ({ route }) => {
+  const region = {
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.0,
+    longitudeDelta: 0.0031,
+  };
   const inputData = [
     {
       id: 1,
@@ -32,13 +43,60 @@ const RideScreen = ({route}) => {
       <ScrollView style={{ flex: 1 }}>
         <Spacer height={10} />
         <MainTopHeader
-          txt=  {route?.params?.car?"Car":"Ride"}
-          img={route?.params?.car? require("../../../../assets/images/car.png"):require("../../../../assets/images/bike.png")}
+          txt={route?.params?.car ? "Car" : "Ride"}
+          img={
+            route?.params?.car
+              ? require("../../../../assets/images/car.png")
+              : require("../../../../assets/images/bike.png")
+          }
         />
         <Spacer height={20} />
 
-        <TopRideContainer/>
-        <PercentageSpacer height={"40%"} />
+        <TopRideContainer />
+        {/* <PercentageSpacer height={"40%"} /> */}
+        <MapView region={region} style={styles.map}>
+          <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }}>
+            {/* <View style={{}}> */}
+            <View
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: 40,
+                width: 45,
+                backgroundColor: colors.primary,
+                borderRadius: 15,
+              }}
+            >
+              <AntDesign
+                name="user"
+                size={18}
+                color={colors.white}
+                style={{
+                  alignSelf: "center",
+                }}
+              />
+            </View>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <AntDesign
+                name="caretdown"
+                size={20}
+                color={colors.primary}
+                style={{ alignSelf: "center", marginTop: -7 }}
+              />
+              <View
+                style={{
+                  height: 12,
+                  width: 12,
+                  borderRadius:6,
+                  backgroundColor: colors.primary,
+                  opacity: 0.5, marginTop: -9 
+                }}
+              />
+            </View>
+            {/* </View> */}
+          </Marker>
+        </MapView>
         {inputData.map((item) => {
           return (
             <>
@@ -56,8 +114,6 @@ const RideScreen = ({route}) => {
           );
         })}
 
-
-
         <RideBottomContainer />
       </ScrollView>
     </View>
@@ -66,4 +122,12 @@ const RideScreen = ({route}) => {
 
 export default RideScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  map: {
+    width: "100%",
+    height: "40%",
+  },
+});
