@@ -46,6 +46,7 @@ const RideBottomContainer = ({ onBook }) => {
           borderColor={colors.primary}
           color={colors.primary}
           borderWidth={1}
+          fontWeight={'bold'}
         />
         <CustomButton
           width={"46%"}
@@ -53,6 +54,7 @@ const RideBottomContainer = ({ onBook }) => {
           title="Book Now"
           color={"#1B1B1E"}
           fontSize={12}
+          fontWeight={'bold'}
         />
       </View>
     </View>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, Dimensions } from "react-native";
 import React from "react";
 import commonStyles from "../../../../Utils/CommonStyles";
 import MainTopHeader from "../../../components/MainTopHeader";
@@ -37,10 +37,13 @@ const RideScreen = ({ route }) => {
     { id: 3, withLabel: "Note to Driver", placeholder: "Write note here..." },
   ];
   return (
-    <View style={commonStyles.container2}>
+    <View >
       <Spacer height={Platform.OS == "ios" ? 40 : 5} />
 
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{ }}>
+        <View style={commonStyles.PH30}>
+
+        
         <Spacer height={10} />
         <MainTopHeader
           txt={route?.params?.car ? "Car" : "Ride"}
@@ -51,9 +54,9 @@ const RideScreen = ({ route }) => {
           }
         />
         <Spacer height={20} />
-
         <TopRideContainer />
-        {/* <PercentageSpacer height={"40%"} /> */}
+        <Spacer height={20} />
+        </View>
         <MapView region={region} style={styles.map}>
           <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }}>
             {/* <View style={{}}> */}
@@ -97,6 +100,12 @@ const RideScreen = ({ route }) => {
             {/* </View> */}
           </Marker>
         </MapView>
+        <View style={commonStyles.PH30}>
+
+        
+        <Spacer height={20} />
+        {/* <PercentageSpacer height={"40%"} /> */}
+       
         {inputData.map((item) => {
           return (
             <>
@@ -115,6 +124,8 @@ const RideScreen = ({ route }) => {
         })}
 
         <RideBottomContainer />
+        </View>
+        <Spacer height={30} />
       </ScrollView>
     </View>
   );
@@ -128,6 +139,6 @@ const styles = StyleSheet.create({
   },
   map: {
     width: "100%",
-    height: "40%",
+    height: Dimensions.get('window').height/2,
   },
 });

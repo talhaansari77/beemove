@@ -32,25 +32,25 @@ const AddlButton = ({
       backgroundColor: backgroundColor || colors.white,
       width: width || "100%",
       flexDirection: "row",
-      alignItems: "center",
       borderWidth: borderWidth || 1,
       borderColor: colors.gray1,
+      alignItems: "center",
       justifyContent: "center",
       borderRadius: borderRadius || moderateScale(50),
-      alignSelf: "center",
+      // alignSelf: "center",
       padding: moderateScale(10),
       height: height,
       shadowColor: Platform.OS == "ios" ? "#ced4da" : colors.black,
       shadowRadius: 5,
       elevation: 5,
-      alignItems: "center",
+      // alignItems: "center",
       shadowOpacity: 0.3,
 
       shadowOffset: { width: 2, height: 2 },
     }}
   >
-    <View style={{ flex: 4, flexDirection: "row" }}>
-      <Spacer width={12} />
+    <View style={{ flex: 4, flexDirection: "row",justifyContent:"center" }}>
+      {/* <Spacer width={12} /> */}
       {icon ? (
         <Image
           source={icon}
@@ -58,6 +58,7 @@ const AddlButton = ({
             width: iconWidth || 15,
             height: iconHeight || 15,
             tintColor: colors.primary,
+            
           }}
           resizeMode={"contain"}
         />
@@ -100,7 +101,7 @@ const AddlButton = ({
         <></>
       )}
     </View>
-    <View style={{ flex: 7 }}>
+    <View style={{ flex: 6, }}>
       <CustomText
         fontFamily={fontFamily || "Roboto-Regular"}
         color={textColor || colors.black}

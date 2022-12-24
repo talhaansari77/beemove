@@ -14,6 +14,7 @@ const MainStack = () => {
   return (
       <Stack.Navigator
       screenOptions={{headerShown:false}}
+      // initialRouteName={'PabiliScreen'}
       >
           <Stack.Screen name="HomeScreen" component={Home}/>
           <Stack.Screen name="RideScreen" component={RideScreen}/>
