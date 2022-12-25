@@ -5,6 +5,7 @@ import commonStyles from "../../../../Utils/CommonStyles";
 import TopHeader from "../../../components/TopHeader";
 import { Spacer } from "../../../components/Spacer";
 import PercentageSpacer from "../../../components/PercentageSpacer";
+import { colors } from "../../../../Utils/Colors";
 
 const Home = ({ navigation }) => {
 
@@ -47,7 +48,7 @@ const Home = ({ navigation }) => {
     },
   ];
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1,backgroundColor:colors.white }}>
       <View style={commonStyles.container1}>
         <TopHeader
           img={require("../../../../assets/images/delivery.png")}

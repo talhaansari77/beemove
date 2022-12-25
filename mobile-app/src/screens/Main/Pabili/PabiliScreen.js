@@ -34,7 +34,7 @@ const PabiliScreen = () => {
     },
   ];
   return (
-    <View>
+    <View style={{backgroundColor:colors.white}}>
       <Spacer height={Platform.OS == "ios" ? 40 : 5} />
       <ScrollView style={{}}>
         <View style={commonStyles.PH30}>

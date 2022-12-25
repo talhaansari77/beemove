@@ -40,7 +40,7 @@ const Register = ({ navigation }) => {
     },
   ];
   return (
-    <View style={{}}>
+    <View style={{backgroundColor:colors.white}}>
       <Spacer height={Platform.OS == "ios" ? 40 : 5} />
 
       <ScrollView showsVerticalScrollIndicator={false} style={{}}>
