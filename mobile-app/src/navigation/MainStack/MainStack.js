@@ -1,6 +1,6 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
+import { View, Text } from "react-native";
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
 // import Home from '../../screens/Auth/Main/Home/Home'
 import Home from '../../screens/Main/Home/Home'
 import RideScreen from '../../screens/Main/Ride/RideScreen'
@@ -31,4 +31,4 @@ const MainStack = () => {
   )
 }
 
-export default MainStack
+export default MainStack;
