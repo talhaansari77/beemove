@@ -37,7 +37,7 @@ const RideScreen = ({ route }) => {
     { id: 3, withLabel: "Note to Driver", placeholder: "Write note here..." },
   ];
   return (
-    <View >
+    <View style={{backgroundColor:colors.white}} >
       <Spacer height={Platform.OS == "ios" ? 40 : 5} />
 
       <ScrollView showsVerticalScrollIndicator={false} style={{ }}>
