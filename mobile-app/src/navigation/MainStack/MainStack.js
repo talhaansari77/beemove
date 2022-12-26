@@ -12,13 +12,14 @@ import CompleteJob from "../../screens/Main/CompleteJob/CompleteJob";
 import MyBookings from "../../screens/Main/MyBookings/MyBookings";
 import PaymentScreen from "../../screens/Main/Payment/PaymentScreen";
 import Receipt from "../../screens/Main/Receipt/Receipt";
+import ConvertToDriver from "../../screens/Main/ConvertToDriver/ConvertToDriver";
 const Stack = createStackNavigator();
 
 const MainStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={"Receipt"}
+      initialRouteName={"BookPadala"}
     >
       <Stack.Screen name="HomeScreen" component={Home} />
       <Stack.Screen name="RideScreen" component={RideScreen} />
@@ -30,6 +31,7 @@ const MainStack = () => {
       <Stack.Screen name="MyBookings" component={MyBookings} />
       <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
       <Stack.Screen name="Receipt" component={Receipt} />
+      <Stack.Screen name="ConvertToDriver" component={ConvertToDriver} />
     </Stack.Navigator>
   );
 };

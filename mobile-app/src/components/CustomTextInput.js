@@ -26,6 +26,7 @@ const CustomTextInput = ({
   children,
   withLabel,
   rightLabel,
+  rightLabelIcon,
   ...props
 }) => {
   return (
@@ -95,6 +96,7 @@ const CustomTextInput = ({
 
 
 </View> : null}
+
 
       </TouchableOpacity>
       {error ? (
