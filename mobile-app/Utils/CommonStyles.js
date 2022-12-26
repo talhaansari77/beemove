@@ -31,6 +31,11 @@ const commonStyles = ScaledSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  rowSpacerBetween: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
 
   rowMain: {
     justifyContent: "center",
