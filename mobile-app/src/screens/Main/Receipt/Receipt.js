@@ -1,5 +1,5 @@
 import { View, Text, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import CustomHeader from "../../../components/CustomHeader";
 import { colors } from "../../../../Utils/Colors";
 import { AntDesign } from "@expo/vector-icons";
@@ -9,15 +9,20 @@ import { verticalScale } from "react-native-size-matters";
 import SepratorLine from "../../../components/SepratorLine";
 import { images } from "../../../../assets/images";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { Rating, AirbnbRating } from "react-native-ratings";
+import CustomButton from "../../../components/CustomButton";
 
 const Receipt = () => {
   const CenterContent = () => (
-    <View style={{flexDirection:"row"}} >
-    <FontAwesome5 name="receipt" size={24} color={colors.primary} />
-    <Spacer width={10} />
-    <CustomText label="Receipt" alignSelf={"center"} fontSize={17} />
+    <View style={{ flexDirection: "row" }}>
+      <FontAwesome5 name="receipt" size={24} color={colors.primary} />
+      <Spacer width={10} />
+      <CustomText label="Receipt" alignSelf={"center"} fontSize={17} />
     </View>
-    );
+  );
+
+  const [ratingCompleted, setRatingCompleted] = useState();
+
   return (
     <View>
       <View
@@ -141,10 +146,26 @@ const Receipt = () => {
           fontSize={14}
         />
       </View>
-
+      <Spacer height={40} />
       <View>
-        
+        <AirbnbRating
+          showRating={false}
+          onFinishRating={ratingCompleted}
+          size={45}
+          starContainerStyle={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            width: "80%",
+          }}
+        />
       </View>
+      <Spacer height={80} />
+      <CustomButton
+        title={"Submit Rating"}
+        width={"80%"}
+        alignSelf={"center"}
+        fontFamily={"bold"}
+      />
     </View>
   );
 };
