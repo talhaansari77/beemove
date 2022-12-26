@@ -45,7 +45,7 @@ const CompleteJob = ({ route }) => {
       <View style={commonStyles.PH30}>
         <Spacer height={10} />
         <MainTopHeader
-          txt={"Complete Job"}
+          txt={"Job"}
           //   img={
           //     route?.params?.car
           //       ? require("../../../../assets/images/car.png")
