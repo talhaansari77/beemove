@@ -9,13 +9,14 @@ import PadalaScreen from '../../screens/Main/Padala/PadalaScreen'
 import PabiliScreen from '../../screens/Main/Pabili/PabiliScreen'
 import BookPadala from '../../screens/Main/Padala/BookPadala/BookPadala'
 import CompleteJob from '../../screens/Main/CompleteJob/CompleteJob'
+import MyBookings from '../../screens/Main/MyBookings/MyBookings'
 const Stack=createStackNavigator()
 
 const MainStack = () => {
   return (
       <Stack.Navigator
       screenOptions={{headerShown:false}}
-      initialRouteName={'CompleteJob'}
+      initialRouteName={'MyBookings'}
       >
           <Stack.Screen name="HomeScreen" component={Home}/>
           <Stack.Screen name="RideScreen" component={RideScreen}/>
@@ -24,6 +25,7 @@ const MainStack = () => {
           <Stack.Screen name="BookPadala" component={BookPadala}/>
           <Stack.Screen name="PabiliScreen" component={PabiliScreen}/>
           <Stack.Screen name="CompleteJob" component={CompleteJob}/>
+          <Stack.Screen name="MyBookings" component={MyBookings}/>
       </Stack.Navigator>
   
   )
