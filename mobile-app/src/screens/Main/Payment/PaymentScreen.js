@@ -5,6 +5,7 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import React, { useState } from "react";
 import { colors } from "../../../../Utils/Colors";
@@ -23,10 +24,10 @@ const PaymentScreen = () => {
   const [isOn, setisOn] = useState(true);
   const [check, setCheck] = useState(false);
   return (
-    <View style={{ display: "flex", flex: 1 }}>
+    <View style={{ display: "flex", flex: 1,backgroundColor:colors.white }}>
       <View
         style={{
-          backgroundColor: colors.primary,
+          backgroundColor: colors.white,
           height: 80,
           justifyContent: "center",
           width: "auto",
@@ -53,10 +54,10 @@ const PaymentScreen = () => {
         <ImageBackground
           source={images.bill}
           style={{
-            width: 350,
-            height: 540,
+            width: "100%",
+            height: Dimensions.get('window').height/1.3,
           }}
-          resizeMode={"contain"}
+          // resizeMode={"contain"}
         >
           <Spacer height={20} />
           <View style={{ width: "auto", padding: 20 }}>

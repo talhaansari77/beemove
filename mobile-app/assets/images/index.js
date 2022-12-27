@@ -7,4 +7,6 @@ export const images = {
   add: require("./add.png"),
   driverProfile: require("./driverProfile.png"),
   bank: require("./bank.png"),
+  delivery: require("./delivery.png"),
+  track_Car: require("./track_Car.png"),
 };

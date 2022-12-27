@@ -2,12 +2,12 @@ import { View, Text, Image, Dimensions } from "react-native";
 import React from "react";
 import CustomHeader from "../../../components/CustomHeader";
 import CustomText from "../../../components/CustomText";
-import { AntDesign, Feather, Octicons } from "@expo/vector-icons";
 import { colors } from "../../../../Utils/Colors";
 import { images } from "../../../../assets/images";
 import { Spacer } from "../../../components/Spacer";
 import commonStyles from "../../../../Utils/CommonStyles";
 import { scale, verticalScale } from "react-native-size-matters";
+import { AntDesign, Feather, Octicons } from "@expo/vector-icons";
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;

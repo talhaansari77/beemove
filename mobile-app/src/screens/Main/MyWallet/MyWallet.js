@@ -2,17 +2,50 @@ import { View, Text, Image, TouchableOpacity, Dimensions, ScrollView } from "rea
 import React from "react";
 import CustomHeader from "../../../components/CustomHeader";
 import CustomText from "../../../components/CustomText";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign,Entypo } from "@expo/vector-icons";
 import commonStyles from "../../../../Utils/CommonStyles";
 import { images } from "../../../../assets/images";
 import { colors } from "../../../../Utils/Colors";
 import { Spacer } from "../../../components/Spacer";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
+import { ListItem } from "react-native-elements";
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
 const MyWallet = () => {
+    const data = [
+        {
+          id: 1,
+          label: "Credited $23.00",
+          name: "1234567890",
+          icon: () => <AntDesign name="up" size={20} color={'green'} />,
+        },
+        {
+          id: 2,
+          label: "Debited $23.00",
+          name: "523klsd",
+          icon: () => <AntDesign name="down"  size={20}  color={'red'}/>,
+        },
+        {
+          id: 3,
+          label: "Credited $23.00",
+          name: "Driver",
+          icon: () => <AntDesign name="up"  size={20}  color={'green'}/>,
+        },
+        {
+          id: 4,
+          label: "Debited $23.00",
+          name: "Car",
+          icon: () => <AntDesign name="down"   size={20} color={'red'}/>,
+        },
+        {
+          id: 5,
+          label: "Credited $23.00",
+          name: "4.5",
+          icon: () => <AntDesign name="up"   size={20} color={'green'}/>,
+        },
+      ];
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
       <View
@@ -34,7 +67,11 @@ const MyWallet = () => {
             </View>
           )}
           Center={() => (
+            <View style={{flexDirection:'row',alignItems:"center"}}>
+                <Entypo name="wallet" color={colors.primary} size={20}/>
+                <Spacer width={10}/>
             <CustomText label="MyWallet" alignSelf={"center"} fontSize={15} />
+            </View>
           )}
         />
       </View>
@@ -67,9 +104,9 @@ const MyWallet = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
 
         
-        {[1, 2, 3, 4].map(() => (
+        {data.map((item) => (
           <>
-            <HistoryView />
+            <HistoryView label={item.label} icon={item.icon} />
             <Spacer height={20} />
           </>
         ))}
@@ -110,12 +147,16 @@ const MyWallet = () => {
   );
 };
 
-const HistoryView = () => (
+const HistoryView = ({label,icon}) => (
   <View
     style={{
       flexDirection: "row",
       alignItems: "center",
-      paddingHorizontal: 30,
+      marginHorizontal: 30,
+      padding:10,
+      elevation:5,
+      backgroundColor:colors.white,
+      borderRadius:15
     }}
   >
     <View
@@ -125,11 +166,15 @@ const HistoryView = () => (
         borderRadius: screenHeight / 17,
         backgroundColor: colors.white,
         elevation: 5,
+        alignItems:"center",
+        justifyContent:'center'
       }}
-    ></View>
+    >
+        {icon()}
+    </View>
     <Spacer width={20} />
     <View style={{flex:8}}>
-      <CustomText label="Debited $23.00" fontSize={14} />
+      <CustomText label={label} fontSize={14} />
       <CustomText label="Deposits or withdrawals from a personal account (via automated teller machine or ATM" fontSize={10} />
     </View>
   </View>

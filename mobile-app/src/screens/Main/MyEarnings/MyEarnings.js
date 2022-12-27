@@ -7,6 +7,7 @@ import CustomHeader from "../../../components/CustomHeader";
 import CustomText from "../../../components/CustomText";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 import { Spacer } from "../../../components/Spacer";
+import { MaterialCommunityIcons} from "@expo/vector-icons";
 
 const MyEarnings = () => {
   return (
@@ -30,11 +31,15 @@ const MyEarnings = () => {
             </View>
           )}
           Center={() => (
+            <View style={{flexDirection:'row',alignItems:"center"}}>
+                <MaterialCommunityIcons name="cash-multiple" color={colors.primary} size={20}/>
+                <Spacer width={10}/>
             <CustomText
               label="My Earnings"
               alignSelf={"center"}
               fontSize={15}
             />
+            </View>
           )}
         />
       </View>

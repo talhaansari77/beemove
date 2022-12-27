@@ -3,11 +3,47 @@ import React from "react";
 import { colors } from "../../../../Utils/Colors";
 import CustomText from "../../../components/CustomText";
 import { Spacer } from "../../../components/Spacer";
+import { AntDesign, Feather, Octicons,MaterialIcons } from "@expo/vector-icons";
+import CustomHeader from "../../../components/CustomHeader";
+
+const screenHeight = Dimensions.get("window").height;
+const screenWidth = Dimensions.get("window").width;
 
 const MyBookings = () => {
 
   return (
     <View style={{}}>
+        <View
+            style={{
+              paddingVertical: 10,
+              justifyContent: "center",
+              width: screenWidth,
+              paddingHorizontal: 15,
+            }}
+          >
+            <CustomHeader
+              LeftSide={() => (
+                <AntDesign
+                  name="arrowleft"
+                  size={24}
+                  color={colors.lightText}
+                />
+              )}
+              Center={() => (
+                <View style={{flexDirection:'row',alignItems:"center"}}>
+                <MaterialIcons name="work" color={colors.primary} size={20}/>
+                <Spacer width={10}/>
+                <CustomText
+                  label="My Booking"
+                  alignSelf={"center"}
+                  fontSize={16}
+                  fontWeight={"bold"}
+                  color={colors.lightText}
+                /></View>
+              )}
+              
+            />
+          </View>
       <Card />
       <Card />
       <Card />

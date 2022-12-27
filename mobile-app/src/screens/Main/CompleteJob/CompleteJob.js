@@ -13,9 +13,10 @@ import { ScrollView } from "react-native-gesture-handler";
 import MapView, { Marker } from "react-native-maps";
 // import LocationModal from "./Molecules/LocationModal";
 // import DrawerContainer from "./Molecules/DrawerContainer";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign,MaterialIcons } from "@expo/vector-icons";
 import { scale, verticalScale } from "react-native-size-matters";
 import CustomText from "../../../components/CustomText";
+import { images } from "../../../../assets/images";
 // import { colors } from "../../../utils/Colors";
 const CompleteJob = ({ route }) => {
   const region = {
@@ -46,11 +47,9 @@ const CompleteJob = ({ route }) => {
         <Spacer height={10} />
         <MainTopHeader
           txt={"Job"}
-          //   img={
-          //     route?.params?.car
-          //       ? require("../../../../assets/images/car.png")
-          //       : require("../../../../assets/images/bike.png")
-          //   }
+            img={
+              images.track_Car
+            }
         />
         <Spacer height={20} />
         <TopRideContainer completeJob={true} />
