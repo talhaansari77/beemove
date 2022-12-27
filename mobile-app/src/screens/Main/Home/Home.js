@@ -5,6 +5,7 @@ import commonStyles from "../../../../Utils/CommonStyles";
 import TopHeader from "../../../components/TopHeader";
 import { Spacer } from "../../../components/Spacer";
 import PercentageSpacer from "../../../components/PercentageSpacer";
+import DrawerContainer from "../../../components/DrawerContainer";
 
 const Home = ({ navigation }) => {
 
@@ -49,6 +50,7 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={commonStyles.container1}>
+        <DrawerContainer navigation={navigation} img={require("../../../../assets/images/menu.png")}/>
         <TopHeader
           img={require("../../../../assets/images/delivery.png")}
           label1={"Hi Lexton!"}

@@ -20,6 +20,7 @@ const OtpScreen = ({navigation}) => {
 
       <Spacer height={20} />
       <TopHeader
+      backIcon
         label1={"Enter Code"}
         img={require("../../../../../assets/images/appLogo.png")}
         label2="Enter 5 digit code sent to your mobile number - +46 1234 7890"
@@ -50,7 +51,7 @@ const OtpScreen = ({navigation}) => {
         title="Verify Now"
         fontFamily={"Roboto-Regular"}
         onPress={() =>
-          navigation.navigate("MainStack", { screen: "HomeScreen" })
+          navigation.navigate("MainDrawer")
         }
       />
       <Spacer height={20} />

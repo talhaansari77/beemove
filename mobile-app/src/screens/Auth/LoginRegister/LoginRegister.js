@@ -14,22 +14,14 @@ const LoginRegister = ({navigation}) => {
         <View style={commonStyles.PH30}>
         <PercentageSpacer height={"35%"}/>
         <LoginRegBottom
+        onLogin={()=>{
+          navigation.navigate("PhoneNumber")}}
         onRegister={()=>{
-          navigation.navigate("PhoneNumber")
-
-        }}
-        />
-
+          navigation.navigate("PhoneNumber")}}/>
         </View>
-        
-
-    
-        
-      
     </SafeAreaView>
   )
 }
-
 export default LoginRegister
 
 const styles = StyleSheet.create({})
