@@ -21,17 +21,24 @@ const TopHeader = ({
   label2,
   img,
   imgHeight,
+  backIcon,
   spacerHeight,
 }) => {
   return (
     <>
-      <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.goBack()}>
-        <MaterialIcons
-          name="arrow-back"
-          size={moderateScale(30)}
-          color="black"
-        />
-      </TouchableOpacity>
+        {
+          backIcon?(
+            <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.goBack()}>
+    
+            <MaterialIcons
+              name="arrow-back"
+              size={moderateScale(30)}
+              color="black"
+            />
+          </TouchableOpacity>
+
+          ):<></>
+        }
       {/* <PercentageSpacer height={"5%"} /> */}
       <Spacer height={30}/>
 

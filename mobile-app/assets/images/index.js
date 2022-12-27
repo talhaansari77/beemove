@@ -5,4 +5,6 @@ export const images = {
   profilePic: require("./profilePic.png"),
   sort: require("./sort.png"),
   add: require("./add.png"),
+  driverProfile: require("./driverProfile.png"),
+  bank: require("./bank.png"),
 };

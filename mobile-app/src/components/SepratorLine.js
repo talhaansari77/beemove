@@ -5,7 +5,7 @@ import { colors } from '../../Utils/Colors'
 
 const SepratorLine = ({height,width}) => {
   return (
-    <View style={{width: width|| "46%",height:verticalScale( height || 1),backgroundColor:Platform.OS==='ios'?colors.grey:"#aaa"}}>
+    <View style={{width: width|| "46%",height:verticalScale( height || 1),backgroundColor:Platform.OS==='ios'?"#aaa":"#aaa"}}>
     </View>
   )
 }

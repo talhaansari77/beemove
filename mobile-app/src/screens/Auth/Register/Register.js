@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
+import React,{useState} from "react";
 import commonStyles from "../../../../Utils/CommonStyles";
 import { Spacer } from "../../../components/Spacer";
 import TopHeader from "../../../components/TopHeader";
@@ -9,8 +9,11 @@ import CustomButton from "../../../components/CustomButton";
 import CustomText from "../../../components/CustomText";
 import { colors } from "../../../../Utils/Colors";
 import { NavigationContainer } from "@react-navigation/native";
+import RegisterCheck from "./Molecules/RegisterCheck";
 
 const Register = ({ navigation }) => {
+  const [check, setCheck] = useState("Customer");
+
   const inputData = [
     {
       id: 1,
@@ -39,6 +42,7 @@ const Register = ({ navigation }) => {
       rightLabel: require("../../../../assets/images/lock.png"),
     },
   ];
+  const CheckData = ["Customer", "Driver"];
   return (
     <View style={{backgroundColor:colors.white}}>
       <Spacer height={Platform.OS == "ios" ? 40 : 5} />
@@ -47,7 +51,9 @@ const Register = ({ navigation }) => {
         <Spacer height={20} />
         <View style={commonStyles.PH40}>
           <TopHeader
+          backIcon
             label1={"Register"}
+            navigation={navigation}
             img={require("../../../../assets/images/appLogo.png")}
             label2="Make vour own account with Beemove"
             // spacerHeight={"5%"}
@@ -55,7 +61,25 @@ const Register = ({ navigation }) => {
         </View>
         {/* <PercentageSpacer height={"7%"} /> */}
         {/* <Spacer height={20}/> */}
-        <Spacer height={30}/>
+        <Spacer height={20} />
+        <View style={commonStyles.PH30}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Image
+              source={require("../../../../assets/images/user.png")}
+              style={{ width: 20, height: 20 }}
+            />
+
+            {CheckData.map((item) => {
+              return (
+                <>
+                  <RegisterCheck item={item} check={check} setCheck={setCheck} />
+                  {/* <Spacer width={10}/> */}
+                </>
+              );
+            })}
+          </View>
+        </View>
+        <Spacer height={20} />
 
         {inputData.map((item) => {
           return (
@@ -104,7 +128,7 @@ const Register = ({ navigation }) => {
             />
           </View>
         </View>
-        <Spacer height={30}/>
+        <Spacer height={30} />
       </ScrollView>
     </View>
   );

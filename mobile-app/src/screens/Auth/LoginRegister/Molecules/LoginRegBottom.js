@@ -7,7 +7,7 @@ import CustomText from "../../../../components/CustomText";
 import SepratorLine from "../../../../components/SepratorLine";
 import { Spacer } from "../../../../components/Spacer";
 
-const LoginRegBottom = ({onRegister}) => {
+const LoginRegBottom = ({onRegister,onLogin}) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.btnContainer}>
@@ -17,6 +17,8 @@ const LoginRegBottom = ({onRegister}) => {
           title="LOGIN"
           color={"#1B1B1E"}
           fontSize={12}
+          onPress={onLogin}
+
           fontWeight={'bold'}
         />
 
