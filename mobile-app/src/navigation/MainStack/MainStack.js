@@ -10,6 +10,9 @@ import PabiliScreen from '../../screens/Main/Pabili/PabiliScreen'
 import BookPadala from '../../screens/Main/Padala/BookPadala/BookPadala'
 import CompleteJob from '../../screens/Main/CompleteJob/CompleteJob'
 import MyBookings from '../../screens/Main/MyBookings/MyBookings'
+import Profile from "../../screens/Main/Profile/Profile";
+import MyWallet from "../../screens/Main/MyWallet/MyWallet";
+import MyEarnings from "../../screens/Main/MyEarnings/MyEarnings";
 const Stack=createStackNavigator()
 
 const MainStack = () => {
@@ -26,6 +29,9 @@ const MainStack = () => {
           <Stack.Screen name="PabiliScreen" component={PabiliScreen}/>
           <Stack.Screen name="CompleteJob" component={CompleteJob}/>
           <Stack.Screen name="MyBookings" component={MyBookings}/>
+          <Stack.Screen name="Profile" component={Profile}/>
+          <Stack.Screen name="MyWallet" component={MyWallet}/>
+          <Stack.Screen name="MyEarnings" component={MyEarnings}/>
       </Stack.Navigator>
   
   )

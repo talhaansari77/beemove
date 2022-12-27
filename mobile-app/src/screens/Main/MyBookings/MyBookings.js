@@ -5,6 +5,7 @@ import CustomText from "../../../components/CustomText";
 import { Spacer } from "../../../components/Spacer";
 
 const MyBookings = () => {
+
   return (
     <View style={{}}>
       <Card />
