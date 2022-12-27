@@ -56,7 +56,7 @@ function CustomButton({
       borderColor:borderColor,
       marginBottom: marginBottom,
       marginHorizontal: marginHorizontal,
-      alignSelf: alignSelf,
+      alignSelf: alignSelf,elevation:15
     
     }}
     onPress={onPress}>

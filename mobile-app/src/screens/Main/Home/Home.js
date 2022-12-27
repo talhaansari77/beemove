@@ -6,6 +6,7 @@ import TopHeader from "../../../components/TopHeader";
 import { Spacer } from "../../../components/Spacer";
 import PercentageSpacer from "../../../components/PercentageSpacer";
 import DrawerContainer from "../../../components/DrawerContainer";
+import { colors } from "../../../../Utils/Colors";
 
 const Home = ({ navigation }) => {
 
@@ -48,7 +49,7 @@ const Home = ({ navigation }) => {
     },
   ];
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1,backgroundColor:colors.white }}>
       <View style={commonStyles.container1}>
         <DrawerContainer navigation={navigation} img={require("../../../../assets/images/menu.png")}/>
         <TopHeader
