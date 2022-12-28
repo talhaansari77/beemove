@@ -115,7 +115,16 @@ const TopRideContainer = ({ onAddShop, completeJob = false }) => {
 
       <View style={{ alignSelf: "center" }}>
         {completeJob ? (
-          <CustomButton title={"CompleteJob"} width={140} height={40} borderRadius={100} fontWeight={"bold"} fontSize={12} color={colors.lightBlack} />
+          <CustomButton
+            title={"CompleteJob"}
+            width={140}
+            height={40}
+            borderRadius={100}
+            fontWeight={"bold"}
+            fontSize={12}
+            color={colors.primary}
+            backgroundColor={colors.white}
+          />
         ) : (
           <AddlButton
             label="Add Stop"

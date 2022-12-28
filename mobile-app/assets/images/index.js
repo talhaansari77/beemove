@@ -1,5 +1,6 @@
 export const images = {
   bill: require("./bill.png"),
+  bill1: require("./bill1.png"),
   profileBg: require("./profilebg.png"),
   profileBg1: require("./profileBg1.jpeg"),
   profilePic: require("./profilePic.png"),
@@ -9,4 +10,5 @@ export const images = {
   bank: require("./bank.png"),
   delivery: require("./delivery.png"),
   track_Car: require("./track_Car.png"),
+  home: require("./home.png"),
 };

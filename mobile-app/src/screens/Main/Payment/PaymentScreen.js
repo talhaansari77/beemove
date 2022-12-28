@@ -55,7 +55,7 @@ const PaymentScreen = () => {
           source={images.bill}
           style={{
             width: "100%",
-            height: Dimensions.get('window').height/1.3,
+            height: Dimensions.get('window').height/1.2,
           }}
           // resizeMode={"contain"}
         >

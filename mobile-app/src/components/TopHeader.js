@@ -26,21 +26,22 @@ const TopHeader = ({
 }) => {
   return (
     <>
-        {
-          backIcon?(
-            <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.goBack()}>
-    
-            <MaterialIcons
-              name="arrow-back"
-              size={moderateScale(30)}
-              color="black"
-            />
-          </TouchableOpacity>
-
-          ):<></>
-        }
+      {backIcon ? (
+        <TouchableOpacity
+          activeOpacity={0.6}
+          onPress={() => navigation.goBack()}
+        >
+          <MaterialIcons
+            name="arrow-back"
+            size={moderateScale(30)}
+            color="black"
+          />
+        </TouchableOpacity>
+      ) : (
+        <></>
+      )}
       {/* <PercentageSpacer height={"5%"} /> */}
-      <Spacer height={30}/>
+      <Spacer height={30} />
 
       <Image
         resizeMode="contain"
@@ -51,7 +52,7 @@ const TopHeader = ({
         }}
         source={img}
       />
-      <Spacer height={30}/>
+      <Spacer height={30} />
       {/* <PercentageSpacer height={spacerHeight || "15%"} /> */}
       <CustomText
         label={label1}
@@ -60,13 +61,13 @@ const TopHeader = ({
         //   fontWeight="Roboto-Medium"
       />
       {/* <View style={{ width: "80%" }}> */}
-        <CustomText
-          label={label2}
-          color={colors.lightText}
-          fontSize={12}
-          fontFamily="Roboto-Light"
-          marginTop={10}
-        />
+      <CustomText
+        label={label2}
+        color={colors.lightText}
+        fontSize={12}
+        fontFamily="Roboto-Light"
+        marginTop={10}
+      />
       {/* </View> */}
     </>
   );

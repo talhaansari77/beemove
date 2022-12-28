@@ -7,6 +7,7 @@ import { Spacer } from "../../../components/Spacer";
 import PercentageSpacer from "../../../components/PercentageSpacer";
 import DrawerContainer from "../../../components/DrawerContainer";
 import { colors } from "../../../../Utils/Colors";
+import { images } from "../../../../assets/images";
 
 const Home = ({ navigation }) => {
 
@@ -51,7 +52,7 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1,backgroundColor:colors.white }}>
       <View style={commonStyles.container1}>
-        <DrawerContainer navigation={navigation} img={require("../../../../assets/images/menu.png")}/>
+        <DrawerContainer navigation={navigation} img={images.sort}/>
         <TopHeader
           img={require("../../../../assets/images/delivery.png")}
           label1={"Hi Lexton!"}
