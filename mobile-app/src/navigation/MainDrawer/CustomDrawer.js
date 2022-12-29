@@ -27,7 +27,7 @@ import CircleImageContainer from "../../components/CircleImageContainer";
           {...props}
           contentContainerStyle={{ backgroundColor: colors.white }}
         >
-          <View style={{ height: verticalScale(140), justifyContent: "center"}}>
+          <View style={{ height: verticalScale(140), justifyContent: "center",}}>
             <TouchableOpacity 
             activeOpacity={0.6}
             onPress={() => navigation.navigate("ProfileStack")}

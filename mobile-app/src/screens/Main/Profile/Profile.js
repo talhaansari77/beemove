@@ -1,4 +1,12 @@
-import { View, Text, Image, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  SafeAreaView,
+  Platform,
+  TouchableOpacity
+} from "react-native";
 import React from "react";
 import CustomHeader from "../../../components/CustomHeader";
 import CustomText from "../../../components/CustomText";
@@ -12,7 +20,7 @@ import { AntDesign, Feather, Octicons } from "@expo/vector-icons";
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
-const Profile = () => {
+const Profile = ({navigation}) => {
   const data = [
     {
       id: 1,
@@ -24,33 +32,34 @@ const Profile = () => {
       id: 2,
       label: "Referral Id",
       name: "523klsd",
-      icon: () => <Octicons name="cross-reference"  size={20}  color={colors.primary}/>,
+      icon: () => (
+        <Octicons name="cross-reference" size={20} color={colors.primary} />
+      ),
     },
     {
       id: 3,
       label: "User Type",
       name: "Driver",
-      icon: () => <Feather name="user"  size={20}  color={colors.primary}/>,
+      icon: () => <Feather name="user" size={20} color={colors.primary} />,
     },
     {
       id: 4,
       label: "Vehicle Type",
       name: "Car",
-      icon: () => <AntDesign name="car"   size={20} color={colors.primary}/>,
+      icon: () => <AntDesign name="car" size={20} color={colors.primary} />,
     },
     {
       id: 5,
       label: "Driver Rating",
       name: "4.5",
-      icon: () => <AntDesign name="like2"   size={20} color={colors.primary}/>,
+      icon: () => <AntDesign name="like2" size={20} color={colors.primary} />,
     },
   ];
   return (
-    <View style={{ flex: 1, backgroundColor: colors.white }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
       <View style={{ height: screenHeight / 3 }}>
         <Image
           source={images.profileBg}
-          //   resizeMode={"contain"}
           style={{ height: screenHeight / 3.9, width: "100%" }}
         />
         {/* profile detail container*/}
@@ -65,11 +74,17 @@ const Profile = () => {
           >
             <CustomHeader
               LeftSide={() => (
-                <AntDesign
-                  name="arrowleft"
-                  size={24}
-                  color={colors.lightText}
-                />
+                <TouchableOpacity 
+                activeOpacity={0.6}
+                onPress={()=>navigation.openDrawer()}
+                style={commonStyles.iconContainer}>
+                  <Image
+                    resizeMode="contain"
+                    source={images.sort}
+                    style={{...commonStyles.img,tintColor:colors.black}}
+                  />
+                </TouchableOpacity>
+               
               )}
               Center={() => (
                 <CustomText
@@ -137,12 +152,26 @@ const Profile = () => {
           </>
         ))}
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
-const InfoView = ({label,name,icon}) => (
-  <View style={{ flexDirection: "row", alignItems: "center" }}>
+const InfoView = ({ label, name, icon }) => (
+  <View
+    style={{
+      flexDirection: "row",
+      alignItems: "center",
+      padding: 5,
+      backgroundColor: colors.white,
+      shadowColor: Platform.OS == "ios" ? "#ced4da" : colors.black,
+      shadowRadius: 5,
+      elevation: 5,
+      // alignItems: "center",
+      shadowOpacity: 0.3,
+
+      shadowOffset: { width: 2, height: 2 },
+    }}
+  >
     <View
       style={{
         height: screenHeight / 17,
@@ -150,11 +179,11 @@ const InfoView = ({label,name,icon}) => (
         borderRadius: screenHeight / 17,
         backgroundColor: colors.white,
         elevation: 5,
-        justifyContent:"center",
-        alignItems:'center'
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-        {icon()}
+      {icon()}
     </View>
     <Spacer width={20} />
     <View>

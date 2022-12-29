@@ -11,4 +11,6 @@ export const images = {
   delivery: require("./delivery.png"),
   track_Car: require("./track_Car.png"),
   home: require("./home.png"),
+  appLogo: require("./appLogo.png"),
+
 };

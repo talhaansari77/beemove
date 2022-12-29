@@ -66,6 +66,8 @@ const PadalaScreen = ({ navigation }) => {
           <Spacer height={10} />
           <MainTopHeader
             txt={"Padala"}
+            navigation={navigation}
+
             img={require("../../../../assets/images/time.png")}
           />
           <Spacer height={20} />
@@ -171,7 +173,7 @@ const PadalaScreen = ({ navigation }) => {
             />
           </View>
         </View>
-        <Spacer height={30} />
+        <Spacer height={100} />
       </ScrollView>
     </View>
   );

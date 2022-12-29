@@ -1,7 +1,7 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, SafeAreaView,Image } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import CustomHeader from "../../../components/CustomHeader";
 import { colors } from "../../../../Utils/Colors";
 import { Spacer } from "../../../components/Spacer";
@@ -10,10 +10,13 @@ import { FontAwesome } from "@expo/vector-icons";
 import CustomTextInput from "../../../components/CustomTextInput";
 import CustomButton from "../../../components/CustomButton";
 import { images } from "../../../../assets/images";
+import { moderateScale, verticalScale } from "react-native-size-matters";
+import DrawerContainer from "../../../components/DrawerContainer";
+import commonStyles from "../../../../Utils/CommonStyles";
 
-const ConvertToDriver = () => {
+const ConvertToDriver = ({navigation}) => {
   const CenterContent = () => (
-    <View style={{ flexDirection: "row" }}>
+    <View style={{ flexDirection: "row"}}>
       <FontAwesome
         name="drivers-license-o"
         size={24}
@@ -72,7 +75,7 @@ const ConvertToDriver = () => {
     },
   ];
   return (
-    <View>
+    <SafeAreaView>
       <View
         style={{
           //   backgroundColor: colors.primary,
@@ -83,9 +86,22 @@ const ConvertToDriver = () => {
         }}
       >
         <CustomHeader
-          LeftSide={() => (
-            <AntDesign name="arrowleft" size={24} color={colors.primary} />
-          )}
+         LeftSide={() => (
+           
+            
+          <TouchableOpacity 
+          activeOpacity={0.6}
+          onPress={()=>navigation.openDrawer()}
+          style={commonStyles.iconContainer}>
+            <Image
+              resizeMode="contain"
+              source={images.sort}
+              style={commonStyles.img}
+            />
+          </TouchableOpacity>
+        )}
+
+       
           Center={() => <CenterContent />}
         />
       </View>
@@ -145,10 +161,12 @@ const ConvertToDriver = () => {
         </TouchableOpacity>
         <Spacer height={20} />
         
-        <CustomButton title={"Submit"} width={"50%"} alignSelf={"center"} />
+        <CustomButton title={"Submit"} width={"50%"} 
+        height={verticalScale(40)}
+        alignSelf={"center"} />
         <Spacer height={100} />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

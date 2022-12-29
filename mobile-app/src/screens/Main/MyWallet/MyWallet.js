@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, Dimensions, ScrollView } from "react-native";
+import { View, Text, Image, TouchableOpacity, Dimensions, ScrollView, SafeAreaView, Platform } from "react-native";
 import React from "react";
 import CustomHeader from "../../../components/CustomHeader";
 import CustomText from "../../../components/CustomText";
@@ -9,11 +9,12 @@ import { colors } from "../../../../Utils/Colors";
 import { Spacer } from "../../../components/Spacer";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 import { ListItem } from "react-native-elements";
+import AddlButton from "../../../components/AddlButton";
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
-const MyWallet = () => {
+const MyWallet = ({navigation}) => {
     const data = [
         {
           id: 1,
@@ -47,7 +48,7 @@ const MyWallet = () => {
         },
       ];
   return (
-    <View style={{ flex: 1, backgroundColor: colors.white }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.white ,}}>
       <View
         style={{
           paddingVertical: 10,
@@ -57,17 +58,22 @@ const MyWallet = () => {
         }}
       >
         <CustomHeader
-          LeftSide={() => (
-            <View style={commonStyles.iconContainer}>
-              <Image
-                resizeMode="contain"
-                source={images.sort}
-                style={commonStyles.img}
-              />
-            </View>
-          )}
+      LeftSide={() => (
+           
+            
+        <TouchableOpacity 
+        activeOpacity={0.6}
+        onPress={()=>navigation.openDrawer()}
+        style={commonStyles.iconContainer}>
+          <Image
+            resizeMode="contain"
+            source={images.sort}
+            style={commonStyles.img}
+          />
+        </TouchableOpacity>
+      )}
           Center={() => (
-            <View style={{flexDirection:'row',alignItems:"center"}}>
+            <View style={{flexDirection:'row',alignItems:"center",marginLeft:"-10%"}}>
                 <Entypo name="wallet" color={colors.primary} size={20}/>
                 <Spacer width={10}/>
             <CustomText label="MyWallet" alignSelf={"center"} fontSize={15} />
@@ -78,8 +84,8 @@ const MyWallet = () => {
       <View
         style={{
           height: verticalScale(70),
-          borderBottomLeftRadius: 15,
-          borderBottomRightRadius: 15,
+          borderBottomLeftRadius: 25,
+          borderBottomRightRadius: 25,
           backgroundColor: colors.white,
           //   elevation: 5,
           backgroundColor: colors.gray1,
@@ -98,10 +104,12 @@ const MyWallet = () => {
         />
       </View>
       <Spacer height={20} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+
       <CustomText label="Transaction History" fontSize={14} marginLeft={30} />
       <Spacer height={20} />
       <View style={{height:screenHeight/1.6}}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        {/* <ScrollView showsVerticalScrollIndicator={false}> */}
 
         
         {data.map((item) => (
@@ -110,10 +118,29 @@ const MyWallet = () => {
             <Spacer height={20} />
           </>
         ))}
-        </ScrollView>
+        {/* </ScrollView> */}
       </View>
-      <Spacer height={10} />
-      <TouchableOpacity
+      {/* <Spacer height={10} /> */}
+      <View style={{alignSelf:"center",}}>
+      <AddlButton
+            label="Add Stop"
+            width={"42%"}
+            height={verticalScale(37)}
+            // onPress={onAddShop}
+            icon={images.add}
+            textColor={colors.primary}
+          />
+
+      </View>
+
+
+      </ScrollView>
+
+      {/* <Spacer height={20} /> */}
+
+
+  
+      {/* <TouchableOpacity
       activeOpacity={0.7}
         style={{
           ...commonStyles.rowContainer,
@@ -142,8 +169,8 @@ const MyWallet = () => {
             fontWeight={"bold"}
           />
         </View>
-      </TouchableOpacity>
-    </View>
+      </TouchableOpacity> */}
+    </SafeAreaView>
   );
 };
 
@@ -156,7 +183,14 @@ const HistoryView = ({label,icon}) => (
       padding:10,
       elevation:5,
       backgroundColor:colors.white,
-      borderRadius:15
+      borderRadius:15,
+      shadowColor: Platform.OS == "ios" ? "#ced4da" : colors.black,
+      shadowRadius: 5,
+      elevation: 5,
+      // alignItems: "center",
+      shadowOpacity: 0.3,
+
+      shadowOffset: { width: 2, height: 2 },
     }}
   >
     <View

@@ -13,16 +13,16 @@ import MyBookings from "../../screens/Main/MyBookings/MyBookings";
 import PaymentScreen from "../../screens/Main/Payment/PaymentScreen";
 import Receipt from "../../screens/Main/Receipt/Receipt";
 import ConvertToDriver from "../../screens/Main/ConvertToDriver/ConvertToDriver";
-import Profile from "../../screens/Main/Profile/Profile";
-import MyWallet from "../../screens/Main/MyWallet/MyWallet";
-import MyEarnings from "../../screens/Main/MyEarnings/MyEarnings";
 const Stack = createStackNavigator();
 
 const MainStack = () => {
-  return (
+  return(
+
+  
+
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={'CompleteJob'}
+      initialRouteName={"BookPadala"}
     >
       <Stack.Screen name="HomeScreen" component={Home} />
       <Stack.Screen name="RideScreen" component={RideScreen} />
@@ -32,9 +32,6 @@ const MainStack = () => {
       <Stack.Screen name="PabiliScreen" component={PabiliScreen} />
       <Stack.Screen name="CompleteJob" component={CompleteJob} />
       <Stack.Screen name="MyBookings" component={MyBookings} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="MyWallet" component={MyWallet} />
-      <Stack.Screen name="MyEarnings" component={MyEarnings} />
       <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
       <Stack.Screen name="Receipt" component={Receipt} />
       <Stack.Screen name="ConvertToDriver" component={ConvertToDriver} />

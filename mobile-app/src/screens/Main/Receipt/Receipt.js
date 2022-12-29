@@ -1,18 +1,19 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, SafeAreaView, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import CustomHeader from "../../../components/CustomHeader";
 import { colors } from "../../../../Utils/Colors";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign,MaterialIcons } from "@expo/vector-icons";
 import CustomText from "../../../components/CustomText";
 import { Spacer } from "../../../components/Spacer";
-import { verticalScale } from "react-native-size-matters";
+import { moderateScale, verticalScale } from "react-native-size-matters";
 import SepratorLine from "../../../components/SepratorLine";
 import { images } from "../../../../assets/images";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import CustomButton from "../../../components/CustomButton";
+import { NavigationContainer } from "@react-navigation/native";
 
-const Receipt = () => {
+const Receipt = ({navigation}) => {
   const CenterContent = () => (
     <View style={{ flexDirection: "row" }}>
       <FontAwesome5 name="receipt" size={24} color={colors.primary} />
@@ -24,7 +25,7 @@ const Receipt = () => {
   const [ratingCompleted, setRatingCompleted] = useState();
 
   return (
-    <View>
+    <SafeAreaView>
       <View
         style={{
           //   backgroundColor: colors.primary,
@@ -36,7 +37,18 @@ const Receipt = () => {
       >
         <CustomHeader
           LeftSide={() => (
-            <AntDesign name="arrowleft" size={24} color={colors.primary} />
+            <TouchableOpacity activeOpacity={0.6}
+            onPress={()=>navigation.goBack()}
+            >  
+               <MaterialIcons
+            name="arrow-back"
+            size={moderateScale(25)}
+            color="black"
+          />
+
+            </TouchableOpacity>
+            
+         
           )}
           Center={() => <CenterContent />}
         />
@@ -111,7 +123,7 @@ const Receipt = () => {
             <CustomText label={"27 Apr 2022 13:01"} fontSize={12} />
           </View>
           <View>
-            <CustomText label={"$23.00"} fontSize={14} fontWeight={"bold"} />
+            <CustomText label={"$23.00"} fontSize={14} fontWeight={"Roboto-Bold"} />
           </View>
         </View>
       </View>
@@ -164,9 +176,9 @@ const Receipt = () => {
         title={"Submit Rating"}
         width={"80%"}
         alignSelf={"center"}
-        fontFamily={"bold"}
+        fontFamily={"Roboto-Medium"}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -1,19 +1,22 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import commonStyles from "../../Utils/CommonStyles";
 import CustomText from "./CustomText";
 import { colors } from "../../Utils/Colors";
 
-const MainTopHeader = ({ txt, img }) => {
+const MainTopHeader = ({ txt, img,navigation }) => {
   return (
     <View style={styles.mainCotainer}>
-      <View style={commonStyles.iconContainer}>
+      <TouchableOpacity
+      activeOpacity={0.6}
+      onPress={()=>navigation.openDrawer()}
+       style={commonStyles.iconContainer}>
         <Image
           resizeMode="contain"
           source={require("../../assets/images/sort.png")}
           style={commonStyles.img}
         />
-      </View>
+      </TouchableOpacity>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         {img ? (
           <View style={commonStyles.iconContainer}>

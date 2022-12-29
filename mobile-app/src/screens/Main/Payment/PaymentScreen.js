@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  SafeAreaView,
 } from "react-native";
 import React, { useState } from "react";
 import { colors } from "../../../../Utils/Colors";
@@ -16,15 +17,17 @@ import CustomHeader from "../../../components/CustomHeader";
 import { images } from "../../../../assets/images";
 import { Spacer } from "../../../components/Spacer";
 import { CheckBox } from "react-native-elements";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import commonStyles from "../../../../Utils/CommonStyles";
 import CustomButton from "../../../components/CustomButton";
 
-const PaymentScreen = () => {
+const PaymentScreen = ({navigation}) => {
   const [isOn, setisOn] = useState(true);
   const [check, setCheck] = useState(false);
   return (
-    <View style={{ display: "flex", flex: 1,backgroundColor:colors.white }}>
+    <SafeAreaView
+      style={{ display: "flex", flex: 1, backgroundColor: colors.white }}
+    >
       <View
         style={{
           backgroundColor: colors.white,
@@ -36,10 +39,36 @@ const PaymentScreen = () => {
       >
         <CustomHeader
           LeftSide={() => (
-            <AntDesign name="arrowleft" size={24} color="black" />
+            <TouchableOpacity activeOpacity={0.6}
+            onPress={()=>navigation.goBack()}
+            >  
+               <MaterialIcons
+            name="arrow-back"
+            size={moderateScale(25)}
+            color="black"
+          />
+
+            </TouchableOpacity>
           )}
           Center={() => (
-            <CustomText label="Payment" alignSelf={"center"} fontSize={15} />
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginLeft: "-10%",
+              }}
+            >
+              <MaterialIcons name="payment" color={colors.primary} size={20} />
+              <Spacer width={10} />
+              <CustomText
+                label="Payment"
+                alignSelf={"center"}
+                fontSize={16}
+                fontFamily="Roboto-Medium"
+                // fontWeight={"bold"}
+                color={colors.lightText}
+              />
+            </View>
           )}
         />
       </View>
@@ -55,7 +84,7 @@ const PaymentScreen = () => {
           source={images.bill}
           style={{
             width: "100%",
-            height: Dimensions.get('window').height/1.2,
+            height: Dimensions.get("window").height / 1.2,
           }}
           // resizeMode={"contain"}
         >
@@ -88,22 +117,8 @@ const PaymentScreen = () => {
                 <CustomText label="-$0.00" fontSize={11} />
               </View>
             </View>
-            {/* <CheckBox
-              // center
-              // title="Click Here"
-              // iconType="material"
-              // checkedIcon="check"
-              // checkedColor={}
-              // uncheckedIcon="add"
-              checkedColor={colors.primary}
-              checked={isOn}
-              onPress={() => {
-                setisOn(!isOn);
-              }}
-              // backgroundColor={colors.black}
-              // style={{backgroundColor:colors.black,}}
-            /> */}
-            <View style={{display:"flex", flexDirection:"row"}} >
+
+            <View style={{ display: "flex", flexDirection: "row" }}>
               <TouchableOpacity
                 activeOpacity={0.6}
                 onPress={() => setCheck(!check)}
@@ -120,8 +135,8 @@ const PaymentScreen = () => {
                 )}
               </TouchableOpacity>
               <Spacer width={10} />
-              <View style={{alignSelf:"center"}}>
-              <CustomText label="Use Wallet Cash (Your Balance is $274.00)"  />
+              <View style={{ alignSelf: "center" }}>
+                <CustomText label="Use Wallet Cash (Your Balance is $274.00)" />
               </View>
             </View>
             <Spacer height={10} />
@@ -162,6 +177,7 @@ const PaymentScreen = () => {
                 title={"Pay with Card"}
                 width={"40%"}
                 height={40}
+                onPress={()=>navigation.navigate("Receipt")}
                 fontSize={12}
                 backgroundColor={colors.white}
               />
@@ -169,7 +185,7 @@ const PaymentScreen = () => {
           </View>
         </ImageBackground>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

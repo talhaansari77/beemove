@@ -1,18 +1,21 @@
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, SafeAreaView, StyleSheet, Text, View,TouchableOpacity, Platform } from "react-native";
 import React from "react";
 import { colors } from "../../../../Utils/Colors";
 import CustomText from "../../../components/CustomText";
 import { Spacer } from "../../../components/Spacer";
 import { AntDesign, Feather, Octicons,MaterialIcons } from "@expo/vector-icons";
 import CustomHeader from "../../../components/CustomHeader";
+import { moderateScale } from "react-native-size-matters";
+import commonStyles from "../../../../Utils/CommonStyles";
+import { images } from "../../../../assets/images";
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
-const MyBookings = () => {
+const MyBookings = ({navigation}) => {
 
   return (
-    <View style={{}}>
+    <SafeAreaView style={{flex:1}}>
         <View
             style={{
               paddingVertical: 10,
@@ -20,24 +23,34 @@ const MyBookings = () => {
               width: screenWidth,
               paddingHorizontal: 15,
             }}
-          >
+            >
             <CustomHeader
-              LeftSide={() => (
-                <AntDesign
-                  name="arrowleft"
-                  size={24}
-                  color={colors.lightText}
-                />
+               LeftSide={() => (
+           
+            
+                <TouchableOpacity 
+                activeOpacity={0.6}
+                onPress={()=>navigation.openDrawer()}
+                style={commonStyles.iconContainer}>
+                  <Image
+                    resizeMode="contain"
+                    source={images.sort}
+                    style={commonStyles.img}
+                  />
+                </TouchableOpacity>
               )}
+            
+       
               Center={() => (
-                <View style={{flexDirection:'row',alignItems:"center"}}>
+                <View style={{flexDirection:'row',alignItems:"center",marginLeft:"-10%"}}>
                 <MaterialIcons name="work" color={colors.primary} size={20}/>
                 <Spacer width={10}/>
                 <CustomText
                   label="My Booking"
                   alignSelf={"center"}
                   fontSize={16}
-                  fontWeight={"bold"}
+                  fontFamily="Roboto-Medium"
+                  // fontWeight={"bold"}
                   color={colors.lightText}
                 /></View>
               )}
@@ -47,7 +60,7 @@ const MyBookings = () => {
       <Card />
       <Card />
       <Card />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -62,6 +75,13 @@ const Card = () => (
       elevation: 5,
       padding: 10,
       borderRadius: 10,
+      shadowColor: Platform.OS == "ios" ? "#ced4da" : colors.black,
+      shadowRadius: 5,
+      elevation: 5,
+      // alignItems: "center",
+      shadowOpacity: 0.3,
+
+      shadowOffset: { width: 2, height: 2 },
     }}
   >
     <View
@@ -70,8 +90,10 @@ const Card = () => (
         width: 60,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 20,
+        borderRadius: 99,
         backgroundColor: colors.white,
+        borderWidth:0.5,
+        borderColor:colors.grayBorder,
         elevation: 5,
         position: "absolute",
         top: -20,
@@ -85,7 +107,7 @@ const Card = () => (
       />
     </View>
     {/* Card Body */}
-    <View>
+    <View >
       <View
         style={{
           flexDirection: "row",

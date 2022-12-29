@@ -7,7 +7,7 @@ import { moderateScale, verticalScale } from "react-native-size-matters";
 import { Spacer } from "../../../../components/Spacer";
 import { Ionicons } from "@expo/vector-icons";
 
-const RideBottomContainer = ({ onBook }) => {
+const RideBottomContainer = ({ onBook,navigation }) => {
   const [check, setCheck] = useState(false);
   return (
     <View>
@@ -52,6 +52,7 @@ const RideBottomContainer = ({ onBook }) => {
           width={"46%"}
           height={verticalScale(40)}
           title="Book Now"
+          onPress={()=>navigation.navigate("PaymentScreen")}
           color={"#1B1B1E"}
           fontSize={12}
           fontWeight={'bold'}

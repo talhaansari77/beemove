@@ -13,7 +13,7 @@ import MapView, { Marker } from "react-native-maps";
 import { AntDesign } from "@expo/vector-icons";
 import { colors } from "../../../../Utils/Colors";
 
-const PabiliScreen = () => {
+const PabiliScreen = ({navigation}) => {
   const region = {
     latitude: 37.78825,
     longitude: -122.4324,
@@ -40,6 +40,8 @@ const PabiliScreen = () => {
         <View style={commonStyles.PH30}>
           <Spacer height={10} />
           <MainTopHeader
+                  navigation={navigation}
+
             txt={"Pabili"}
             img={require("../../../../assets/images/card.png")}
           />
@@ -111,7 +113,7 @@ const PabiliScreen = () => {
           })}
           <PabiliInnerContainer />
         </View>
-        <Spacer height={30} />
+        <Spacer height={100} />
       </ScrollView>
     </View>
   );

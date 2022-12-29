@@ -15,6 +15,9 @@ import MyWallet from "../../screens/Main/MyWallet/MyWallet";
 import Profile from "../../screens/Main/Profile/Profile";
 import CustomText from "../../components/CustomText";
 import ConvertToDriver from "../../screens/Main/ConvertToDriver/ConvertToDriver";
+import AboutUs from "../../screens/Main/AboutUs/AboutUs";
+import DriverHome from "../../screens/Main/DriverHome/DriverHome";
+import Home from "../../screens/Main/Home/Home";
 
 const Drawer = createDrawerNavigator();
 // FontAwesome5
@@ -76,7 +79,7 @@ const MainDrawer = () => {
           drawerIcon: ({ color }) => <CustomDrawerIcon icon={"home"} />,
         }}
         name="bookingRequest"
-        component={BookingStack}
+        component={DriverHome}
       />
       <Drawer.Screen
         options={{
@@ -94,30 +97,30 @@ const MainDrawer = () => {
         name="myEarnings"
         component={MyEarnings}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         options={{
           // drawerItemStyle:{display:"none"},
           drawerIcon: ({ color }) => <CustomDrawerIcon icon={"user-alt"} />,
         }}
         name="convertToDriver"
         component={ConvertToDriver}
-      />
-      <Drawer.Screen
+      /> */}
+      {/* <Drawer.Screen
         options={{
           // drawerItemStyle:{display:"none"},
           drawerIcon: ({ color }) => <CustomDrawerIcon icon={"car"} />,
         }}
         name="makeRequest"
         component={BookingStack}
-      />
-      <Drawer.Screen
+      /> */}
+      {/* <Drawer.Screen
         options={{
           // drawerItemStyle:{display:"none"},
           drawerIcon: ({ color }) => <CustomDrawerIcon icon={"helicopter"} />,
         }}
         name="Emergency"
         component={BookingStack}
-      />
+      /> */}
       <Drawer.Screen
         options={{
           // drawerItemStyle:{display:"none"},
@@ -134,14 +137,14 @@ const MainDrawer = () => {
         name="profileSetting"
         component={Profile}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         options={{
           // drawerItemStyle:{display:"none"},
           drawerIcon: ({ color }) => <CustomDrawerIcon icon={"bitcoin"} />,
         }}
         name="referAndEarn"
         component={() => {}}
-      />
+      /> */}
       <Drawer.Screen
         options={{
           // drawerItemStyle:{display:"none"},
@@ -156,7 +159,7 @@ const MainDrawer = () => {
           drawerIcon: ({ color }) => <CustomDrawerIcon icon={"info"} />,
         }}
         name="aboutUs"
-        component={() => {}}
+        component={AboutUs}
       />
       <Drawer.Screen
         options={{

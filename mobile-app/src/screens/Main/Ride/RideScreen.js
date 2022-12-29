@@ -16,7 +16,7 @@ import MapView, { Marker } from "react-native-maps";
 import { AntDesign } from "@expo/vector-icons";
 import { scale, verticalScale } from "react-native-size-matters";
 // import { colors } from "../../../utils/Colors";
-const RideScreen = ({ route }) => {
+const RideScreen = ({ route,navigation }) => {
   const region = {
     latitude: 37.78825,
     longitude: -122.4324,
@@ -46,6 +46,7 @@ const RideScreen = ({ route }) => {
         
         <Spacer height={10} />
         <MainTopHeader
+        navigation={navigation}
           txt={route?.params?.car ? "Car" : "Ride"}
           img={
             route?.params?.car
@@ -123,9 +124,9 @@ const RideScreen = ({ route }) => {
           );
         })}
 
-        <RideBottomContainer />
+        <RideBottomContainer navigation={navigation}/>
         </View>
-        <Spacer height={30} />
+        <Spacer height={100} />
       </ScrollView>
     </View>
   );

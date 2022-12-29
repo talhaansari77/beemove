@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, SafeAreaView, TouchableOpacity } from "react-native";
 import React from "react";
 import { colors } from "../../../../Utils/Colors";
 import commonStyles from "../../../../Utils/CommonStyles";
@@ -9,9 +9,9 @@ import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 import { Spacer } from "../../../components/Spacer";
 import { MaterialCommunityIcons} from "@expo/vector-icons";
 
-const MyEarnings = () => {
+const MyEarnings = ({navigation}) => {
   return (
-    <View style={{ flex: 1, backgroundColor: colors.white }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
       <View
         style={{
           paddingVertical: 10,
@@ -22,16 +22,21 @@ const MyEarnings = () => {
       >
         <CustomHeader
           LeftSide={() => (
-            <View style={commonStyles.iconContainer}>
+           
+            
+            <TouchableOpacity 
+            activeOpacity={0.6}
+            onPress={()=>navigation.openDrawer()}
+            style={commonStyles.iconContainer}>
               <Image
                 resizeMode="contain"
                 source={images.sort}
                 style={commonStyles.img}
               />
-            </View>
+            </TouchableOpacity>
           )}
           Center={() => (
-            <View style={{flexDirection:'row',alignItems:"center"}}>
+            <View style={{flexDirection:'row',alignItems:"center",marginLeft:"-10%"}}>
                 <MaterialCommunityIcons name="cash-multiple" color={colors.primary} size={20}/>
                 <Spacer width={10}/>
             <CustomText
@@ -47,8 +52,8 @@ const MyEarnings = () => {
       <View
         style={{
           height: verticalScale(70),
-          borderBottomLeftRadius: 15,
-          borderBottomRightRadius: 15,
+          borderBottomLeftRadius: 25,
+          borderBottomRightRadius: 25,
           backgroundColor: colors.white,
           //   elevation: 5,
           backgroundColor: colors.gray1,
@@ -136,7 +141,7 @@ const MyEarnings = () => {
           color={colors.lightBlack}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

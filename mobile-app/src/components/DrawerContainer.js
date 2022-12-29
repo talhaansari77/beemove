@@ -9,6 +9,7 @@ const DrawerContainer = ({
   backgroundColor,
   margin,
   img,
+  position,
 }) => {
   return (
     <TouchableOpacity
@@ -19,7 +20,7 @@ const DrawerContainer = ({
         borderRadius: 99,
         // borderColor:99,
         backgroundColor: backgroundColor || colors.white,
-        position: "absolute",
+        position: position ||"absolute",
         top: 0,
         margin: margin || 20,
         alignItems: "center",
@@ -40,10 +41,10 @@ const styles = StyleSheet.create({
     borderRadius: 99,
     // borderColor:99,
     backgroundColor: colors.white,
-    position: "absolute",
-    top: 0,
-    margin: 20,
-    alignItems: "center",
-    justifyContent: "center",
+    // position: "absolute",
+    // top: 0,
+    // margin: 20,
+    // alignItems: "center",
+    // justifyContent: "center",
   },
 });
