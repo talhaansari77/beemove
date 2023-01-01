@@ -25,6 +25,13 @@ const DrawerContainer = ({
         margin: margin || 20,
         alignItems: "center",
         justifyContent: "center",
+        shadowColor: Platform.OS == "ios" ? "#ced4da" : colors.black,
+        shadowRadius: 5,
+        elevation: 5,
+        // alignItems: "center",
+        shadowOpacity: 0.3,
+  
+        shadowOffset: { width: 2, height: 2 },
       }}
     >
       <Image style={{ width: 25, height: 25 }} source={img} />

@@ -173,8 +173,7 @@ export default function ConvertDriver(props) {
                 rightComponent={isRTL? lCom: null}
                 centerComponent={<Text style={styles.headerTitleStyle}>{t('convert_to_driver')}</Text>}
                 containerStyle={styles.headerStyle}
-                innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
-            />
+                innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}/>
             <KeyboardAvoidingView  style={styles.form} behavior={Platform.OS === "ios" ? "padding" : "height"}>
             <ScrollView style={styles.scrollViewStyle} showsVerticalScrollIndicator={false}>
                 {

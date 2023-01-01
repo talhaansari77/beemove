@@ -11,30 +11,33 @@ import OTPTextInput from "react-native-otp-textinput";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { scale, verticalScale } from "react-native-size-matters";
 
-const OtpScreen = ({navigation}) => {
+const OtpScreen = ({navigation,state,onVerify,setState,onResend}) => {
   const [otpCode, setOtpCode] = useState("");
+  // state.verificationId?`Enter 6 digit code sent to your mobile number ${state.contact} `
 
   return (
-    <View style={commonStyles.container2}>
-      <Spacer height={Platform.OS == "ios" ? 40 : 5} />
+    <>
 
       <Spacer height={20} />
       <TopHeader
-      backIcon
         label1={"Enter Code"}
         img={require("../../../../../assets/images/appLogo.png")}
-        label2="Enter 5 digit code sent to your mobile number - +46 1234 7890"
+        label2={`Enter 6 digit code sent to your mobile number ${state.countryCode +" "+state.contact}`}
         spacerHeight={"5%"}
       />
       <PercentageSpacer height={"10%"} />
       {/* <View style={styles.otpContainer}> */}
       <View style={{ height: "10%" }}>
         <OTPInputView
-          pinCount={5}
+          pinCount={6}
+        
           codeInputHighlightStyle={styles.highLighted}
           autoFocusOnLoad
           codeInputFieldStyle={styles.underlineStyleBase}
+          onCodeChanged={(value) => setState({ ...state, verificationCode: value })}
+
           onCodeFilled={(code) => {
+            // value={state.verificationCode}
             // setIsVisible(true);
 
             // setTimeout(() => {
@@ -46,13 +49,11 @@ const OtpScreen = ({navigation}) => {
         />
       </View>
 
-      <PercentageSpacer height={"10%"} />
+      <PercentageSpacer height={"20%"} />
       <CustomButton
         title="Verify Now"
         fontFamily={"Roboto-Regular"}
-        onPress={() =>
-          navigation.navigate("MainDrawer")
-        }
+        onPress={onVerify}
       />
       <Spacer height={20} />
 
@@ -71,13 +72,15 @@ const OtpScreen = ({navigation}) => {
         />
         <CustomText
           label="Resend Code"
+          onPress={onResend}
           color={colors.primary}
           marginLeft={2}
           fontFamily={"Roboto-Bold"}
           fontSize={11}
         />
       </View>
-    </View>
+      </>
+
   );
 };
 
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     // borderColor: colors.primary,
   },
   underlineStyleBase: {
-    width: scale(45),
+    width: scale(40),
     height: verticalScale(50),
     borderWidth: -1,
     borderRightWidth: 1.5,

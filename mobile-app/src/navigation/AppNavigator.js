@@ -30,6 +30,7 @@ import SideMenu from '../components/SideMenu';
 import i18n from 'i18n-js';
 import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
+import Home from '../screens/Main/Home/Home';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -52,8 +53,6 @@ export default function AppContainer() {
             }
         });     
     },[]);
-
-
     const DrawerRoot = () => {
         return (
             <Drawer.Navigator
@@ -61,7 +60,7 @@ export default function AppContainer() {
                 drawerContent={(props) => <SideMenu {...props} />}
             >
                 {auth.info && auth.info.profile && auth.info.profile.usertype == 'rider' ?
-                    <Drawer.Screen name="Map" component={MapScreen} />
+                    <Drawer.Screen name="Map" component={Home} />
                     : null}
                 {auth.info && auth.info.profile && auth.info.profile.usertype == 'rider' ?
                     <Drawer.Screen name="Convert" component={ConvertDriver} />
