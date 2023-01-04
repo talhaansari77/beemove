@@ -16,6 +16,7 @@ import i18n from 'i18n-js';
 import { useSelector } from 'react-redux';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { DrawerActions } from '@react-navigation/native';
+import MyWallet from './Main/MyWallet/MyWallet';
 
 export default function WalletDetails(props) {
 
@@ -67,7 +68,15 @@ export default function WalletDetails(props) {
   const rCom = auth.info && auth.info.profile && (auth.info.profile.usertype =='driver' || (auth.info.profile.usertype =='rider' && settings && settings.RiderWithDraw))?<TouchableOpacity onPress={doWithdraw}><Text style={{color:colors.WHITE, marginTop: 5}}>{t('withdraw')}</Text></TouchableOpacity>:null;
 
   return (
-    <View style={styles.mainView}>
+    <>
+    <MyWallet
+    openDrawer={() => { props.navigation.dispatch(DrawerActions.toggleDrawer())}}
+    auth={auth} 
+    settings={settings}
+    doReacharge={doReacharge}
+    WalletHistory={auth?.info && auth?.info?.profile? auth?.info?.profile?.walletHistory: []}
+    />
+    {/* <View style={styles.mainView} >
       <Header
         backgroundColor={colors.HEADER}
         leftComponent={isRTL? rCom:lCom}
@@ -75,6 +84,7 @@ export default function WalletDetails(props) {
         centerComponent={<Text style={styles.headerTitleStyle}>{t('my_wallet_tile')}</Text>}
         containerStyle={styles.headerStyle}
         innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
+      
       />
 
       <View style={{ flex: 1, flexDirection: 'column' }}>
@@ -115,7 +125,8 @@ export default function WalletDetails(props) {
         </View>
       </View>
 
-    </View>
+    </View> */}
+    </>
   );
 
 }

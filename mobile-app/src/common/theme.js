@@ -47,5 +47,6 @@ export const colors = {
   INDICATOR_BLUE: "#007aff",
   FOOTERTOP: "#cccccc",
   START_TRIP: "#018E16",
-  RE_GREEN:"#7ED957"
+  RE_GREEN:"#7ED957",
+  primary: "#F6AD00",
 }

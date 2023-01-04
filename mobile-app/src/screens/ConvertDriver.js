@@ -22,6 +22,7 @@ import { DrawerActions } from '@react-navigation/native';
 import ActionSheet from "react-native-actions-sheet";
 import i18n from 'i18n-js';
 import { Ionicons } from '@expo/vector-icons';
+import ConvertToDriver from './Main/ConvertToDriver/ConvertToDriver';
 
 var { height,width } = Dimensions.get('window');
 
@@ -151,6 +152,7 @@ export default function ConvertDriver(props) {
 
     //register button press for validation
     const onPressRegister = () => {
+        console.log("State=>>2",state)
         if(state.licenseImage == null){
             Alert.alert(t('alert'),t('proper_input_licenseimage'));
         }else{
@@ -160,13 +162,27 @@ export default function ConvertDriver(props) {
             }else{
                 Alert.alert(t('alert'),t('proper_input_vehicleno'));
             }
-        }
+        } 
     }
 
     const lCom = { icon: 'md-menu', type: 'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback, onPress: () => { props.navigation.dispatch(DrawerActions.toggleDrawer());} }
 
     return (
-        <View style={styles.mainView}>
+        <>
+            <ConvertToDriver 
+                openDrawer={() => { props.navigation.dispatch(DrawerActions.toggleDrawer())}}
+
+            onSubmit={onPressRegister} 
+            setState={setState} 
+            state={state} 
+            showActionSheet={showActionSheet}
+            capturedImage={capturedImage}
+            cancelPhoto={cancelPhoto}
+            />
+            {
+                    uploadImage()
+                }
+        {/* <View style={styles.mainView}>
             <Header
                 backgroundColor={colors.HEADER}
                 leftComponent={isRTL?null : lCom }
@@ -456,7 +472,8 @@ export default function ConvertDriver(props) {
                 </View>
             </ScrollView>
             </KeyboardAvoidingView>
-        </View>
+        </View> */}
+        </>
     );
 
 }
