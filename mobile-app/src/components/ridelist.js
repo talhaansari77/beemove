@@ -130,6 +130,7 @@ export default function RideList(props) {
 
   const renderMyCard = ({ item, index }) => (
     <TouchableOpacity
+    activeOpacity={0.7}
       onPress={() => onPressButton(item, index)}
       style={{
         marginHorizontal: 30,
