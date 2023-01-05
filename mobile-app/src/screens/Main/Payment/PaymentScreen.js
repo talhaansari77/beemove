@@ -79,7 +79,7 @@ const PaymentScreen = ({
           LeftSide={() => (
             <TouchableOpacity
               activeOpacity={0.6}
-              onPress={() => navigation.goBack()}
+              onPress={goBack}
             >
               <MaterialIcons
                 name="arrow-back"

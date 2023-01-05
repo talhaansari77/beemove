@@ -424,9 +424,7 @@ export default function PaymentDetails(props) {
   return (
     <>
       <PaymentScreen
-        goBack={() => {
-          goBack();
-        }}
+        goBack={goBack}
         userdata={userdata}
         settings={settings}
         payDetails={payDetails}
