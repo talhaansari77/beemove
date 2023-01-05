@@ -5,11 +5,13 @@ import {
     StyleSheet,
     View,
     Text,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    ScrollView
 } from 'react-native';
 import i18n from 'i18n-js';
 import { useSelector } from 'react-redux';
 import { DrawerActions } from '@react-navigation/native';
+import MyEarnings from './Main/MyEarnings/MyEarnings';
 
 export default function DriverIncomeScreen(props) {
 
@@ -61,7 +63,16 @@ export default function DriverIncomeScreen(props) {
     const lCom = {icon:'md-menu', type:'ionicon', color:colors.WHITE, size: 30, component: TouchableWithoutFeedback,onPress: ()=>{props.navigation.dispatch(DrawerActions.toggleDrawer());}}
     
     return (
-        <View style={styles.mainView}>
+        <>
+            <MyEarnings
+                openDrawer={() => { props.navigation.dispatch(DrawerActions.toggleDrawer())}}
+                settings={settings}
+                totalEarning={totalEarning}
+                bookingCount={bookingCount}
+                today={today}
+                thisMonth={thisMonth}
+            />
+            {/* <View style={styles.mainView}>
             <Header 
                 backgroundColor={colors.HEADER}
                 leftComponent={isRTL?null : lCom }
@@ -112,7 +123,8 @@ export default function DriverIncomeScreen(props) {
             </View>
                 
             </View>
-        </View>
+        </View> */}
+        </>
     );
 }
 

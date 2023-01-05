@@ -1,8 +1,9 @@
 import React from 'react';
 import { Text, View, Image,TouchableOpacity, Platform, StatusBar } from 'react-native';
 import { Icon } from 'react-native-elements'
-import { colors } from '../common/theme';
+import { colors } from '../../Utils/Colors';
 import i18n from 'i18n-js';
+import { Spacer } from './Spacer';
 //make a compontent
 const isRTL = i18n.locale.indexOf('he') === 0 || i18n.locale.indexOf('ar') === 0;
 
@@ -22,11 +23,13 @@ const SideMenuHeader = ({headerStyle,userPhoto,userName,userEmail,language}) =>{
                 <Icon 
                     name='mail-outline'
                     type='ionicons'
-                    color={colors.WHITE}
+                    color={colors.BLACK}
                     size={16}
                 />
                 <Text style={[styles.emailStyle,language != null && language == 'ar'?{marginRight: 4}:{marginLeft: 4}]}>{userEmail?userEmail.toLowerCase():""}</Text>
             </View>
+            <Spacer height={10}/>
+            <View style={{width:"100%",height:2,backgroundColor:colors.primary}}></View>
         </View>
    );
  
@@ -34,12 +37,12 @@ const SideMenuHeader = ({headerStyle,userPhoto,userName,userEmail,language}) =>{
 
 const styles = {
     viewStyle:{
-        backgroundColor:colors.SIDEMENU,
+        // backgroundColor:colors.b,
         justifyContent:'center',
         alignItems:'center',
         height:180,
-        paddingTop:Platform.OS=='ios'?20:StatusBar.currentHeight,
-        shadowColor:colors.BLACK,
+        paddingTop:Platform.OS=='ios'?50:StatusBar.currentHeight,
+        shadowColor:colors.black,
         shadowOffset:{width:0,height:2},
         shadowOpacity:0.2,
         elevation:2,
@@ -48,7 +51,7 @@ const styles = {
     },
     textStyle:{
         fontSize:20,
-        color:colors.WHITE
+        color:colors.black
     },
     headerTextStyle:{
         justifyContent:'center',
@@ -64,14 +67,14 @@ const styles = {
         borderRadius: 50,
         overflow: 'hidden',
         borderWidth: 2,
-        borderColor: colors.WHITE,
+        borderColor:colors.lightBlack,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20
+        // padding: 20
     },
     ProfileNameStyle:{
         fontWeight: 'bold', 
-        color: colors.WHITE, 
+        color: colors.black, 
         fontSize: 15
     },
     iconViewStyle:{
@@ -82,14 +85,17 @@ const styles = {
         marginTop: 4
     },
     emailStyle:{
-        color: colors.WHITE, 
+        color: colors.black, 
         fontSize: 13,
         marginLeft: 4,
         textAlign:'center'
     },
     imageStyle:{
-        width: 80, 
-        height:80
+        width: 78, 
+        height:78,
+        borderRadius:99
+        
+        
     }
 }
 //make the component available to other parts of the app

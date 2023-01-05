@@ -111,7 +111,7 @@ export default function App() {
   }
 
   return (
-    // <RootNavigator />
+  //   <RootNavigator />
     <Provider store={store}>
       <FirebaseProvider config={FirebaseConfig} appcat={AppCat}>
         <AppCommon>

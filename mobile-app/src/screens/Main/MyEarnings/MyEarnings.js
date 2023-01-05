@@ -1,4 +1,10 @@
-import { View, Text, Image, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { colors } from "../../../../Utils/Colors";
 import commonStyles from "../../../../Utils/CommonStyles";
@@ -7,11 +13,21 @@ import CustomHeader from "../../../components/CustomHeader";
 import CustomText from "../../../components/CustomText";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 import { Spacer } from "../../../components/Spacer";
-import { MaterialCommunityIcons} from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const MyEarnings = ({navigation}) => {
+const MyEarnings = ({
+  navigation,
+  openDrawer,
+  settings,
+  totalEarning,
+  bookingCount,
+  today,
+  thisMonth,
+}) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
+                  <Spacer height={Platform.OS==='ios'?40:30}/>
+
       <View
         style={{
           paddingVertical: 10,
@@ -22,12 +38,11 @@ const MyEarnings = ({navigation}) => {
       >
         <CustomHeader
           LeftSide={() => (
-           
-            
-            <TouchableOpacity 
-            activeOpacity={0.6}
-            onPress={()=>navigation.openDrawer()}
-            style={commonStyles.iconContainer}>
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={openDrawer}
+              style={commonStyles.iconContainer}
+            >
               <Image
                 resizeMode="contain"
                 source={images.sort}
@@ -36,14 +51,24 @@ const MyEarnings = ({navigation}) => {
             </TouchableOpacity>
           )}
           Center={() => (
-            <View style={{flexDirection:'row',alignItems:"center",marginLeft:"-10%"}}>
-                <MaterialCommunityIcons name="cash-multiple" color={colors.primary} size={20}/>
-                <Spacer width={10}/>
-            <CustomText
-              label="My Earnings"
-              alignSelf={"center"}
-              fontSize={15}
-            />
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginLeft: "-10%",
+              }}
+            >
+              <MaterialCommunityIcons
+                name="cash-multiple"
+                color={colors.primary}
+                size={20}
+              />
+              <Spacer width={10} />
+              <CustomText
+                label="My Earnings"
+                alignSelf={"center"}
+                fontSize={15}
+              />
             </View>
           )}
         />
@@ -65,13 +90,21 @@ const MyEarnings = ({navigation}) => {
       >
         <CustomText label="Today" fontSize={12} />
         <CustomText
-          label="$108.97"
+          label={
+            settings.swipe_symbol === false
+              ? `${settings.symbol} ${
+                  today ? parseFloat(today).toFixed(settings.decimal) : "0"
+                }`
+              : `${today ? parseFloat(today).toFixed(settings.decimal) : "0"} ${
+                  settings.symbol
+                }`
+          }
           fontSize={20}
           color={colors.primary}
           fontWeight={"bold"}
         />
       </View>
-      <Spacer height={20}/>
+      <Spacer height={20} />
       <View
         style={{
           flexDirection: "row",
@@ -82,32 +115,64 @@ const MyEarnings = ({navigation}) => {
         <View
           style={{
             height: verticalScale(100),
-            width: "48%",borderRadius:10,elevation:5,alignItems:"center",justifyContent:"center",
+            width: "48%",
+            borderRadius: 10,
+            elevation: 5,
+            alignItems: "center",
+            justifyContent: "center",
             backgroundColor: colors.white,
           }}
         >
-            <CustomText label="This Month" fontSize={12} />
-        <CustomText
-          label="$504.97"
-          fontSize={20}
-          color={colors.primary}
-          fontWeight={"bold"}
-        />
+          <CustomText label="This Month" fontSize={12} />
+          <CustomText
+            label={
+              settings.swipe_symbol === false
+                ? `${settings.symbol} ${
+                    thisMonth
+                      ? parseFloat(thisMonth).toFixed(settings.decimal)
+                      : "0"
+                  }`
+                : `${
+                    thisMonth
+                      ? parseFloat(thisMonth).toFixed(settings.decimal)
+                      : "0"
+                  } ${settings.symbol}`
+            }
+            fontSize={20}
+            color={colors.primary}
+            fontWeight={"bold"}
+          />
         </View>
         <View
           style={{
             height: verticalScale(100),
-            width: "48%",borderRadius:10,elevation:5,alignItems:"center",justifyContent:"center",
+            width: "48%",
+            borderRadius: 10,
+            elevation: 5,
+            alignItems: "center",
+            justifyContent: "center",
             backgroundColor: colors.white,
           }}
         >
-            <CustomText label="Total Earnings" fontSize={12} />
-        <CustomText
-          label="$904.67"
-          fontSize={20}
-          color={colors.primary}
-          fontWeight={"bold"}
-        />
+          <CustomText label="Total Earnings" fontSize={12} />
+          <CustomText
+            label={
+              settings.swipe_symbol === false
+                ? `${settings.symbol} ${
+                    totalEarning
+                      ? parseFloat(totalEarning).toFixed(settings.decimal)
+                      : "0"
+                  }`
+                : `${
+                    totalEarning
+                      ? parseFloat(totalEarning).toFixed(settings.decimal)
+                      : "0"
+                  } ${settings.symbol}`
+            }
+            fontSize={20}
+            color={colors.primary}
+            fontWeight={"bold"}
+          />
         </View>
       </View>
 
@@ -135,7 +200,7 @@ const MyEarnings = ({navigation}) => {
         />
         <Spacer width={10} />
         <CustomText
-          label={"46"}
+          label={bookingCount}
           fontSize={18}
           fontWeight={"bold"}
           color={colors.lightBlack}

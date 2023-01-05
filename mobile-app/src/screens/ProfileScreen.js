@@ -28,6 +28,8 @@ import RNPickerSelect from 'react-native-picker-select';
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment/min/moment-with-locales';
 import { DrawerActions } from '@react-navigation/native';
+import Profile from './Main/Profile/Profile';
+import { Spacer } from '../components/Spacer';
 
 export default function ProfileScreen(props) {
     const { t } = i18n;
@@ -223,7 +225,22 @@ export default function ProfileScreen(props) {
     const lCom = { icon: 'md-menu', type: 'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback, onPress: () => { props.navigation.dispatch(DrawerActions.toggleDrawer()); } }
 
     return (
-        <View style={styles.mainView}>
+            <>
+            {/* <Spacer height={Platform.OS==='ios'?40:30}/> */}
+            <Profile 
+            editProfile={editProfile} 
+            profileData={profileData} 
+            onChangeFunction={onChangeFunction} 
+            showActionSheet={showActionSheet}
+            loader={loader}
+            logOff={logOff}
+            deleteAccount={deleteAccount}
+            openDrawer={() => { props.navigation.dispatch(DrawerActions.toggleDrawer())}}
+            />
+            {
+                uploadImage()
+            }
+        {/* <View style={styles.mainView}>
             <Header
                 backgroundColor={colors.HEADER}
                 leftComponent={isRTL ? rCom : lCom}
@@ -233,9 +250,6 @@ export default function ProfileScreen(props) {
                 innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
             />
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollStyle}>
-                {
-                    uploadImage()
-                }
                 {profileData && profileData.usertype == 'driver' ?
                     <View style={[styles.scrollViewStyle, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
                         <Text style={styles.profStyle}>{t('active_status')}</Text>
@@ -424,7 +438,8 @@ export default function ProfileScreen(props) {
 
             </ScrollView>
 
-        </View>
+        </View> */}
+        </>
     );
 }
 

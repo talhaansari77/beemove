@@ -32,7 +32,10 @@ const PaymentScreen = ({
   settings,
   useWalletCash,
   providers,
-  isLoading
+  isLoading,
+  doPayment,
+  openPromoModal,
+  removePromo
 }) => {
   const [isOn, setisOn] = useState(true);
   const [check, setCheck] = useState(false);
@@ -76,7 +79,7 @@ const PaymentScreen = ({
           LeftSide={() => (
             <TouchableOpacity
               activeOpacity={0.6}
-              onPress={() => navigation.goBack()}
+              onPress={goBack}
             >
               <MaterialIcons
                 name="arrow-back"
@@ -130,12 +133,12 @@ const PaymentScreen = ({
                 payDetails.promo_applied ?
                 <TouchableOpacity
                   onPress={() => { removePromo() }}>
-                  <Text style={{ color: 'red', textAlign:isRTL?'right':'left', lineHeight: 45, fontSize: 14, fontWeight: '500' }}>remove_promo</Text>
+                  <Text style={{ color: 'red',fontWeight: '500' }}>Remove Promo</Text>
                 </TouchableOpacity>
                 :
                 <TouchableOpacity
                   onPress={() => { openPromoModal() }}>
-                  <Text style={{ color: colors.START_TRIP, textAlign:isRTL?'right':'left', lineHeight: 45, fontSize: 14, fontWeight: '500' }}>apply_promo</Text>
+                  <Text style={{ color: colors.primary, fontWeight: '500' }}>Apply Promo</Text>
                 </TouchableOpacity>
               : null}
           </View>
@@ -270,7 +273,7 @@ const PaymentScreen = ({
               <CheckBox
                 center
                 disabled={parseFloat(userdata.walletBalance) > 0 ? false : true}
-                title={settings.swipe_symbol===false? 'wallet_balance' + settings.symbol + (parseFloat(userdata.walletBalance) - parseFloat(payDetails.usedWalletMoney)).toFixed(settings.decimal) + ')'
+                title={settings.swipe_symbol===false? 'Use Wallet Cash (Your Balance is ' + settings.symbol + (parseFloat(userdata.walletBalance) - parseFloat(payDetails.usedWalletMoney)).toFixed(settings.decimal) + ')'
                   : 'wallet_balance' + (parseFloat(userdata.walletBalance) - parseFloat(payDetails.usedWalletMoney)).toFixed(settings.decimal) + settings.symbol + ')'}
                 checked={useWalletCash}
                 containerStyle={{ backgroundColor: colors.WHITE, borderWidth: 0, borderColor: colors.WHITE, alignSelf: isRTL? 'flex-end':'flex-start' }}

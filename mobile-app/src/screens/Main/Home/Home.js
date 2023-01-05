@@ -8,8 +8,11 @@ import PercentageSpacer from "../../../components/PercentageSpacer";
 import DrawerContainer from "../../../components/DrawerContainer";
 import { colors } from "../../../../Utils/Colors";
 import { images } from "../../../../assets/images";
+import { useSelector } from "react-redux";
 
 const Home = ({ navigation }) => {
+
+  const auth = useSelector((state) => state.auth);
 
   const BookingData = [
     {
@@ -55,7 +58,7 @@ const Home = ({ navigation }) => {
         <DrawerContainer navigation={navigation} img={images.sort}/>
         <TopHeader
           img={require("../../../../assets/images/delivery.png")}
-          label1={"Hi Lexton!"}
+          label1={"Hi "+auth.info.profile.firstName+ " !"}
           imgHeight={70}
           label2={"How can we help you today?"}
           spacerHeight={"7%"}

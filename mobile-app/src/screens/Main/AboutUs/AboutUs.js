@@ -12,13 +12,15 @@ import commonStyles from "../../../../Utils/CommonStyles";
 import { colors } from "../../../../Utils/Colors";
 import CustomText from "../../../components/CustomText";
 import CustomHeader from "../../../components/CustomHeader";
+import { Icon } from "react-native-elements";
+
 
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import { Spacer } from "../../../components/Spacer";
 import { scale } from "react-native-size-matters";
 
-const AboutUs = ({navigation}) => {
+const AboutUs = ({onPress}) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
@@ -28,7 +30,7 @@ const AboutUs = ({navigation}) => {
           LeftSide={() => (
             <TouchableOpacity
               activeOpacity={0.6}
-              onPress={() => navigation.openDrawer()}
+              onPress={onPress}
               style={commonStyles.iconContainer}
             >
               <Image
@@ -46,7 +48,15 @@ const AboutUs = ({navigation}) => {
                 marginLeft: "-10%",
               }}
             >
-                      <FontAwesome5 color={colors.primary} size={20} name={"info"} />
+              
+                      {/* <FontAwesome5 color={colors.primary} size={20} name={"info"} /> */}
+                      <Icon
+                        name={"info"}
+                        type={"entypo"}
+                        color={colors.primary}
+                        size={18}
+                        // containerStyle={styles.iconStyle}
+                      />
 
               {/* <MaterialIcons name="work" color={colors.primary} size={20} /> */}
               <Spacer width={10} />
@@ -54,8 +64,7 @@ const AboutUs = ({navigation}) => {
                 label="My Booking"
                 alignSelf={"center"}
                 fontSize={16}
-                fontFamily="Roboto-Medium"
-                // fontWeight={"bold"}
+                fontFamily="Roboto-Bold"
                 color={colors.lightText}
               />
             </View>
@@ -68,7 +77,7 @@ const AboutUs = ({navigation}) => {
             style={{ ...commonStyles.img, tintColor: colors.black }}
           />
         </View>
-        <View style={{ flex: 0.7, width: "90%",alignItems:"center",alignSelf:"center" }}>
+        <View style={{ flex: 0.7, width: "100%",alignItems:"center",alignSelf:"center" }}>
           <CustomText
             label="We are the largest mobility platform and one of the world's largest online on-demand services provider. Manage bookings, request quotes, or book a online service with our simple and quick online booking system. We are an on-demand services company that allows guests to easily book verious services online.
             We offer the best services in the country."

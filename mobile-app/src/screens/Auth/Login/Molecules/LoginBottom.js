@@ -5,13 +5,13 @@ import { Spacer } from '../../../../components/Spacer'
 import { colors } from '../../../../../Utils/Colors'
 import { verticalScale } from 'react-native-size-matters'
 
-const LoginBottom = ({onLogin}) => {
+const LoginBottom = ({onLogin,title}) => {
   return (
     <View>
  <CustomButton
           width={"100%"}
           height={verticalScale(45)}
-          title="Login"
+          title={title}
           fontSize={12}
           onPress={onLogin}
           backgroundColor={colors.primary}
