@@ -18,6 +18,7 @@ import { PromoComp } from "../components";
 import i18n from 'i18n-js';
 import { useSelector,useDispatch } from 'react-redux';
 import { FirebaseContext } from 'common/src';
+import PaymentScreen from './Main/Payment/PaymentScreen';
 
 export default function PaymentDetails(props) {
   const { api, appcat } = useContext(FirebaseContext);
@@ -341,7 +342,24 @@ export default function PaymentDetails(props) {
   const rCom= userdata && userdata.usertype == 'rider' && booking.status =='PAYMENT_PENDING'?<TouchableOpacity onPress={cancelCurBooking}><Text style={{color:colors.WHITE}}>{t('cancel')}</Text></TouchableOpacity>:null;
 
   return (
-    <View style={styles.mainView}>
+   <>
+   <PaymentScreen
+        goBack={() => {
+          goBack();
+        }}
+        userdata={userdata}
+        settings={settings}
+        payDetails={payDetails}
+        booking={booking}
+        appcat={appcat}
+        isRTL={isRTL}
+        useWalletCash={useWalletCash}
+        providers={providers}
+        isLoading={isLoading}
+        doPayment={doPayment}
+      />
+      {promoModal()}
+    {/* <View style={styles.mainView}>
       <Header
         backgroundColor={colors.HEADER}
         leftComponent={isRTL? rCom:lCom}
@@ -535,7 +553,8 @@ export default function PaymentDetails(props) {
       {
         promoModal()
       }
-    </View>
+    </View> */}
+   </>
   );
 
 }
