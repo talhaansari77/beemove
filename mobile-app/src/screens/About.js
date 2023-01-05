@@ -14,6 +14,7 @@ var { width } = Dimensions.get('window');
 import { DrawerActions } from '@react-navigation/native';
 
 import i18n from 'i18n-js';
+import AboutUs from './Main/AboutUs/AboutUs';
 
 
 export default function AboutPage(props) {
@@ -24,31 +25,34 @@ export default function AboutPage(props) {
     const lCom = { icon: 'md-menu', type: 'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback, onPress: () => { props.navigation.dispatch(DrawerActions.toggleDrawer()); } }
     const rCom = { icon: 'md-menu', type: 'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback, onPress: () => { props.navigation.dispatch(DrawerActions.toggleDrawer()); } }
     return (
-        <View style={styles.mainView}>
-            <Header
-                backgroundColor={colors.HEADER}
-                leftComponent={isRTL ? null:lCom}
-                rightComponent={isRTL? rCom:null}
-                centerComponent={<Text style={styles.headerTitleStyle}>{t('about_us_menu')}</Text>}
-                containerStyle={styles.headerStyle}
-                innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
-            />
-            <ScrollView>
-                <View styles={{ flex: 1 }}>
-                    <View style={{ height: 200, width: 200, marginTop: 30, marginBottom: 40, alignSelf: 'center' }}>
-                        <Image
-                            style={{ width: 200, height: 200, borderRadius: 15 }}
-                            source={require('../../assets/images/logo1024x1024.png')}
-                        />
-                    </View>
-                    <View style={{ width: width, paddingLeft: 40, paddingRight: 40 }}>
-                        <Text style={{ textAlign: isRTL? 'right':'center', fontSize: 20, lineHeight: 28 }}>
-                            {t('about_us_content1') + ' ' + t('about_us_content2')} 
-                        </Text>
-                    </View>
-                </View>
-            </ScrollView>
-        </View>
+        <>
+        <AboutUs onPress={()=>props.navigation.dispatch(DrawerActions.toggleDrawer())}/>
+        </>
+        // <View style={styles.mainView}>
+        //     <Header
+        //         backgroundColor={colors.HEADER}
+        //         leftComponent={isRTL ? null:lCom}
+        //         rightComponent={isRTL? rCom:null}
+        //         centerComponent={<Text style={styles.headerTitleStyle}>{t('about_us_menu')}</Text>}
+        //         containerStyle={styles.headerStyle}
+        //         innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
+        //     />
+        //     <ScrollView>
+        //         <View styles={{ flex: 1 }}>
+        //             <View style={{ height: 200, width: 200, marginTop: 30, marginBottom: 40, alignSelf: 'center' }}>
+        //                 <Image
+        //                     style={{ width: 200, height: 200, borderRadius: 15 }}
+        //                     source={require('../../assets/images/logo1024x1024.png')}
+        //                 />
+        //             </View>
+        //             <View style={{ width: width, paddingLeft: 40, paddingRight: 40 }}>
+        //                 <Text style={{ textAlign: isRTL? 'right':'center', fontSize: 20, lineHeight: 28 }}>
+        //                     {t('about_us_content1') + ' ' + t('about_us_content2')} 
+        //                 </Text>
+        //             </View>
+        //         </View>
+        //     </ScrollView>
+        // </View>
     );
 }
 

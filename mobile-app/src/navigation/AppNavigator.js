@@ -30,6 +30,7 @@ import SideMenu from '../components/SideMenu';
 import i18n from 'i18n-js';
 import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
+import Home from '../screens/Main/Home/Home';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -52,8 +53,6 @@ export default function AppContainer() {
             }
         });     
     },[]);
-
-
     const DrawerRoot = () => {
         return (
             <Drawer.Navigator
