@@ -247,6 +247,8 @@ export default function OnlineChat(props) {
     <View style={styles.container}>
       <Spacer height={Platform.OS == "ios" ? 40 : 10} />
       <View style={{ margin: 10 }}>
+      <Spacer height={Platform.OS=="android"? 20:0}/>
+
         <CustomHeader
         borderBottomWidth={1.5}
         borderBottomColor={colors.BACKGROUND}
@@ -277,7 +279,7 @@ export default function OnlineChat(props) {
               {/* <MaterialIcons name="payment" color={colors.primary} size={20} /> */}
               <Spacer width={10} />
               <CustomText
-                label="Payment"
+                label="Massages"
                 alignSelf={"center"}
                 fontSize={16}
                 fontFamily="Roboto-Medium"

@@ -105,6 +105,8 @@ export default function Notifications(props) {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{padding:10}}>
+            <Spacer height={Platform.OS=="android"? 20:0}/>
+
             <CustomHeader
     
     LeftSide={() => (

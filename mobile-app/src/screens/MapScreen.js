@@ -520,7 +520,7 @@ export default function MapScreen(props) {
             setBookLoading(false);
         } else{
             if (tripdata.pickup && tripdata.drop && tripdata.drop.add) {
-                if (!tripdata.carType && props.route.params.name==="Padala") {
+                if (!tripdata.carType) {
                     //todo  fix this later
                     // props.route.params.name==="Car"
                     setBookLoading(false);

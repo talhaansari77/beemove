@@ -55,6 +55,7 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1,backgroundColor:colors.white }}>
       <View style={commonStyles.container1}>
+        <Spacer height={Platform.OS=="android"? 20:0}/>
         <DrawerContainer navigation={navigation} img={images.sort}/>
         <TopHeader
           img={require("../../../../assets/images/delivery.png")}
