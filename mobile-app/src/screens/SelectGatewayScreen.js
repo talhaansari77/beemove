@@ -7,7 +7,11 @@ import { colors } from '../common/theme';
 import PaymentWebView from '../components/PaymentWebView';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesome } from '@expo/vector-icons';
 import { FirebaseContext } from 'common/src';
+import { Spacer } from '../components/Spacer';
+import CustomText from '../components/CustomText';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function SelectGatewayPage(props) {
   const { api, config, appcat } = useContext(FirebaseContext);
@@ -113,18 +117,28 @@ export default function SelectGatewayPage(props) {
     setState({ ...state, selectedProvider: provider });
   };
 
-  const lCom = {icon:isRTL ? 'ios-arrow-forward':'ios-arrow-back', type: 'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback, onPress: () => { goBack() } }
+  const CenteredComp = () =>  (
+    <View style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center",}}> 
+    <MaterialIcons name="payment" size={24} color="#F6AD00" />
+    <Spacer width={10} />
+    <CustomText label="Payment" fontSize={20} />
+    </View>
+  )
+
+  const lCom = {icon:isRTL ? 'ios-arrow-forward':'ios-arrow-back', type: 'ionicon', color: "#F6AD00", size: 30, component: TouchableWithoutFeedback, onPress: () => { goBack() } }
   const rCom = { icon:isRTL ? 'ios-arrow-forward':'ios-arrow-back', type: 'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback, onPress: () => { goBack() } }
   return (
     <View style={styles.container}>
-      <Header
-        backgroundColor={colors.HEADER}
+     <Header
+        backgroundColor={colors.WHITE}
         leftComponent={isRTL ? null:lCom}
         rightComponent={isRTL? rCom:null}
-        centerComponent={<Text style={styles.headerTitleStyle}>{t('payment')}</Text>}
+        // centerComponent={<Text style={styles.headerTitleStyle}>{t('add_money')}</Text>}
+        centerComponent={<CenteredComp />}
         containerStyle={styles.headerStyle}
         innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
       />
+      <Spacer height={30} />
       {state.selectedProvider ? <PaymentWebView serverUrl={serverUrl} provider={state.selectedProvider} payData={state.payData} onSuccess={onSuccessHandler} onCancel={onCanceledHandler} /> : null}
       {state.providers && state.selectedProvider == null ?
         <ScrollView>
@@ -156,11 +170,11 @@ const styles = StyleSheet.create({
     flex: 1
   },
   headerStyle: {
-    backgroundColor: colors.HEADER,
+    backgroundColor: "white",
     borderBottomWidth: 0
   },
   headerTitleStyle: {
-    color: colors.WHITE,
+    color: "#F6AD00",
     fontFamily: 'Roboto-Bold',
     fontSize: 20
   },
@@ -168,7 +182,7 @@ const styles = StyleSheet.create({
     height: 55,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.SELECT_GATEWAY_BACKGROUND,
+    backgroundColor: "#f8bd33",
     borderRadius: 8,
     marginBottom: 4,
     marginHorizontal: 20,

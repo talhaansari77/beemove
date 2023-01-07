@@ -14,6 +14,9 @@ import { colors } from '../common/theme';
 import i18n from 'i18n-js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
+import CustomText from '../components/CustomText';
+import { FontAwesome } from '@expo/vector-icons';
+import { Spacer } from '../components/Spacer';
 
 export default function AddMoneyScreen(props) {
 
@@ -89,7 +92,7 @@ export default function AddMoneyScreen(props) {
 
   const newData = ({ item, index }) => {
     return (
-      <TouchableOpacity style={[styles.boxView, { backgroundColor: item.selected ? colors.BUTTON_BACKGROUND : colors.BACKGROUND_PRIMARY }]} onPress={() => { quckAdd(index); }}>
+      <TouchableOpacity style={[styles.boxView, { backgroundColor: item.selected ? "#F6AD00" : colors.BACKGROUND_PRIMARY }]} onPress={() => { quckAdd(index); }}>
         {settings.swipe_symbol===false?
           <Text style={[styles.quckMoneyText, { color: item.selected ? colors.WHITE : colors.BLACK }]} >{settings.symbol}{item.amount}</Text>
           :
@@ -108,19 +111,30 @@ export default function AddMoneyScreen(props) {
   const { t } = i18n;
   const isRTL = i18n.locale.indexOf('he') === 0 || i18n.locale.indexOf('ar') === 0;
 
-  const lCom = { icon:isRTL ? 'ios-arrow-forward':'arrow-back-sharp', type: 'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback, onPress: () => { goBack() } }
+  const lCom = { icon:isRTL ? 'ios-arrow-forward':'arrow-back-sharp', type: 'ionicon', color: "#F6AD00", size: 30, component: TouchableWithoutFeedback, onPress: () => { goBack() } }
   const rCom = { icon:isRTL ? 'ios-arrow-forward':'arrow-back-sharp', type: 'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback, onPress: () => { goBack() } }
+
+  const CenteredComp = () =>  (
+    <View style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center",}}>
+    <FontAwesome name="money" size={24} color="#F6AD00" />
+    <Spacer width={10} />
+    <CustomText label="Money" fontSize={20} />
+    </View>
+  )
 
   return (
     <View style={styles.mainView}>
       <Header
-        backgroundColor={colors.HEADER}
+        backgroundColor={colors.WHITE}
         leftComponent={isRTL ? null:lCom}
         rightComponent={isRTL? rCom:null}
-        centerComponent={<Text style={styles.headerTitleStyle}>{t('add_money')}</Text>}
+        // centerComponent={<Text style={styles.headerTitleStyle}>{t('add_money')}</Text>}
+        centerComponent={<CenteredComp />}
         containerStyle={styles.headerStyle}
         innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
       />
+
+      <Spacer height={5} />
 
       <View style={styles.bodyContainer}>
         <View style={[isRTL?{flexDirection:'row-reverse',alignItems: 'center'}:{flexDirection:'row',alignItems: 'center'}]}>
@@ -132,6 +146,7 @@ export default function AddMoneyScreen(props) {
           <Text style={styles.ballance}>{state.userdata ? parseFloat(state.userdata.walletBalance).toFixed(settings.decimal) : ''}{settings.symbol}</Text>
         }
       </View>
+      <Spacer height={15} />
       <View style={styles.inputTextStyle}>
         <TextInput
           style={isRTL?{textAlign:'right',fontSize:30}:{textAlign:'left',fontSize:30}}
@@ -150,6 +165,7 @@ export default function AddMoneyScreen(props) {
               showsHorizontalScrollIndicator={false}
             />
         </View>
+        <Spacer height={20} />
         <TouchableOpacity
           style={styles.buttonWrapper2}
           onPress={payNow}>
@@ -164,11 +180,11 @@ export default function AddMoneyScreen(props) {
 const styles = StyleSheet.create({
 
   headerStyle: {
-    backgroundColor: colors.HEADER,
+    backgroundColor: "white",
     borderBottomWidth: 0
   },
   headerTitleStyle: {
-    color: colors.WHITE,
+    color: "#F6AD00",
     fontFamily: 'Roboto-Bold',
     fontSize: 20
   },
@@ -183,10 +199,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12
   },
   walletbalText: {
-    fontSize: 17
+    fontSize: 17, 
   },
   ballance: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color:"#F6AD00",
   },
   inputTextStyle: {
     marginTop: 10,
@@ -201,7 +218,7 @@ const styles = StyleSheet.create({
     height: 55,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.BUTTON_BACKGROUND,
+    backgroundColor: "#F6AD00",
     borderRadius: 8,
   },
   buttonTitle: {
