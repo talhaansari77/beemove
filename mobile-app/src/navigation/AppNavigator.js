@@ -105,7 +105,7 @@ export default function AppContainer() {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <StatusBar hidden />
+      {/* <StatusBar hidden /> */}
 
       <Stack.Navigator
         screenOptions={{
