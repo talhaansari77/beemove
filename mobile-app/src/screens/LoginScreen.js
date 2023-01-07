@@ -35,6 +35,7 @@ import PercentageSpacer from "../components/PercentageSpacer";
 import PhoneMainContainer from "./Auth/Register/PhoneNumber/Molecules/PhoneMainContainer";
 import LoginBottom from "./Auth/Login/Molecules/LoginBottom";
 import OtpScreen from "./Auth/Register/Otp/OtpScreen";
+import CustomText from "../components/CustomText";
 
 export default function LoginScreen(props) {
   const { api, config } = useContext(FirebaseContext);
@@ -404,7 +405,34 @@ style={styles.materialButtonDark}
               )}
             </>
           )}
-
+          {
+            state.verificationId ? null :
+            <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <CustomText
+              label="Don’t have an account?"
+              color={colors.lightBlack}
+              fontFamily={"Roboto-Regular"}
+              fontSize={11}
+            />
+            <CustomText
+              label="Sign Up"
+              onPress={()=>{
+                openRegister()
+              }}
+              color={colors.primary}
+              marginLeft={2}
+              fontFamily={"Roboto-Bold"}
+              fontSize={11}
+            />
+          </View>
+          }
+ 
           {/* {!!state.verificationId ?
                     <View style={styles.box2}>
                         <TextInput
