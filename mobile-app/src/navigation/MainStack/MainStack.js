@@ -22,7 +22,7 @@ const MainStack = () => {
 
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={"BookPadala"}
+      initialRouteName={"PaymentScreen"}
     >
       <Stack.Screen name="HomeScreen" component={Home} />
       <Stack.Screen name="RideScreen" component={RideScreen} />

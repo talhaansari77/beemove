@@ -58,8 +58,6 @@ const MyBookings = ({navigation}) => {
             />
           </View>
       <Card />
-      <Card />
-      <Card />
     </SafeAreaView>
   );
 };

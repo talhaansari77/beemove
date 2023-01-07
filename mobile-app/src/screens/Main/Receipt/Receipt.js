@@ -1,8 +1,14 @@
-import { View, Text, Image, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
 import CustomHeader from "../../../components/CustomHeader";
 import { colors } from "../../../../Utils/Colors";
-import { AntDesign,MaterialIcons } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import CustomText from "../../../components/CustomText";
 import { Spacer } from "../../../components/Spacer";
 import { moderateScale, verticalScale } from "react-native-size-matters";
@@ -12,8 +18,17 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import CustomButton from "../../../components/CustomButton";
 import { NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
-const Receipt = ({navigation}) => {
+const Receipt = ({
+  navigation,
+  booking,
+  moment,
+  settings,
+  onStarRatingPress,
+  submitNow,
+  starCount,
+}) => {
   const CenterContent = () => (
     <View style={{ flexDirection: "row" }}>
       <FontAwesome5 name="receipt" size={24} color={colors.primary} />
@@ -37,18 +52,16 @@ const Receipt = ({navigation}) => {
       >
         <CustomHeader
           LeftSide={() => (
-            <TouchableOpacity activeOpacity={0.6}
-            onPress={()=>navigation.goBack()}
-            >  
-               <MaterialIcons
-            name="arrow-back"
-            size={moderateScale(25)}
-            color="black"
-          />
-
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={() => navigation.goBack()}
+            >
+              <MaterialIcons
+                name="arrow-back"
+                size={moderateScale(25)}
+                color="black"
+              />
             </TouchableOpacity>
-            
-         
           )}
           Center={() => <CenterContent />}
         />
@@ -68,9 +81,7 @@ const Receipt = ({navigation}) => {
           <Spacer width={10} />
           <View style={{ flex: 9 }}>
             <CustomText
-              label={
-                "P-40, Subhash Nagar, Basunagar, Madhyamgram, Kolkata, West Bengal 707481, India"
-              }
+              label={booking ? booking.pickup.add : ""}
               fontSize={10}
               color={colors.darkGray}
             />
@@ -98,9 +109,7 @@ const Receipt = ({navigation}) => {
           </View>
           <View style={{ flex: 9 }}>
             <CustomText
-              label={
-                "Airport AC Bus Stand, International Airport, Dum Dum, Kolkata, West Bengal 700052. India"
-              }
+              label={booking ? booking.drop.add : ""}
               fontSize={10}
               color={colors.darkGray}
             />
@@ -120,10 +129,29 @@ const Receipt = ({navigation}) => {
           }}
         >
           <View>
-            <CustomText label={"27 Apr 2022 13:01"} fontSize={12} />
+            <CustomText
+              label={
+                booking && booking.tripdate
+                  ? moment(booking.tripdate).format("lll")
+                  : null
+              }
+              fontSize={12}
+            />
           </View>
           <View>
-            <CustomText label={"$23.00"} fontSize={14} fontWeight={"Roboto-Bold"} />
+            <CustomText
+              label={
+                booking
+                  ? booking.customer_paid > 0
+                    ? parseFloat(booking.customer_paid).toFixed(
+                        settings.decimal
+                      )
+                    : 0
+                  : null
+              }
+              fontSize={14}
+              fontWeight={"Roboto-Bold"}
+            />
           </View>
         </View>
       </View>
@@ -162,7 +190,12 @@ const Receipt = ({navigation}) => {
       <View>
         <AirbnbRating
           showRating={false}
-          onFinishRating={ratingCompleted}
+          onFinishRating={(rating) => {
+            onStarRatingPress(rating), console.log("NewRating", rating);
+          }}
+          // selectedColor={(rating) => {
+          //   onStarRatingPress(rating), console.log("NewRating", rating);
+          // }}
           size={45}
           starContainerStyle={{
             display: "flex",
@@ -177,6 +210,10 @@ const Receipt = ({navigation}) => {
         width={"80%"}
         alignSelf={"center"}
         fontFamily={"Roboto-Medium"}
+        onPress={() => {
+          submitNow(), console.log("Submitted Rating is", starCount);
+        }}
+        disabled={starCount > 0 ? false : true}
       />
     </SafeAreaView>
   );

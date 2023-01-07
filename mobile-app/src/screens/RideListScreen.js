@@ -4,13 +4,29 @@ import {
     StyleSheet,
     View,
     Text,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Platform,
+    Dimensions,
+    Image,
+    SafeAreaView
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import { colors } from '../common/theme';
 import i18n from 'i18n-js';
 import { useSelector } from 'react-redux';
 import { DrawerActions } from '@react-navigation/native';
+import MyBookings from './Main/MyBookings/MyBookings';
+import { Spacer } from '../components/Spacer';
+import commonStyles from '../../Utils/CommonStyles';
+import CustomHeader from '../components/CustomHeader';
+import { TouchableOpacity } from 'react-native';
+import { AntDesign, Feather, Octicons,MaterialIcons } from "@expo/vector-icons";
+import CustomText from '../components/CustomText';
+import { images } from '../../assets/images';
+
+const screenHeight = Dimensions.get("window").height;
+const screenWidth = Dimensions.get("window").width;
+ 
 
 export default function RideListPage(props) {
     const bookings = useSelector(state => state.bookinglistdata.bookings);
@@ -51,20 +67,74 @@ export default function RideListPage(props) {
 
     const hCom ={ icon: 'md-menu', type: 'ionicon', color: colors.WHITE, size: 30, component: TouchableWithoutFeedback, onPress: () => { props.navigation.dispatch(DrawerActions.toggleDrawer()); } };
     
+
+   
+
     return (
-        <View style={styles.mainView}>
-            <Header
+        
+       
+        <SafeAreaView style={styles.mainView}>
+            {/* <Header
                 backgroundColor={colors.HEADER}
                 leftComponent={isRTL? null:hCom}
                 centerComponent={<Text style={styles.headerTitleStyle}>{t('ride_list_title')}</Text>}
                 rightComponent={isRTL? hCom:null}
                 containerStyle={styles.headerStyle}
                 innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
+            /> */}
+            {/* <Spacer height={Platform.OS==='ios'?40:30}/> */}
+            <View
+            style={{
+              paddingVertical: 10,
+              justifyContent: "center",
+              width: screenWidth,
+              paddingHorizontal: 15,
+            }}
+            >
+            <CustomHeader
+               LeftSide={() => (
+           
+            
+                <TouchableOpacity
+                activeOpacity={0.6}
+                onPress={ () => { props.navigation.dispatch(DrawerActions.toggleDrawer()); }}
+                style={commonStyles.iconContainer}>
+                  <Image
+                    resizeMode="contain"
+                    source={images.sort}
+                    style={commonStyles.img}
+                  />
+                </TouchableOpacity>
+              )}
+            
+       
+              Center={() => (
+                <View style={{flexDirection:'row',alignItems:"center",marginLeft:"-10%"}}>
+                <MaterialIcons name="work" color={'#F6AD00'} size={20}/>
+                <Spacer width={10}/>
+                <CustomText
+                  label="My Booking"
+                  alignSelf={"center"}
+                  fontSize={16}
+                  fontFamily="Roboto-Medium"
+                  // fontWeight={"bold"}
+                  color={colors.lightText}
+                /></View>
+              )}
+              
             />
+          </View>
+            {/* <MyBookings/> */}
+            {/* <Card /> */}
+            {/* {tabIndex>=0?
+                <Card onPressButton={(item, index) => { goDetails(item, index) }} data={bookingData} tabIndex={tabIndex}></Card>
+            :null} */}
             {tabIndex>=0?
                 <RideList onPressButton={(item, index) => { goDetails(item, index) }} data={bookingData} tabIndex={tabIndex}></RideList>
             :null}
-        </View>
+        </SafeAreaView>
+      
+
     );
 
 }
