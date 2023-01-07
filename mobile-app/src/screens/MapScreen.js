@@ -520,10 +520,11 @@ export default function MapScreen(props) {
             setBookLoading(false);
         } else{
             if (tripdata.pickup && tripdata.drop && tripdata.drop.add) {
-                if (!tripdata.carType) {
+                if (!tripdata.carType && props.route.params.name==="Padala") {
                     //todo  fix this later
-                    // setBookLoading(false);
-                    // Alert.alert(t('alert'), t('car_type_blank_error'))
+                    // props.route.params.name==="Car"
+                    setBookLoading(false);
+                    Alert.alert(t('alert'), t('car_type_blank_error'))
                 } else {
                     let driver_available = false;
                     for (let i = 0; i < allCarTypes.length; i++) {
@@ -927,7 +928,7 @@ export default function MapScreen(props) {
                     // zIndex:100,
                 }}>
 
-                    <Spacer height={10} />
+                    <Spacer height={30} />
                     <MainTopHeader
                         txt={props.route.params.name}
                         // navigation={navigation}
