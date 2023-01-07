@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import CustomText from "./CustomText";
 import CustomTextInput from "./CustomTextInput";
@@ -7,8 +7,13 @@ import { scale, verticalScale } from "react-native-size-matters";
 import { colors } from "../../Utils/Colors";
 import AddlButton from "./AddlButton";
 import CustomButton from "./CustomButton";
+import i18n from 'i18n-js';
 
-const TopRideContainer = ({ onAddShop, completeJob = false }) => {
+
+const { t } = i18n;
+    const isRTL = i18n.locale.indexOf('he') === 0 || i18n.locale.indexOf('ar') === 0;
+    
+const TopRideContainer = ({ onAddShop, completeJob = false,tripdata,tapAddress }) => {
   const dot = ["1", "2"];
   const fiveDot = ["1", "2", "3", "4", "5"];
   return (
@@ -83,8 +88,14 @@ const TopRideContainer = ({ onAddShop, completeJob = false }) => {
             </>
           ) : (
             <>
+            <TouchableOpacity>
+              
+            </TouchableOpacity>
               <CustomTextInput
-                height={verticalScale(40)}
+              value={tripdata.pickup && tripdata.pickup.add ? tripdata.pickup.add : t('map_screen_where_input_text')}
+              onPressIn={()=>tapAddress('pickup')}
+              
+              height={verticalScale(40)}
                 width={"95%"}
                 placeholder="Pick-up location"
                 borderColor={colors.grayBorder}
@@ -96,6 +107,10 @@ const TopRideContainer = ({ onAddShop, completeJob = false }) => {
               />
               <Spacer height={20} />
               <CustomTextInput
+              value={tripdata.drop && tripdata.drop.add ? tripdata.drop.add : t('map_screen_drop_input_text')}
+              onPressIn={()=>tapAddress('drop')}
+              
+              
                 height={verticalScale(40)}
                 width={"95%"}
                 placeholder="Drop-off location"
@@ -126,14 +141,17 @@ const TopRideContainer = ({ onAddShop, completeJob = false }) => {
             backgroundColor={colors.white}
           />
         ) : (
-          <AddlButton
-            label="Add Stop"
-            width={"42%"}
-            height={verticalScale(37)}
-            onPress={onAddShop}
-            icon={require("../../assets/images/add.png")}
-            textColor={colors.primary}
-          />
+          <>
+           {/* <AddlButton
+             label="Add Stop"
+             width={"42%"}
+             height={verticalScale(37)}
+             onPress={onAddShop}
+             icon={require("../../assets/images/add.png")}
+             textColor={colors.primary}
+           /> */}
+           
+          </>
         )}
       </View>
     </View>

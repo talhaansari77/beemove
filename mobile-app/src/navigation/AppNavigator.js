@@ -60,6 +60,9 @@ export default function AppContainer() {
                 drawerContent={(props) => <SideMenu {...props} />}
             >
                 {auth.info && auth.info.profile && auth.info.profile.usertype == 'rider' ?
+                    <Drawer.Screen name="SelectRide" component={Home} />
+                    : null}
+                {auth.info && auth.info.profile && auth.info.profile.usertype == 'rider' ?
                     <Drawer.Screen name="Map" component={MapScreen} />
                     : null}
                 {auth.info && auth.info.profile && auth.info.profile.usertype == 'rider' ?

@@ -21,7 +21,7 @@ const Home = ({ navigation }) => {
       txt1: "Ride",
       txt2: "Maximum one passenger",
       onPress: () => {
-        navigation.navigate("RideScreen");
+        navigation.navigate("Map");
       },
     },
     {
@@ -30,7 +30,7 @@ const Home = ({ navigation }) => {
       txt1: "Car",
       txt2: "Maximum one passenger",
       onPress: () => {
-        navigation.navigate("RideScreen",{car:true});
+        navigation.navigate("Map",{car:true});
       },
     },
     {
@@ -39,7 +39,7 @@ const Home = ({ navigation }) => {
       txt1: "Padala",
       txt2: "Real time delivery within the city only",
       onPress: () => {
-        navigation.navigate("PadalaScreen");
+        navigation.navigate("Map");
       },
     },
     {
@@ -48,7 +48,7 @@ const Home = ({ navigation }) => {
       txt1: "Pabili",
       txt2: "For Foods, Grocery & Goods",
       onPress: () => {
-        navigation.navigate("PabiliScreen");
+        navigation.navigate("Map");
       },
     },
   ];

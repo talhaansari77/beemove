@@ -26,12 +26,6 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { DrawerActions } from '@react-navigation/native';
 import PadalaScreen from './Main/Padala/PadalaScreen';
 import Home from './Main/Home/Home';
-import { Spacer } from '../components/Spacer';
-import MainTopHeader from '../components/MainTopHeader';
-import TopRideContainer from '../components/TopRideContainer';
-import CustomButton from '../components/CustomButton';
-import { verticalScale } from 'react-native-size-matters';
-import { AntDesign } from "@expo/vector-icons";
 
 const hasNotch = Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS && ((height === 780 || width === 780) || (height === 812 || width === 812) || (height === 844 || width === 844) || (height === 896 || width === 896) || (height === 926 || width === 926))
 
@@ -313,7 +307,7 @@ export default function MapScreen(props) {
                 tempWatcher.remove();
             })
         }
-    }
+    } 
 
     const updateAddresses = async (pos, source) => {
         let latlng = pos.latitude + ',' + pos.longitude;
@@ -874,63 +868,9 @@ export default function MapScreen(props) {
     return (
         <>
         
-            {/* <PadalaScreen
-            tripdata={tripdata}
-            region={region}
-
-            ref={mapRef}
-            provider={PROVIDER_GOOGLE}
-            showsUserLocation={true}
-            loadingEnabled
-            showsMyLocationButton={false}
-            initialRegion={region}
-            onRegionChangeComplete={onRegionChangeComplete}
-            onPanDrag={() => setDragging(30)}
-            minZoomLevel={13}
-            
-            
-            freeCars={freeCars}
-            settings={settings}
-            locateUser={locateUser}
-            isEditing={isEditing}
-            allCarTypes={allCarTypes}
-            selectCarType={selectCarType}
-            onPressBook={onPressBook}
-            tapAddress={tapAddress}
-            /> */}
-            {/* {tripdata.pickup && tripdata.pickup.add ? tripdata.pickup.add : t('map_screen_where_input_text')} */}
-            
-            <ScrollView style={styles.container}>
-            <View style={{
-                    // todo=======>> fix style
-                    // top: Platform.OS == 'android'? (__DEV__? 20: 40): (hasNotch ? 40 : 20),
-                    width:"100%",backgroundColor:"white",
-                    paddingHorizontal:20,
-                    // zIndex:100,
-                }}>
-
-                    <Spacer height={10} />
-                    <MainTopHeader
-                        txt={"Padala"}
-                        // navigation={navigation}
-
-                        img={require("../../assets/images/time.png")}
-                        openDrawer={() => { props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
-                    />
-                    <Spacer height={20} />
-
-                    
-                    <TopRideContainer
-                    tripdata={tripdata}
-                    onAddShop={() => props.navigation.navigate("BookPadala")}
-                    tapAddress={tapAddress}
-                    />
-                    <Spacer height={20} />
-                </View>
+            <View style={styles.container}>
                 <StatusBar hidden={true} />
-                
                 <View style={styles.mapcontainer}>
-                    
                     {region && region.latitude ?
                         <MapView
                             ref={mapRef}
@@ -964,49 +904,9 @@ export default function MapScreen(props) {
                         : null}
                     {region ?
                         tripdata.selected == 'pickup' ?
-                            // <View pointerEvents="none" style={styles.mapFloatingPinView}>
-                            //     <Image pointerEvents="none" style={[styles.mapFloatingPin,{ marginBottom: Platform.OS =='ios'? (hasNotch? (-10 + dragging) :33): 40}]} resizeMode="contain" source={require('../../assets/images/green_pin.png')} />
-                            // </View>
-                            <View style={{ position:"absolute"}}>
-                            <View
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: 40,
-                width: 45,
-                backgroundColor: colors.primary,
-                borderRadius: 15,
-               
-              }}
-            >
-              <AntDesign
-                name="user"
-                size={18}
-                color={colors.WHITE}
-                style={{
-                  alignSelf: "center",
-                }}
-              />
-            </View>
-            <View style={{ justifyContent: "center", alignItems: "center", }}>
-              <AntDesign
-                name="caretdown"
-                size={20}
-                color={colors.primary}
-                style={{ alignSelf: "center", marginTop: -7 }}
-              />
-              <View
-                style={{
-                  height: 12,
-                  width: 12,
-                  borderRadius: 6,
-                  backgroundColor: colors.primary,
-                  opacity: 0.5,
-                  marginTop: -9,
-                }}
-              />
-            </View></View>
+                            <View pointerEvents="none" style={styles.mapFloatingPinView}>
+                                <Image pointerEvents="none" style={[styles.mapFloatingPin,{ marginBottom: Platform.OS =='ios'? (hasNotch? (-10 + dragging) :33): 40}]} resizeMode="contain" source={require('../../assets/images/green_pin.png')} />
+                            </View>
                             :
                             <View pointerEvents="none" style={styles.mapFloatingPinView}>
                                 <Image pointerEvents="none" style={[styles.mapFloatingPin,{ marginBottom: Platform.OS =='ios'? (hasNotch? (-10 + dragging) :33): 40}]} resizeMode="contain" source={require('../../assets/images/rsz_2red_pin.png')} />
@@ -1029,9 +929,30 @@ export default function MapScreen(props) {
                         </View>
                         : null}
                 </View>
-               
-                {/* //!original Header */}
-                {/* <View style={[styles.menuIcon, isRTL ? {right:20}:{left:20}]}>
+                <View style={styles.buttonBar}>
+                    {bookLoading ?
+                    null:
+                    <Button
+                        title={t('book_later_button')}
+                        loading={bookLaterLoading}
+                        loadingProps={{ size: "large", color: colors.WHITE }}
+                        titleStyle={styles.buttonTitleStyle}
+                        onPress={onPressBookLater}
+                        buttonStyle={[styles.buttonStyle, { backgroundColor: colors.BUTTON_BACKGROUND ,width:bookLaterLoading?width:width/2}]}
+                        containerStyle={[styles.buttonContainer,{width:bookLaterLoading?width:width/2}]}
+                    />
+                    }
+                    <Button
+                        title={t('book_now_button')}
+                        loading={bookLoading}
+                        loadingProps={{ size: "large", color: colors.WHITE }}
+                        titleStyle={styles.buttonTitleStyle}
+                        onPress={onPressBook}
+                        buttonStyle={[styles.buttonStyle, { backgroundColor: appcat == 'taxi' ? colors.BUTTON_YELLOW : (appcat == 'delivery'? colors.BUTTON_ORANGE: colors.RE_GREEN), width:bookLoading?width:width/2 }]}
+                        containerStyle={[styles.buttonContainer,{width:bookLoading?width:width/2}]}
+                    />
+                </View>
+                <View style={[styles.menuIcon, isRTL ? {right:20}:{left:20}]}>
                     <TouchableOpacity onPress={() => { props.navigation.dispatch(DrawerActions.toggleDrawer()) }} style={styles.menuIconButton} >
                         <Icon
                             name='menu'
@@ -1040,8 +961,8 @@ export default function MapScreen(props) {
                             size={32}
                         />
                     </TouchableOpacity>
-                </View> */}
-                {/* {activeBookings && activeBookings.length >= 1 ?
+                </View>
+                {activeBookings && activeBookings.length >= 1 ?
                     <View style={isRTL ? styles.topTitle1 : styles.topTitle}>
                         <TouchableOpacity onPress={() => {
                             props.navigation.navigate('RideList');
@@ -1054,21 +975,13 @@ export default function MapScreen(props) {
                     <View style={[isRTL ? styles.topTitle1 : styles.topTitle, { width: 110}]}>
                         <Text style={{ marginHorizontal: 7, textAlign: 'center', color: '#517fa4', fontFamily: 'Roboto-Bold', fontSize: 18, }}>{t('home')}</Text>
                     </View>
-                } */}
-                {/* //? LocationAddress */}
-                {/* <View style={[styles.addressBar,{flexDirection: isRTL? 'row-reverse' : 'row'}]}>
+                }
+                <View style={[styles.addressBar,{flexDirection: isRTL? 'row-reverse' : 'row'}]}>
                     <View style={styles.ballandsquare}>
-                        <BlurCircle/>
                         <View style={styles.hbox1} />
                         <View style={styles.hbox2} />
                         <View style={styles.hbox3} />
-                        <View style={{ height: 30, width: 30,alignItems:'center'  }}>
-                    <Image
-                      source={require("../../assets/images/location.png")}
-                      style={{ height: 20, width: 20 }}
-                      resizeMode={"contain"}
-                    />
-                  </View>
+                    
                     </View>
                     <View style={[styles.contentStyle, isRTL? {paddingRight: 10} : {paddingLeft: 10}]}>
                         <TouchableOpacity onPress={() => tapAddress('pickup')} style={styles.addressStyle1}>
@@ -1081,11 +994,12 @@ export default function MapScreen(props) {
                                 </Text>
                         </TouchableOpacity>
                     </View>
-                </View> */}
+                </View>
 
-                {/* { settings && settings.horizontal_view ?
+                { settings && settings.horizontal_view ?
                     
                 <View style={styles.fullCarView}>
+                    {/* //! <<=====================>> */}
                     <ScrollView horizontal={true} style={styles.fullCarScroller} showsHorizontalScrollIndicator={false}>
                         {allCarTypes.map((prop, key) => {
                             return (
@@ -1167,9 +1081,9 @@ export default function MapScreen(props) {
                 >
                     <View style={[styles.bar, appcat == 'taxi' ? { backgroundColor: colors.BUTTON_YELLOW} : (appcat == 'delivery'? { backgroundColor: colors.BUTTON_ORANGE}: { backgroundColor:colors.RE_GREEN})]} ></View>
                 </View>
-                } */}
+                }
 
-                {/* {isEditing == true && settings && !settings.horizontal_view  ?
+                {isEditing == true && settings && !settings.horizontal_view  ?
                     <View style={[styles.carShow,{ paddingTop: 10, height: 250, alignItems: 'center', flexDirection: 'column', backgroundColor: isEditing == true ? colors.BACKGROUND_PRIMARY : colors.WHITE}]}
                         onTouchStart={e => setTouchY(e.nativeEvent.pageY)}
                         onTouchEnd={e => {
@@ -1220,140 +1134,7 @@ export default function MapScreen(props) {
                             </ScrollView>
                         </Animated.View>
                     </View>
-                :null } */}
-                
-                <View style={{}}>
-                {allCarTypes.map((prop, key) => (
-                   <TouchableOpacity onPress={() => { selectCarType(prop, key) }} style={{backgroundColor: prop.active == true ? colors.BOX_BG : colors.WHITE , elevation:5,borderRadius:10,flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",paddingHorizontal:30,paddingVertical:10,marginHorizontal:30,marginVertical:10}}>
-                   <View >
-                       <Image  resizeMode="contain" source={prop.image ? { uri: prop.image } : require('../../assets/images/microBlackCar.png')} style={{height:40,width:40,tintColor:colors.primary}}/>
-                   </View>
-                   <View>
-                   <Text style={styles.titleStyles}>{prop.name.toUpperCase()}</Text>
-                   </View>
-                       </TouchableOpacity>
-                ))}
-                {/* //!original Carlist */}
-                {/* {allCarTypes.map((prop, key) => {
-                            return (
-                                <View key={key} style={[styles.cabDivStyle, { backgroundColor: prop.active == true ? colors.BOX_BG : colors.WHITE }]}>
-                                    <TouchableOpacity onPress={() => { selectCarType(prop, key) }} style={styles.imageStyle}>
-                                        <Image resizeMode="contain" source={prop.image ? { uri: prop.image } : require('../../assets/images/microBlackCar.png')} style={styles.imageStyle1} />
-                                    </TouchableOpacity>
-                                    <View style={[styles.textViewStyle, appcat == 'rentals'?{height:40}:null]}>
-                                        <Text style={styles.text1}>{prop.name.toUpperCase()}</Text>
-                                        {appcat == 'rentals'?
-                                            <View style={{ justifyContent: 'space-around', flexDirection: 'column', alignItems: 'center' }}>
-                                                {
-                                                prop.extra_info.split(',').map((ln) => <Text style={styles.text2} key={ln} >{ln}</Text>)
-                                                }
-                                            </View>
-                                        :
-                                            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
-                                                {isRTL?
-                                                    null:
-                                                    settings.swipe_symbol===false?
-                                                    <Text style={[styles.text2, { fontWeight: 'bold', color: colors.MAP_TEXT }]}>{settings.symbol}{prop.rate_per_unit_distance} / {settings.convert_to_mile ? t('mile') : t('km')} </Text>
-                                                    :
-                                                    <Text style={[styles.text2, { fontWeight: 'bold', color: colors.MAP_TEXT }]}>{prop.rate_per_unit_distance}{settings.symbol} / {settings.convert_to_mile ? t('mile') : t('km')} </Text>
-
-                                                }
-                                                {
-                                                    prop.extra_info && prop.extra_info != '' ?
-
-                                                        <Tooltip style={{ marginLeft: 3, marginRight: 3 }}
-                                                            backgroundColor={"#fff"}
-                                                            overlayColor={'rgba(50, 50, 50, 0.70)'}
-                                                            height={10 + 30 * (prop.extra_info.split(',').length)}
-                                                            width={180}
-                                                            skipAndroidStatusBar={true}
-                                                            popover={
-                                                                <View style={{ justifyContent: 'space-around', flexDirection: 'column' }}>
-                                                                    {
-                                                                        prop.extra_info.split(',').map((ln) => <Text key={ln} >{ln}</Text>)
-                                                                    }
-                                                                </View>
-                                                            }>
-                                                            <Icon
-                                                                name='information-circle-outline'
-                                                                type='ionicon'
-                                                                color='#517fa4'
-                                                                size={28}
-                                                            />
-                                                        </Tooltip>
-
-                                                        : null
-                                                }
-                                                {isRTL?
-                                                    settings.swipe_symbol===false?
-                                                        <Text style={[styles.text2, { fontWeight: 'bold', color: colors.MAP_TEXT }]}>{settings.symbol}{prop.rate_per_unit_distance} / {settings.convert_to_mile ? t('mile') : t('km')} </Text>
-                                                        :
-                                                        <Text style={[styles.text2, { fontWeight: 'bold', color: colors.MAP_TEXT }]}>{prop.rate_per_unit_distance}{settings.symbol} / {settings.convert_to_mile ? t('mile') : t('km')} </Text>
-                                                :null}
-
-                                            </View>
-                                        }
-                                        <View style={appcat == 'rentals'?{marginTop:10}:null}>
-                                            <Text style={styles.text2}>({prop.minTime != '' ? prop.minTime : t('not_available')})</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                            );
-                        })} */}
-                </View>
-
-                <View style={{flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",margin:30}}>
-            <CustomButton
-              width={"46%"}
-              height={verticalScale(40)}
-              title="Check Rate"
-              fontSize={12}
-              onPress={onPressBookLater}
-              backgroundColor={colors.WHITE}
-              borderColor={colors.primary}
-              color={colors.primary}
-              borderWidth={1}
-              fontWeight={"bold"}
-            />
-            <CustomButton
-              width={"46%"}
-              height={verticalScale(40)}
-              title="Book Now"
-              // onPress={() => {
-              //   navigation.navigate("BookPadala");
-              // }}
-              onPress={onPressBook}
-              color={"#1B1B1E"}
-              fontSize={12}
-              fontWeight={"bold"}
-            />
-          </View>
-                {/* //!original Buttons */}
-                {/* <View style={styles.buttonBar}>
-                    {bookLoading ?
-                    null:
-                    <Button
-                        title={t('book_later_button')}
-                        loading={bookLaterLoading}
-                        loadingProps={{ size: "large", color: colors.WHITE }}
-                        titleStyle={styles.buttonTitleStyle}
-                        onPress={onPressBookLater}
-                        buttonStyle={[styles.buttonStyle, { backgroundColor: colors.BUTTON_BACKGROUND ,width:bookLaterLoading?width:width/2}]}
-                        containerStyle={[styles.buttonContainer,{width:bookLaterLoading?width:width/2}]}
-                    />
-                    }
-                    <Button
-                        title={t('book_now_button')}
-                        loading={bookLoading}
-                        loadingProps={{ size: "large", color: colors.WHITE }}
-                        titleStyle={styles.buttonTitleStyle}
-                        onPress={onPressBook}
-                        buttonStyle={[styles.buttonStyle, { backgroundColor: appcat == 'taxi' ? colors.BUTTON_YELLOW : (appcat == 'delivery'? colors.BUTTON_ORANGE: colors.RE_GREEN), width:bookLoading?width:width/2 }]}
-                        containerStyle={[styles.buttonContainer,{width:bookLoading?width:width/2}]}
-                    />
-                </View> */}
+                :null }
 
                 {appcat == 'delivery' ?
                     <OptionModal
@@ -1397,23 +1178,11 @@ export default function MapScreen(props) {
                     onConfirm={handleDateConfirm}
                     onCancel={hideDatePicker}
                 />
-            </ScrollView>
-
+            </View>
         </>
     );
 
 }
-
-const CarsListCom=({name,...prop})=>(
-    <View style={{backgroundColor:colors.WHITE, elevation:5,borderRadius:10,flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",paddingHorizontal:30,paddingVertical:10,marginHorizontal:30,marginVertical:10}}>
-<View>
-    <Image source={prop.image ? { uri: prop.image } : require('../../assets/images/microBlackCar.png')}/>
-</View>
-<View>
-<Text style={styles.titleStyles}>{name.toUpperCase()}</Text>
-</View>
-    </View>
-)
 
 const styles = StyleSheet.create({
     container: {
@@ -1481,8 +1250,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     mapViewStyle: {
-        width: "100%",
-        height: Dimensions.get("window").height / 2,
+        flex:1,
+        ...StyleSheet.absoluteFillObject,
     },
     mapFloatingPinView:{ 
         position: 'absolute', 
