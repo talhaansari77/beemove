@@ -14,6 +14,7 @@ import {
   TextInput,
   TouchableOpacity,
   SafeAreaView,
+  StatusBar
 } from "react-native";
 import { Button, Header } from "react-native-elements";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
@@ -246,8 +247,11 @@ export default function DriverTrips(props) {
   };
 
   return (
-    <View style={styles.mainViewStyle}>
-      <View style={{ paddingHorizontal: scale(15), paddingVertical: 10 }}>
+    <SafeAreaView style={styles.mainViewStyle}>
+
+              {/* <Spacer height={Platform.OS=="android"? 20:0}/> */}
+
+      <View style={{ paddingHorizontal: scale(15),}}>
         <CustomHeader
           LeftSide={() => (
             <TouchableOpacity
@@ -287,6 +291,7 @@ export default function DriverTrips(props) {
           )}
         />
       </View>
+      <Spacer height={10}/>
 
       {/* <Header
                 backgroundColor={colors.HEADER}
@@ -938,7 +943,7 @@ export default function DriverTrips(props) {
           </View>
         </Modal>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
