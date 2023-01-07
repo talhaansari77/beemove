@@ -220,13 +220,13 @@ export default function DriverTrips(props) {
         <Switch
           value={
             auth.info && auth.info.profile
-              ? auth.info.profile.driverActiveStatus
+              ? auth?.info?.profile?.driverActiveStatus
               : false
           }
           onValueChange={onChangeFunction}
           trackColor={{ false: "#767577", true: colors.primary }}
           thumbColor={
-            auth.info.profile.driverActiveStatus ? "#f4f3f4" : "#f4f3f4"
+            auth?.info?.profile?.driverActiveStatus ? "#f4f3f4" : "#f4f3f4"
           }
 
           // style={{marginTop : Platform.OS == 'android'? -6 : 0}}
