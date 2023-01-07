@@ -1,6 +1,6 @@
 module.exports.AppConfig = {
-    app_name: 'MyService', 
-    app_description: 'MyService App Solutions', 
+    app_name: 'Beemove', 
+    app_description: 'We Move Everything', 
     app_identifier: 'com.beemove.ph', 
     ios_app_version: '1.0.0', 
     android_app_version: 100, 
