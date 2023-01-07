@@ -27,10 +27,12 @@ const CustomTextInput = ({
   withLabel,
   rightLabel,
   rightLabelIcon,
+  editable,
+  onPressIn,
   ...props
 }) => {
   return (
-    <View style={{ width: props.mainWidth,marginTop:props.mainTop }}>
+    <View style={{ width: props.mainWidth, marginTop: props.mainTop }}>
       {withLabel ? (
         <CustomText
           label={withLabel}
@@ -63,14 +65,13 @@ const CustomTextInput = ({
           },
         ]}
       >
-
         <TextInput
           style={[
             {
-              width:  rightLabel?"82%":"95%",
+              width: rightLabel ? "82%" : "95%",
               height: props.inputHeight || "100%",
               marginLeft: props.inputLeftMargin || 10,
-              marginTop:props.marginTop,
+              marginTop: props.marginTop,
               paddingRight: props.paddingRight || 10,
               paddingHorizontal: props.paddingHorizontal,
               fontFamily: props.fontFamily || "Roboto-Regular",
@@ -80,6 +81,8 @@ const CustomTextInput = ({
               // alignSelf: props.alignItems || "center"
             },
           ]}
+          editable={editable}
+          onPressIn={onPressIn}
           onChangeText={props.onChangeText}
           value={props.value}
           numberOfLines={props.numberOfLines}
@@ -89,15 +92,17 @@ const CustomTextInput = ({
           placeholder={props.placeholder}
           placeholderTextColor={props.placeholderTextColor}
           secureTextEntry={props.secureTextEntry}
+          
         />
 
-{rightLabel ? <View style={{width:20,height:20}}>
-<Image source={rightLabel} style={{...commonStyles.img,tintColor:"#C8C8C8"}}/>
-
-
-</View> : null}
-
-
+        {rightLabel ? (
+          <View style={{ width: 20, height: 20 }}>
+            <Image
+              source={rightLabel}
+              style={{ ...commonStyles.img, tintColor: "#C8C8C8" }}
+            />
+          </View>
+        ) : null}
       </TouchableOpacity>
       {error ? (
         <CustomText

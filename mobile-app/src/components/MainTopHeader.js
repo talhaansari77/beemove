@@ -4,12 +4,12 @@ import commonStyles from "../../Utils/CommonStyles";
 import CustomText from "./CustomText";
 import { colors } from "../../Utils/Colors";
 
-const MainTopHeader = ({ txt, img,navigation }) => {
+const MainTopHeader = ({ txt, img,navigation,openDrawer }) => {
   return (
     <View style={styles.mainCotainer}>
       <TouchableOpacity
       activeOpacity={0.6}
-      onPress={()=>navigation.openDrawer()}
+      onPress={openDrawer}
        style={commonStyles.iconContainer}>
         <Image
           resizeMode="contain"

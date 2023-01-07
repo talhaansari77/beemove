@@ -17,6 +17,10 @@ export const images = {
   corner1: require("./corner1.png"),
 
 
+  car: require("./car.png"),
+  bike: require("./bike.png"),
+  time: require("./time.png"),
+  cart: require("./card.png"),
 
 
 };
