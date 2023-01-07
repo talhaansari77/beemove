@@ -123,9 +123,38 @@ const Profile = ({
                   />
                 )}
                 RightSide={() => (
-                  <TouchableOpacity activeOpacity={0.7} onPress={editProfile}>
+                  <View style={{flexDirection:"row",alignItems:"center"}}>
+             
+           <TouchableOpacity activeOpacity={0.7} onPress={editProfile}>
                     <Feather name="edit" size={18} color={colors.lightText} />
                   </TouchableOpacity>
+                  <Spacer width={10}/>
+
+                  {profileData && profileData.usertype == "driver" ? (
+          <View style={{flexDirection:"row",alignItems:"center"}}>
+  <CustomText
+                    label="On Duty"
+                    alignSelf={"center"}
+                    fontSize={13}
+                    fontWeight={"bold"}
+                    color={colors.lightText}
+                  />
+                              <Switch
+              style={{ marginLeft: 5 }}
+              value={profileData ? profileData.driverActiveStatus : false}
+              onValueChange={onChangeFunction}
+
+              trackColor={{ false: "#767577", true: colors.primary }}
+              thumbColor={
+                profileData? "#f4f3f4" : "#f4f3f4"
+              }
+            />
+          </View>
+        ) : null}
+          
+
+                  </View>
+               
                 )}
               />
             </View>
@@ -202,7 +231,7 @@ const Profile = ({
           </View>
         </View>
         <Spacer height={20} />
-        {profileData && profileData.usertype == "driver" ? (
+        {/* {profileData && profileData.usertype == "driver" ? (
           <View>
             <Text>active_status</Text>
             <Switch
@@ -211,7 +240,7 @@ const Profile = ({
               onValueChange={onChangeFunction}
             />
           </View>
-        ) : null}
+        ) : null} */}
         <View style={{ paddingHorizontal: scale(25) }}>
           {data.map((item) => (
             <>
