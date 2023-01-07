@@ -32,6 +32,10 @@ import TopRideContainer from '../components/TopRideContainer';
 import CustomButton from '../components/CustomButton';
 import { verticalScale } from 'react-native-size-matters';
 import { AntDesign } from "@expo/vector-icons";
+import { images } from '../../assets/images';
+import RideBottomContainer from './Main/Ride/Molecules/RideBottomContainer';
+import CustomTextInput from '../components/CustomTextInput';
+import commonStyles from '../../Utils/CommonStyles';
 
 const hasNotch = Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS && ((height === 780 || width === 780) || (height === 812 || width === 812) || (height === 844 || width === 844) || (height === 896 || width === 896) || (height === 926 || width === 926))
 
@@ -517,8 +521,9 @@ export default function MapScreen(props) {
         } else{
             if (tripdata.pickup && tripdata.drop && tripdata.drop.add) {
                 if (!tripdata.carType) {
-                    setBookLoading(false);
-                    Alert.alert(t('alert'), t('car_type_blank_error'))
+                    //todo  fix this later
+                    // setBookLoading(false);
+                    // Alert.alert(t('alert'), t('car_type_blank_error'))
                 } else {
                     let driver_available = false;
                     for (let i = 0; i < allCarTypes.length; i++) {
@@ -871,6 +876,19 @@ export default function MapScreen(props) {
         </View>
       );
     //! <<=====================>>
+    const inputData = [
+        // {
+        //   id: 1,
+        //   withLabel: "Pick-Up Address details",
+        //   placeholder: "Unit number & Street number",
+        // },
+        // {
+        //   id: 2,
+        //   withLabel: "Drop-Off Address details",
+        //   placeholder: "Unit number & Street number",
+        // },
+        { id: 3, withLabel: "Note to Driver", placeholder: "Write note here..." },
+      ];
     return (
         <>
         
@@ -911,10 +929,10 @@ export default function MapScreen(props) {
 
                     <Spacer height={10} />
                     <MainTopHeader
-                        txt={"Padala"}
+                        txt={props.route.params.name}
                         // navigation={navigation}
 
-                        img={require("../../assets/images/time.png")}
+                        img={props.route.params.name==="Car"?images.car:props.route.params.name==="Ride"?images.bike:props.route.params.name==="Padala"?images.time:images.cart}
                         openDrawer={() => { props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
                     />
                     <Spacer height={20} />
@@ -1029,7 +1047,39 @@ export default function MapScreen(props) {
                         </View>
                         : null}
                 </View>
-               
+                {props.route.params.name==="Padala"?
+                <View>
+                    {allCarTypes.map((prop, key) => (
+                   <TouchableOpacity onPress={() => { selectCarType(prop, key) }} style={{backgroundColor: prop.active == true ? colors.BOX_BG : colors.WHITE , elevation:5,borderRadius:10,flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",paddingHorizontal:30,paddingVertical:10,marginHorizontal:30,marginVertical:10}}>
+                   <View >
+                       <Image  resizeMode="contain" source={prop.image ? { uri: prop.image } : require('../../assets/images/microBlackCar.png')} style={{height:40,width:40,tintColor:colors.primary}}/>
+                   </View>
+                   <View>
+                   <Text style={styles.titleStyles}>{prop.name.toUpperCase()}</Text>
+                   </View>
+                       </TouchableOpacity>
+                ))}
+                </View>
+                :<View style={commonStyles.PH30}>
+                <Spacer height={20} />
+                {inputData.map((item) => {
+                    return (
+                        <>
+                        <CustomTextInput
+                            withLabel={item.withLabel}
+                            placeholder={item.placeholder}
+                            fontSize={12}
+                            paddingLeft={20}
+                            // paddingTop={10}
+                            placeholderTextColor={"#9C9C9C"}
+                            fontFamily={"Roboto-Light"}
+                        />
+                        <Spacer height={20} />
+                        </>
+                    );
+                    })}
+                </View>}
+                
                 {/* //!original Header */}
                 {/* <View style={[styles.menuIcon, isRTL ? {right:20}:{left:20}]}>
                     <TouchableOpacity onPress={() => { props.navigation.dispatch(DrawerActions.toggleDrawer()) }} style={styles.menuIconButton} >
@@ -1223,7 +1273,7 @@ export default function MapScreen(props) {
                 :null } */}
                 
                 <View style={{}}>
-                {allCarTypes.map((prop, key) => (
+                {/* {allCarTypes.map((prop, key) => (
                    <TouchableOpacity onPress={() => { selectCarType(prop, key) }} style={{backgroundColor: prop.active == true ? colors.BOX_BG : colors.WHITE , elevation:5,borderRadius:10,flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",paddingHorizontal:30,paddingVertical:10,marginHorizontal:30,marginVertical:10}}>
                    <View >
                        <Image  resizeMode="contain" source={prop.image ? { uri: prop.image } : require('../../assets/images/microBlackCar.png')} style={{height:40,width:40,tintColor:colors.primary}}/>
@@ -1232,7 +1282,7 @@ export default function MapScreen(props) {
                    <Text style={styles.titleStyles}>{prop.name.toUpperCase()}</Text>
                    </View>
                        </TouchableOpacity>
-                ))}
+                ))} */}
                 {/* //!original Carlist */}
                 {/* {allCarTypes.map((prop, key) => {
                             return (
