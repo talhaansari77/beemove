@@ -26,7 +26,7 @@ const MyEarnings = ({
 }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
-                  <Spacer height={Platform.OS==='ios'?40:30}/>
+                  {/* <Spacer height={Platform.OS==='ios'?40:30}/> */}
 
       <View
         style={{

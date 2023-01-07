@@ -7,7 +7,8 @@ import {
     TouchableWithoutFeedback,
     Platform,
     Dimensions,
-    Image
+    Image,
+    SafeAreaView
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import { colors } from '../common/theme';
@@ -72,7 +73,7 @@ export default function RideListPage(props) {
     return (
         
        
-        <View style={styles.mainView}>
+        <SafeAreaView style={styles.mainView}>
             {/* <Header
                 backgroundColor={colors.HEADER}
                 leftComponent={isRTL? null:hCom}
@@ -131,7 +132,7 @@ export default function RideListPage(props) {
             {tabIndex>=0?
                 <RideList onPressButton={(item, index) => { goDetails(item, index) }} data={bookingData} tabIndex={tabIndex}></RideList>
             :null}
-        </View>
+        </SafeAreaView>
       
 
     );
