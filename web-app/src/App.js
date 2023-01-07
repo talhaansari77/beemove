@@ -1,4 +1,6 @@
 import React, {useRef} from "react";
+import { StatusBar } from 'react-native';
+
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
 import "assets/scss/material-kit-react.scss?v=1.9.0";
@@ -77,10 +79,13 @@ function App() {
 
   return (
     <Provider store={store}>
+      
       <FirebaseProvider config={FirebaseConfig} appcat={AppCat}>
         <AuthLoading>
           <Router history={hist}>
             <Switch>
+
+
               <ProtectedRoute exact component={BookingHistory} path="/bookings" permit={"rider,admin,driver,fleetadmin"} />
               <ProtectedRoute exact component={MyProfile} path="/profile" permit={"rider,admin,driver,fleetadmin"} />
               <ProtectedRoute exact component={Dashboard} path="/dashboard" permit={"admin,fleetadmin"} />
