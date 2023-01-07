@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import i18n from 'i18n-js';
 import { FirebaseContext } from 'common/src';
 
-export default function RegistrationPage(props) {
+export default function RegistrationPage({navigation,...props}) {
   const { api } = useContext(FirebaseContext);
   const {
     mainSignUp, 
@@ -105,6 +105,7 @@ export default function RegistrationPage(props) {
         cars={carTypes}
         onPressRegister={(regData) => clickRegister(regData)}
         onPressBack={() => { props.navigation.goBack() }}
+        navigation={navigation}
         loading={loading}>
       </Registration>
       :null}

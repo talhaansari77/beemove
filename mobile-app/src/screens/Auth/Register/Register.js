@@ -5,6 +5,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import React, { useState } from "react";
 import commonStyles from "../../../../Utils/CommonStyles";
@@ -155,12 +156,12 @@ const Register = ({
     },
   ];
   return (
-    <View style={{ backgroundColor: colors.white }}>
-      <Spacer height={Platform.OS == "ios" ? 40 : 5} />
+    <SafeAreaView style={{ backgroundColor: colors.white }}>
+      <Spacer height={Platform.OS == "ios" ? 0 : 5} />
 
       <ScrollView showsVerticalScrollIndicator={false} style={{}}>
         {/* {uploadImage()} */}
-        <Spacer height={20} />
+        {/* <Spacer height={10} /> */}
         <View style={commonStyles.PH40}>
           <TopHeader
             backIcon
@@ -168,7 +169,6 @@ const Register = ({
             navigation={navigation}
             img={require("../../../../assets/images/appLogo.png")}
             label2="Make vour own account with Beemove"
-            // spacerHeight={"5%"}
           />
         </View>
         {/* <PercentageSpacer height={"7%"} /> */}
@@ -334,7 +334,7 @@ const Register = ({
         </View>
         <Spacer height={100} />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

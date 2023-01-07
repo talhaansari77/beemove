@@ -14,6 +14,7 @@ import {
   TextInput,
   TouchableOpacity,
   SafeAreaView,
+  StatusBar
 } from "react-native";
 import { Button, Header } from "react-native-elements";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
@@ -205,13 +206,13 @@ export default function DriverTrips(props) {
 
   const rCom = () => {
     return (
-      <View style={{ flexDirection: isRTL ? "row-reverse" : "row" }}>
+      <View style={{ flexDirection: isRTL ? "row-reverse" : "row" ,alignItems:"center"}}>
         <Text
           style={{
             color: colors.BLACK,
             fontWeight: "bold",
-            marginRight: Platform.OS == "ios" ? 10 : 0,
-            marginTop: 8,
+            // marginRight: Platform.OS == "ios" ? 10 : 10,
+            // marginTop: 8,
           }}
         >
           {t("on_duty")}
@@ -220,13 +221,13 @@ export default function DriverTrips(props) {
         <Switch
           value={
             auth.info && auth.info.profile
-              ? auth.info.profile.driverActiveStatus
+              ? auth?.info?.profile?.driverActiveStatus
               : false
           }
           onValueChange={onChangeFunction}
           trackColor={{ false: "#767577", true: colors.primary }}
           thumbColor={
-            auth.info.profile.driverActiveStatus ? "#f4f3f4" : "#f4f3f4"
+            auth?.info?.profile?.driverActiveStatus ? "#f4f3f4" : "#f4f3f4"
           }
 
           // style={{marginTop : Platform.OS == 'android'? -6 : 0}}
@@ -246,8 +247,11 @@ export default function DriverTrips(props) {
   };
 
   return (
-    <View style={styles.mainViewStyle}>
-      <View style={{ paddingHorizontal: scale(15), paddingVertical: 10 }}>
+    <SafeAreaView style={styles.mainViewStyle}>
+
+              {/* <Spacer height={Platform.OS=="android"? 20:0}/> */}
+
+      <View style={{ paddingHorizontal: scale(15),}}>
         <CustomHeader
           LeftSide={() => (
             <TouchableOpacity
@@ -287,6 +291,7 @@ export default function DriverTrips(props) {
           )}
         />
       </View>
+      <Spacer height={10}/>
 
       {/* <Header
                 backgroundColor={colors.HEADER}
@@ -938,7 +943,7 @@ export default function DriverTrips(props) {
           </View>
         </Modal>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

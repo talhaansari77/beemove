@@ -3,7 +3,7 @@ import React from "react";
 // import styled from "react-native-styled-components";
 import commonStyles from "../../Utils/CommonStyles";
 
-const CustomHeader = ({ LeftSide, Center, RightSide }) => {
+const CustomHeader = ({ LeftSide, Center, RightSide ,borderBottomWidth,borderBottomColor,paddingBottom}) => {
   return (
     <View
       style={{
@@ -12,6 +12,11 @@ const CustomHeader = ({ LeftSide, Center, RightSide }) => {
         flexDirection: "row",
         // ...commonStyles.rowContainer,
         justifyContent: "space-between",
+        borderBottomWidth:borderBottomWidth,
+        borderBottomColor:borderBottomColor,
+        paddingBottom:paddingBottom
+        
+        
       }}
     >
       {LeftSide ? <LeftSide /> : <View/>}

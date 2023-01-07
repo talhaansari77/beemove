@@ -276,6 +276,7 @@ export default function Registration(props) {
           state={state}
           onPressRegister={onPressRegister}
           capturedImage={capturedImage}
+          navigation={props.navigation}
           setCapturedImage={setCapturedImage}
           showActionSheet={showActionSheet}
           // uploadImage={uploadImage}
