@@ -205,13 +205,13 @@ export default function DriverTrips(props) {
 
   const rCom = () => {
     return (
-      <View style={{ flexDirection: isRTL ? "row-reverse" : "row" }}>
+      <View style={{ flexDirection: isRTL ? "row-reverse" : "row" ,alignItems:"center"}}>
         <Text
           style={{
             color: colors.BLACK,
             fontWeight: "bold",
-            marginRight: Platform.OS == "ios" ? 10 : 0,
-            marginTop: 8,
+            // marginRight: Platform.OS == "ios" ? 10 : 10,
+            // marginTop: 8,
           }}
         >
           {t("on_duty")}

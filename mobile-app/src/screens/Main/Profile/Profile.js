@@ -20,6 +20,7 @@ import commonStyles from "../../../../Utils/CommonStyles";
 import { scale, verticalScale } from "react-native-size-matters";
 import { AntDesign, Feather, Octicons } from "@expo/vector-icons";
 import CustomButton from "../../../components/CustomButton";
+import PercentageSpacer from "../../../components/PercentageSpacer";
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
@@ -87,10 +88,12 @@ const Profile = ({
         <View style={{ height: screenHeight / 3 }}>
           <Image
             source={images.profileBg}
-            style={{ height: screenHeight / 3.9, width: "100%" }}
+            style={{ height: screenHeight / 3.5, width: "100%" }}
           />
           {/* profile detail container*/}
           <View style={{ position: "absolute" }}>
+          <Spacer height={Platform.OS=="android"? 20:0}/>
+
             <View
               style={{
                 paddingVertical: 10,
@@ -230,7 +233,8 @@ const Profile = ({
             </View>
           </View>
         </View>
-        <Spacer height={20} />
+        <PercentageSpacer height={"15%"}/>
+        {/* <Spacer height={40} /> */}
         {/* {profileData && profileData.usertype == "driver" ? (
           <View>
             <Text>active_status</Text>
@@ -241,7 +245,7 @@ const Profile = ({
             />
           </View>
         ) : null} */}
-        <View style={{ paddingHorizontal: scale(25) }}>
+        <View style={{ paddingHorizontal: scale(25), }}>
           {data.map((item) => (
             <>
               <InfoView label={item.label} name={item.name} icon={item.icon} />
@@ -250,7 +254,7 @@ const Profile = ({
           ))}
         </View>
         {/* <Spacer height={40} /> */}
-        <Spacer height={40} />
+        <Spacer height={60} />
       </ScrollView>
       <View
         style={{
