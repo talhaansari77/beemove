@@ -13,6 +13,10 @@ export const images = {
   home: require("./home.png"),
   appLogo: require("./appLogo.png"),
   pointer: require("./pointer.png"),
+  car: require("./car.png"),
+  bike: require("./bike.png"),
+  time: require("./time.png"),
+  cart: require("./card.png"),
 
 
 };
