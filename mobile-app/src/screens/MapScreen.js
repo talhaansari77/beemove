@@ -928,7 +928,7 @@ export default function MapScreen(props) {
                     // zIndex:100,
                 }}>
 
-                    <Spacer height={30} />
+<Spacer height={Platform.OS=="android"? 20:0}/>
                     <MainTopHeader
                         txt={props.route.params.name}
                         // navigation={navigation}

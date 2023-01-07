@@ -163,6 +163,7 @@ const Register = ({
         {/* {uploadImage()} */}
         {/* <Spacer height={10} /> */}
         <View style={commonStyles.PH40}>
+        <Spacer height={Platform.OS=="android"? 20:0}/>
           <TopHeader
             backIcon
             label1={"Register"}
