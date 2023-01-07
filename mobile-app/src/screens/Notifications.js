@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, Dimensions, FlatList, StyleSheet, Image, TouchableWithoutFeedback ,TouchableOpacity,Alert} from 'react-native';
+import { View, Text, Dimensions, FlatList, StyleSheet, Image, TouchableWithoutFeedback ,TouchableOpacity,Alert, SafeAreaView} from 'react-native';
 import { Icon } from 'react-native-elements'
 import { colors } from '../common/theme';
 import { Header } from 'react-native-elements';
@@ -9,6 +9,20 @@ import moment from 'moment/min/moment-with-locales';
 const devWidth = Dimensions.get("window").width;
 import { FirebaseContext } from 'common/src';
 import { DrawerActions } from '@react-navigation/native';
+import CustomHeader from '../components/CustomHeader';
+import commonStyles from '../../Utils/CommonStyles';
+import { images } from '../../assets/images';
+import {
+    AntDesign,
+    Feather,
+    Octicons,
+    MaterialIcons,
+    FontAwesome,
+    Ionicons
+  } from "@expo/vector-icons";
+import CustomText from '../components/CustomText';
+import { Spacer } from '../components/Spacer';
+import { moderateScale } from 'react-native-size-matters';
 
 export default function Notifications(props) {
     const { t } = i18n;
@@ -89,21 +103,66 @@ export default function Notifications(props) {
 
 
     return (
-        <View style={{ flex: 1 }}>
-            <Header
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={{padding:10}}>
+            <CustomHeader
+    
+    LeftSide={() => (
+        <TouchableOpacity
+        activeOpacity={0.6}
+        onPress={() => {
+          props.navigation.dispatch(DrawerActions.toggleDrawer());
+        }}
+        style={commonStyles.iconContainer}
+      >
+        <Image
+          resizeMode="contain"
+          source={images.sort}
+          style={commonStyles.img}
+        />
+      </TouchableOpacity>
+    )}
+    Center={() => (
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          marginLeft: "-10%",
+        }}
+      >
+          <Ionicons name="notifications" color={colors.primary} size={20}/>
+        {/* <Ionicons name="wechat" color={colors.primary} size={20} /> */}
+        {/* <MaterialIcons name="payment" color={colors.primary} size={20} /> */}
+        <Spacer width={10} />
+        <CustomText
+          label="Notification"
+          alignSelf={"center"}
+          fontSize={16}
+          fontFamily="Roboto-Medium"
+          // fontWeight={"bold"}
+          color={colors.BLACK}
+        />
+      </View>
+    )}
+  />
+
+            </View>
+         
+       
+            {/* <Header
                 backgroundColor={colors.HEADER}
                 leftComponent={isRTL? null:hCom}
                 rightComponent={isRTL? hCom:null}
                 centerComponent={<Text style={styles.headerTitleStyle}>{t('push_notification_title')}</Text>}
                 containerStyle={styles.headerStyle}
                 innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}               
-            />
+            /> */}
             <FlatList
                 keyExtractor={(item, index) => index.toString()}
                 data={data}
                 renderItem={newData}
             />
-        </View>
+        </SafeAreaView>
     )
 
 }
