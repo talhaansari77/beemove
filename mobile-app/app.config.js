@@ -18,7 +18,7 @@ export default {
     },
     version: AppConfig.ios_app_version,
     orientation: "portrait",
-    icon: "./assets/images/appLogo.png",
+    icon: "./assets/images/logo.png",
     splash: {
         "image": "./assets/images/splash.png",
         "resizeMode": "cover",
