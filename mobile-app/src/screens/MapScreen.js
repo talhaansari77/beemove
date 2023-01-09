@@ -892,6 +892,7 @@ export default function MapScreen(props) {
       ];
     return (
         <>
+        {/* <StatusBar hidden={true}/> */}
         
             {/* <PadalaScreen
             tripdata={tripdata}
@@ -930,10 +931,10 @@ export default function MapScreen(props) {
 
                     <Spacer height={30} />
                     <MainTopHeader
-                        txt={props.route.params.name}
+                        txt={props?.route?.params?.name}
                         // navigation={navigation}
 
-                        img={props.route.params.name==="Car"?images.car:props.route.params.name==="Ride"?images.bike:props.route.params.name==="Padala"?images.time:images.cart}
+                        img={props?.route?.params?.name==="Car"?images.car:props?.route?.params?.name==="Ride"?images.bike:props?.route?.params?.name==="Padala"?images.time:images.cart}
                         openDrawer={() => { props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
                     />
                     <Spacer height={20} />
@@ -941,7 +942,7 @@ export default function MapScreen(props) {
                     
                     <TopRideContainer
                     tripdata={tripdata}
-                    onAddShop={() => props.navigation.navigate("BookPadala")}
+                    onAddShop={() => props?.navigation.navigate("BookPadala")}
                     tapAddress={tapAddress}
                     />
                     <Spacer height={20} />
@@ -966,12 +967,12 @@ export default function MapScreen(props) {
                             {freeCars ? freeCars.map((item, index) => {
                                 return (
                                     <Marker.Animated
-                                        coordinate={{ latitude: item.location ? item.location.lat : 0.00, longitude: item.location ? item.location.lng : 0.00 }}
+                                        coordinate={{ latitude: item?.location ? item?.location.lat : 0.00, longitude: item?.location ? item?.location.lng : 0.00 }}
                                         key={index}
                                     >
                                         <Image
                                             key={index}
-                                            source={{ uri: item.carImage }}
+                                            source={{ uri: item?.carImage }}
                                             style={{ height: 40, width: 40, resizeMode: 'contain' }}
                                         />
                                     </Marker.Animated>
@@ -1048,15 +1049,15 @@ export default function MapScreen(props) {
                         </View>
                         : null}
                 </View>
-                {props.route.params.name==="Padala"?
+                {props?.route?.params?.name==="Padala"?
                 <View>
                     {allCarTypes.map((prop, key) => (
                    <TouchableOpacity onPress={() => { selectCarType(prop, key) }} style={{backgroundColor: prop.active == true ? colors.BOX_BG : colors.WHITE , elevation:5,borderRadius:10,flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",paddingHorizontal:30,paddingVertical:10,marginHorizontal:30,marginVertical:10}}>
                    <View >
-                       <Image  resizeMode="contain" source={prop.image ? { uri: prop.image } : require('../../assets/images/microBlackCar.png')} style={{height:40,width:40,tintColor:colors.primary}}/>
+                       <Image  resizeMode="contain" source={prop?.image ? { uri: prop?.image } : require('../../assets/images/microBlackCar.png')} style={{height:40,width:40,tintColor:colors.primary}}/>
                    </View>
                    <View>
-                   <Text style={styles.titleStyles}>{prop.name.toUpperCase()}</Text>
+                   <Text style={styles.titleStyles}>{prop?.name.toUpperCase()}</Text>
                    </View>
                        </TouchableOpacity>
                 ))}
@@ -1067,8 +1068,8 @@ export default function MapScreen(props) {
                     return (
                         <>
                         <CustomTextInput
-                            withLabel={item.withLabel}
-                            placeholder={item.placeholder}
+                            withLabel={item?.withLabel}
+                            placeholder={item?.placeholder}
                             fontSize={12}
                             paddingLeft={20}
                             // paddingTop={10}
