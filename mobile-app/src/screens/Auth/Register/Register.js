@@ -162,7 +162,7 @@ const Register = ({
       <ScrollView showsVerticalScrollIndicator={false} style={{}}>
         {/* {uploadImage()} */}
         {/* <Spacer height={10} /> */}
-        <View style={commonStyles.PH40}>
+        <View style={commonStyles.PH30}>
           <TopHeader
             backIcon
             label1={"Register"}

@@ -72,12 +72,15 @@ export default function AppContainer() {
         {auth.info &&
         auth.info.profile &&
         auth.info.profile.usertype == "rider" ? (
-          <Drawer.Screen name="SelectRide" component={Home} />
+          <Drawer.Screen name="Map" component={Home} />
         ) : null}
         {auth.info &&
         auth.info.profile &&
         auth.info.profile.usertype == "rider" ? (
-          <Drawer.Screen name="Map" component={MapScreen} />
+          <Drawer.Screen
+          options={{
+            drawerItemStyle:{display:"none"}}}
+           name="SelectRide" component={MapScreen} />
         ) : null}
         {auth.info &&
         auth.info.profile &&
@@ -117,6 +120,8 @@ export default function AppContainer() {
           <Stack.Group options={{ headerShown: false }}>
             <Stack.Screen name="DrawerRoot" component={DrawerRoot} />
             <Stack.Screen name="editUser" component={EditProfilePage} />
+            <Stack.Screen name="MapScreen" component={MapScreen} />
+
             <Stack.Screen name="Search" component={SearchScreen} />
             <Stack.Screen name="DriverRating" component={DriverRating} />
             <Stack.Screen name="PaymentDetails" component={PaymentDetails} />

@@ -119,7 +119,8 @@ export default function RideListPage(props) {
                   fontFamily="Roboto-Medium"
                   // fontWeight={"bold"}
                   color={colors.lightText}
-                /></View>
+                />
+                </View>
               )}
               
             />

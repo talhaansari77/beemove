@@ -211,6 +211,7 @@ export default function DriverTrips(props) {
           style={{
             color: colors.BLACK,
             fontWeight: "bold",
+            marginRight:10
             // marginRight: Platform.OS == "ios" ? 10 : 10,
             // marginTop: 8,
           }}

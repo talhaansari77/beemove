@@ -92,7 +92,7 @@ const Profile = ({
           />
           {/* profile detail container*/}
           <View style={{ position: "absolute" }}>
-          <Spacer height={Platform.OS=="android"? 20:0}/>
+          {/* <Spacer height={Platform.OS=="android"? 20:0}/> */}
 
             <View
               style={{

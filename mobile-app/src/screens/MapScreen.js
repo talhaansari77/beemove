@@ -929,7 +929,7 @@ export default function MapScreen(props) {
                     // zIndex:100,
                 }}>
 
-                    <Spacer height={30} />
+                    <Spacer height={20} />
                     <MainTopHeader
                         txt={props?.route?.params?.name}
                         // navigation={navigation}
