@@ -9,23 +9,23 @@ import { colors } from '../../../../../Utils/Colors'
 const BookRideContainer = ({item}) => {
   return (
     <TouchableOpacity 
-    onPress={item.onPress}
+    onPress={item?.onPress}
     style={styles.mainContainer}>
         <View style={{width:30,height:30}}>
-            <Image  resizeMode="contain" style={commonStyles.img} source={item.img}/>
+            <Image  resizeMode="contain" style={commonStyles.img} source={item?.img}/>
 
         </View>
         <Spacer width={20}/>
         <View>
         <CustomText
-          label={item.txt1}
+          label={item?.txt1}
           color={colors.lightText}
           fontSize={13}
           fontFamily="Roboto-Bold"
           
         />
         <CustomText
-          label={item.txt2}
+          label={item?.txt2}
           color={colors.lightText}
           fontSize={10}
           fontFamily="Roboto-Light"
