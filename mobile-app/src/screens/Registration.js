@@ -5,8 +5,10 @@ import { useSelector } from 'react-redux';
 
 import i18n from 'i18n-js';
 import { FirebaseContext } from 'common/src';
+import { useNavigation } from '@react-navigation/native';
 
-export default function RegistrationPage({navigation,...props}) {
+export default function RegistrationPage({...props}) {
+  const navigation = useNavigation()
   const { api } = useContext(FirebaseContext);
   const {
     mainSignUp, 
@@ -54,7 +56,7 @@ export default function RegistrationPage({navigation,...props}) {
                         {
                             text: t('ok'), 
                             onPress: () => {
-                              props.navigation.goBack();
+                              navigation.goBack();
                             }
                         },
                     ],

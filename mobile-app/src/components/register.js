@@ -57,7 +57,7 @@ export default function Registration(props) {
   const actionSheetRef = useRef(null);
 
   const radio_props = [
-    { label: t("rider"), value: 0 },
+    { label: t("rider"), value: 0, style:{marginRight:30} },
     { label: t("driver"), value: 1 },
   ];
 
@@ -196,7 +196,7 @@ export default function Registration(props) {
 
   const validateMobile = () => {
     let mobileValid = true;
-    if (mobileWithoutCountry.length < 6) {
+    if (mobileWithoutCountry) {
       mobileValid = false;
       Alert.alert(t("alert"), t("mobile_no_blank_error"));
     }
@@ -224,7 +224,7 @@ export default function Registration(props) {
             state.lastName.length > 0
           ) {
             //todo:apply validation here
-            if (true) {
+            if (validateMobile()) {
               const userData = { ...state };
               if (userData.usertype == "rider") delete userData.carType;
               onPressRegister(userData);
@@ -270,7 +270,7 @@ export default function Registration(props) {
 
   return (
     <>
-      <ScrollView>
+      {/* <ScrollView> */}
         <Register
           setState={setState}
           state={state}
@@ -282,6 +282,9 @@ export default function Registration(props) {
           // uploadImage={uploadImage}
           _pickImage={_pickImage}
           cancelPhoto={cancelPhoto}
+          mobileWithoutCountry={mobileWithoutCountry}
+          dropDownCars={props.cars}
+          radio_props={radio_props}
         />
 
         {uploadImage()}
@@ -776,8 +779,8 @@ export default function Registration(props) {
             </View>
         </ScrollView>
         </KeyboardAvoidingView>
-    </Background> */}
-      </ScrollView>
+    </Background>
+      </ScrollView> */}
     </>
   );
 }
