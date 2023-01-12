@@ -9,6 +9,7 @@ import {
   ScrollView,
   Switch,
   ActivityIndicator,
+  StatusBar,
 } from "react-native";
 import React, { useEffect } from "react";
 import CustomHeader from "../../../components/CustomHeader";
@@ -84,7 +85,9 @@ const Profile = ({
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
+      <StatusBar hidden={false}/>
       <ScrollView>
+      <Spacer height={Platform.OS=="android"? 25:0}/>
         <View style={{ height: screenHeight / 3 }}>
           <Image
             source={images.profileBg}
@@ -93,13 +96,11 @@ const Profile = ({
           {/* profile detail container*/}
           <View style={{ position: "absolute" }}>
           {/* <Spacer height={Platform.OS=="android"? 20:0}/> */}
-
             <View
               style={{
-                paddingVertical: 10,
+                padding: 15,
                 justifyContent: "center",
                 width: screenWidth,
-                paddingHorizontal: 15,
               }}
             >
               <CustomHeader
@@ -127,7 +128,7 @@ const Profile = ({
                 )}
                 RightSide={() => (
                   <View style={{flexDirection:"row",alignItems:"center"}}>
-             
+  
            <TouchableOpacity activeOpacity={0.7} onPress={editProfile}>
                     <Feather name="edit" size={18} color={colors.lightText} />
                   </TouchableOpacity>

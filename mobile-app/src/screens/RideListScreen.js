@@ -8,7 +8,8 @@ import {
     Platform,
     Dimensions,
     Image,
-    SafeAreaView
+    SafeAreaView,
+    StatusBar
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import { colors } from '../common/theme';
@@ -83,6 +84,8 @@ export default function RideListPage(props) {
                 innerContainerStyles={{ marginLeft: 10, marginRight: 10 }}
             /> */}
             {/* <Spacer height={Platform.OS==='ios'?40:30}/> */}
+            <StatusBar hidden={false}/>
+              <Spacer height={Platform.OS=="android"? 30:0}/>
             <View
             style={{
               paddingVertical: 10,
@@ -91,6 +94,7 @@ export default function RideListPage(props) {
               paddingHorizontal: 15,
             }}
             >
+                <Spacer height={Platform.OS=="android"? 20:0}/>
             <CustomHeader
                LeftSide={() => (
            

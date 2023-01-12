@@ -7,6 +7,8 @@ import {
   Image,
   StyleSheet,
   Dimensions,
+  StatusBar,
+  Platform,
 } from "react-native";
 import React from "react";
 import { Icon, Button, Header, Input } from "react-native-elements";
@@ -123,6 +125,8 @@ const ConvertToDriver = ({
   ];
   return (
     <SafeAreaView>
+      <StatusBar hidden={false}/>
+              <Spacer height={Platform.OS=="android"? 30:0}/>
       <View
         style={{
           //   backgroundColor: colors.primary,
@@ -132,6 +136,7 @@ const ConvertToDriver = ({
           paddingHorizontal: 15,
         }}
       >
+        <Spacer height={Platform.OS=="android"? 20:0}/>
         <CustomHeader
           LeftSide={() => (
             <TouchableOpacity

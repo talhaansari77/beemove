@@ -7,6 +7,7 @@ import {
   ScrollView,
   SafeAreaView,
   Platform,
+  StatusBar,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import CustomHeader from "../../../components/CustomHeader";
@@ -141,6 +142,8 @@ const MyWallet = ({
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
+      <StatusBar hidden={false} />
+      <Spacer height={Platform.OS == "android" ? 30 : 0} />
       <View
         style={{
           paddingVertical: 10,
@@ -149,6 +152,7 @@ const MyWallet = ({
           paddingHorizontal: 15,
         }}
       >
+        <Spacer height={Platform.OS=="android"? 20:0}/>
         <CustomHeader
           LeftSide={() => (
             <TouchableOpacity

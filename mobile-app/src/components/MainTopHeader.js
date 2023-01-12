@@ -4,7 +4,7 @@ import commonStyles from "../../Utils/CommonStyles";
 import CustomText from "./CustomText";
 import { colors } from "../../Utils/Colors";
 
-const MainTopHeader = ({ txt, img,navigation,openDrawer }) => {
+const MainTopHeader = ({ txt, img,navigation,openDrawer,rightImg }) => {
   return (
     <View style={styles.mainCotainer}>
       <TouchableOpacity
@@ -38,7 +38,7 @@ const MainTopHeader = ({ txt, img,navigation,openDrawer }) => {
         <View style={{ width: 25, height: 25 }}>
           <Image
             resizeMode="contain"
-            source={require("../../assets/images/bell.png")}
+            source={rightImg}
             style={commonStyles.img}
           />
         </View>

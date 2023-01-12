@@ -75,6 +75,7 @@ const PaymentScreen = ({
           paddingHorizontal: 15,
         }}
       >
+        <Spacer height={Platform.OS=="android"? 20:0}/>
         <CustomHeader
           LeftSide={() => (
             <TouchableOpacity

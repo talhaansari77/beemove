@@ -39,7 +39,7 @@ const CustomTextInput = ({
           fontSize={verticalScale(9)}
           color={colors.labelColor}
           fontFamily={"Roboto-Regular"}
-          fontWeight={"700"}
+          // fontWeight={"700"}
           marginBottom={verticalScale(7)}
           marginLeft={20}
         />
@@ -99,6 +99,7 @@ const CustomTextInput = ({
           <View style={{ width: 20, height: 20 }}>
             <Image
               source={rightLabel}
+              resizeMode={"contain"}
               style={{ ...commonStyles.img, tintColor: "#C8C8C8" }}
             />
           </View>

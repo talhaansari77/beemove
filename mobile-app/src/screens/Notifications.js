@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, Dimensions, FlatList, StyleSheet, Image, TouchableWithoutFeedback ,TouchableOpacity,Alert, SafeAreaView} from 'react-native';
+import { View, Text, Dimensions, FlatList, StyleSheet, Image, TouchableWithoutFeedback ,TouchableOpacity,Alert, SafeAreaView, StatusBar, Platform} from 'react-native';
 import { Icon } from 'react-native-elements'
 import { colors } from '../common/theme';
 import { Header } from 'react-native-elements';
@@ -104,7 +104,11 @@ export default function Notifications(props) {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
+            <StatusBar hidden={false}/>
+              <Spacer height={Platform.OS=="android"? 30:0}/>
             <View style={{padding:10}}>
+            <Spacer height={Platform.OS=="android"? 20:0}/>
+
             <CustomHeader
     
     LeftSide={() => (
