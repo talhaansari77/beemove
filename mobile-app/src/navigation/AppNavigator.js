@@ -35,6 +35,7 @@ import i18n from "i18n-js";
 import * as Notifications from "expo-notifications";
 import { Platform } from "react-native";
 import Home from "../screens/Main/Home/Home";
+import LoginRegister from "../screens/Auth/LoginRegister/LoginRegister";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -137,6 +138,7 @@ export default function AppContainer() {
           </Stack.Group>
         ) : (
           <Stack.Group screenOptions={{ headerShown: false }}>
+         <Stack.Screen name="LoginRegister" component={LoginRegister}/>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegistrationPage} />
           </Stack.Group>
