@@ -21,38 +21,26 @@ const PhoneMainContainer = ({ state, setState }) => {
         <TopHeader
           label1={"Welcome!"}
           img={images.appLogo}
-          label2={ "Kindly enter your mobile number"}
+          label2={"Kindly enter your mobile number"}
         />
         <PercentageSpacer height={"13%"} />
-         <PhoneInput
-      
-          
+        <PhoneInput
           initialCountry="in"
           initialValue={state.contact}
-          
-          onChangeText={(num)=> {
+          onChangeText={(num) => {
+            if (num.charAt(0) == 0) {
+              console.log("numValue", num);
+            } else {
+              console.log("numValue", num);
 
-            if(num.charAt(0)==0)
-            {
-              console.log("numValue",num)
-
+              setState({ ...state, contact: num });
             }
-            else{
-              console.log("numValue",num)
-
-              setState({ ...state, contact: num }) 
-
-
-            }
-
           }}
+          onChangeCountry={(country) => {
+            let countryCodeValue = "+" + country.callingCode[0];
+            console.log("CodeCountry", countryCodeValue);
 
-          onChangeCountry={(country)=>{
-            let countryCodeValue="+"+country.callingCode[0]
-                 console.log("CodeCountry",countryCodeValue)
-
-            setState({...state,countryCode:countryCodeValue})
-
+            setState({ ...state, countryCode: countryCodeValue });
           }}
           containerStyle={{
             backgroundColor: colors.lightGray,
@@ -64,10 +52,8 @@ const PhoneMainContainer = ({ state, setState }) => {
           textContainerStyle={{
             backgroundColor: colors.lightGray,
             borderRadius: scale(8),
-
-     
           }}
-        /> 
+        />
         <PercentageSpacer height={"30%"} />
       </View>
     </>

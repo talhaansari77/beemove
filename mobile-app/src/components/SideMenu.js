@@ -234,7 +234,7 @@ export default function SideMenu(props) {
                       },
                     ]}
                   >
-                    <View style={styles.viewIcon}>
+                    {/* <View style={styles.viewIcon}>
                       <Icon
                         name={item.icon}
                         type={item.type}
@@ -242,7 +242,7 @@ export default function SideMenu(props) {
                         size={18}
                         containerStyle={styles.iconStyle}
                       />
-                    </View>
+                    </View> */}
                     <Text style={styles.menuName}>{item.name}</Text>
                     <View
                       style={[styles.vertialLine, { height: 20, top: 24 }]}
@@ -409,6 +409,7 @@ export default function SideMenu(props) {
                       {
                         marginTop: index == sideMenuList.length - 1 ? 30 : 0,
                         flexDirection: isRTL ? "row-reverse" : "row",
+                        alignItems:"center",
                       },
                     ]}
                   >
@@ -417,7 +418,8 @@ export default function SideMenu(props) {
                         name={item.icon}
                         type={item.type}
                         color={colors.BLACK}
-                        size={18}
+                        size={20}
+                        // size={item.icon="car-sports"?20:28}
                         containerStyle={styles.iconStyle}
                       />
                     </View>
@@ -439,8 +441,8 @@ export default function SideMenu(props) {
           />
         ) : null}
       </View>
-      <View style={{ alignItems: "center", marginBottom: 30 }}>
-        <Image source={images.appLogo} style={{ width: "60%" }} />
+      <View style={{ alignItems: "center",  }}>
+        <Image resizeMode="contain"  source={images.appLogo} style={{ width: "80%" }} />
       </View>
     </View>
   );

@@ -15,14 +15,17 @@ export const images = {
   pointer: require("./pointer.png"),
   corner: require("./corner.png"),
   corner1: require("./corner1.png"),
-
-
   car: require("./car.png"),
   bike: require("./bike.png"),
   time: require("./time.png"),
   cart: require("./card.png"),
   user: require("./user.png"),
   phone: require("./telephone.png"),
+  bellnoti: require("./bellnoti.png"),
+  bell: require("./bell.png"),
+  pabili: require("./pabili.png"),
+  apple: require("./apple.png"),
+
 
 
 };

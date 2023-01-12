@@ -35,6 +35,7 @@ import i18n from "i18n-js";
 import * as Notifications from "expo-notifications";
 import { Platform } from "react-native";
 import Home from "../screens/Main/Home/Home";
+import LoginRegister from "../screens/Auth/LoginRegister/LoginRegister";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -72,12 +73,15 @@ export default function AppContainer() {
         {auth.info &&
         auth.info.profile &&
         auth.info.profile.usertype == "rider" ? (
-          <Drawer.Screen name="SelectRide" component={Home} />
+          <Drawer.Screen name="Map" component={Home} />
         ) : null}
         {auth.info &&
         auth.info.profile &&
         auth.info.profile.usertype == "rider" ? (
-          <Drawer.Screen name="Map" component={MapScreen} />
+          <Drawer.Screen
+          options={{
+            drawerItemStyle:{display:"none"}}}
+           name="SelectRide" component={MapScreen} />
         ) : null}
         {auth.info &&
         auth.info.profile &&
@@ -117,6 +121,8 @@ export default function AppContainer() {
           <Stack.Group options={{ headerShown: false }}>
             <Stack.Screen name="DrawerRoot" component={DrawerRoot} />
             <Stack.Screen name="editUser" component={EditProfilePage} />
+            <Stack.Screen name="MapScreen" component={MapScreen} />
+
             <Stack.Screen name="Search" component={SearchScreen} />
             <Stack.Screen name="DriverRating" component={DriverRating} />
             <Stack.Screen name="PaymentDetails" component={PaymentDetails} />
@@ -132,6 +138,7 @@ export default function AppContainer() {
           </Stack.Group>
         ) : (
           <Stack.Group screenOptions={{ headerShown: false }}>
+         <Stack.Screen name="LoginRegister" component={LoginRegister}/>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegistrationPage} />
           </Stack.Group>

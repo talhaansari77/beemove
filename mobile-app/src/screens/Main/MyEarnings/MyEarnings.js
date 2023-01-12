@@ -4,6 +4,8 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
+  StatusBar,
+  Platform,
 } from "react-native";
 import React from "react";
 import { colors } from "../../../../Utils/Colors";
@@ -26,7 +28,9 @@ const MyEarnings = ({
 }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
-                  {/* <Spacer height={Platform.OS==='ios'?40:30}/> */}
+      {/* <Spacer height={Platform.OS==='ios'?40:30}/> */}
+      <StatusBar hidden={false} />
+      <Spacer height={Platform.OS == "android" ? 30 : 0} />
 
       <View
         style={{

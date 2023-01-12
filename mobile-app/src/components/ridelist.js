@@ -44,7 +44,7 @@ export default function RideList(props) {
 
   const renderData = ({ item, index }) => {
     return (
-        <TouchableOpacity style={[styles.iconClickStyle,{flexDirection:isRTL?'row-reverse':'row'}]} onPress={() => onPressButton(item, index)}>
+        <TouchableOpacity style={[styles.iconClickStyle,{flexDirection:isRTL?'row-reverse':'row',marginLeft:10}]} onPress={() => onPressButton(item, index)}>
             <View style={styles.iconViewStyle}>
                 {appcat=='delivery'?
                 <Icon
@@ -274,6 +274,8 @@ export default function RideList(props) {
             borderWidth: 0,
             backgroundColor: "transparent",
             borderBottomWidth: 1,
+            marginLeft:5,
+            marginRight:5,
             borderBottomColor: colors.BACKGROUND_PRIMARY,
           }}
           activeTabStyle={{
@@ -281,7 +283,7 @@ export default function RideList(props) {
             backgroundColor: "transparent",
             borderBottomWidth: 2,
           }}
-          tabTextStyle={{ color: colors.RIDELIST_TEXT, fontWeight: "bold" }}
+          tabTextStyle={{ color: colors.RIDELIST_TEXT, fontWeight: "bold",fontSize:14 }}
           activeTabTextStyle={{ color: colors.BACKGROUND }}
         />
         

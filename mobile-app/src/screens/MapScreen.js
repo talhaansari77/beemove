@@ -37,7 +37,7 @@ import RideBottomContainer from "./Main/Ride/Molecules/RideBottomContainer";
 import CustomTextInput from "../components/CustomTextInput";
 import commonStyles from "../../Utils/CommonStyles";
 import CustomText from "../components/CustomText";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons,Feather } from "@expo/vector-icons";
 import AddlButton from "../components/AddlButton";
 
 const hasNotch =
@@ -144,7 +144,6 @@ export default function MapScreen(props) {
     }
   }, [usersdata.users]);
 
-  
   useEffect(() => {
     if (auth.info && auth.info.profile) {
       setProfile(auth.info.profile);
@@ -590,7 +589,6 @@ export default function MapScreen(props) {
 
   //Go to confirm booking page
   const onPressBook = async () => {
-    
     setCheckType(true);
     setBookLoading(true);
     if (!(profile.mobile && profile.mobile.length > 6)) {
@@ -1005,33 +1003,32 @@ export default function MapScreen(props) {
     };
   }, []);
 
-
   const [check, setCheck] = useState(false);
   const [cash, setCash] = useState(-1);
   const [counter, setCounter] = useState(1);
   const [gList, setGList] = useState([]);
-//   const [carRideAdditionalInfo, setCarRideAdditionalInfo] = useState({
-//     pickup:"",
-//     dropOff:"",
-//     note:""
-//   });
-//   const [padalaAdditionalInfo, setPadalaAdditionalInfo] = useState({
-//     pickup:"",
-//     phone:"",
-//     name:"",
-//     note:"",
-//   });
+  //   const [carRideAdditionalInfo, setCarRideAdditionalInfo] = useState({
+  //     pickup:"",
+  //     dropOff:"",
+  //     note:""
+  //   });
+  //   const [padalaAdditionalInfo, setPadalaAdditionalInfo] = useState({
+  //     pickup:"",
+  //     phone:"",
+  //     name:"",
+  //     note:"",
+  //   });
   const [additionalInfo, setAdditionalInfo] = useState({
-    pickup:"",
-    dropOff:"",
-    phone:"",
-    name:"",
-    merchantName:"",
-    landmark:"",
-    paymentMethod:"",
-    groceryList:"",
-    note:"",
-    screenName:screenName
+    pickup: "",
+    dropOff: "",
+    phone: "",
+    name: "",
+    merchantName: "",
+    landmark: "",
+    paymentMethod: "",
+    groceryList: "",
+    note: "",
+    screenName: screenName,
   });
 
   const inputData = [
@@ -1039,40 +1036,47 @@ export default function MapScreen(props) {
       id: 1,
       withLabel: "Pick-Up Address details",
       placeholder: "Unit number & Street number",
-      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,pickup:v}))
+      onChangeText: (v) => setAdditionalInfo({ ...additionalInfo, pickup: v }),
     },
     {
       id: 2,
       withLabel: "Drop-Off Address details",
       placeholder: "Unit number & Street number",
-      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,dropOff:v}))
-
+      onChangeText: (v) => setAdditionalInfo({ ...additionalInfo, dropOff: v }),
     },
-    { id: 3, withLabel: "Note to Driver", placeholder: "Write note here..." ,      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,note:v}))},
+    {
+      id: 3,
+      withLabel: "Note to Driver",
+      placeholder: "Write note here...",
+      onChangeText: (v) => setAdditionalInfo({ ...additionalInfo, note: v }),
+    },
   ];
   const padalaForm = [
     {
       id: 1,
       withLabel: "",
       placeholder: "Unit number & Street number",
-      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,pickup:v}))
-
+      onChangeText: (v) => setAdditionalInfo({ ...additionalInfo, pickup: v }),
     },
     {
       id: 2,
       withLabel: "",
       placeholder: "Contact Number",
       icon: images.phone,
-      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,phone:v}))
-
+      onChangeText: (v) => setAdditionalInfo({ ...additionalInfo, phone: v }),
     },
-    { id: 3, withLabel: "", placeholder: "Contact Name", icon: images.user ,      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,name:v}))},
+    {
+      id: 3,
+      withLabel: "",
+      placeholder: "Contact Name",
+      icon: images.user,
+      onChangeText: (v) => setAdditionalInfo({ ...additionalInfo, name: v }),
+    },
     {
       id: 4,
       withLabel: "Items Description",
       placeholder: "Write description here...",
-      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,note:v}))
-
+      onChangeText: (v) => setAdditionalInfo({ ...additionalInfo, note: v }),
     },
   ];
   const pabiliForm = [
@@ -1080,71 +1084,69 @@ export default function MapScreen(props) {
       id: 1,
       withLabel: "Merchant Name",
       placeholder: "Name of Establishment",
-      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,merchantName:v}))
-
+      onChangeText: (v) =>
+        setAdditionalInfo({ ...additionalInfo, merchantName: v }),
     },
     {
       id: 2,
       withLabel: "Landmark",
       placeholder: "Nearby known Establishment Name",
       icon: images.phone,
-      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,landmark:v}))
-
+      onChangeText: (v) =>
+        setAdditionalInfo({ ...additionalInfo, landmark: v }),
     },
     {
       id: 3,
       withLabel: "Payment Method",
       placeholder: "",
       icon: images.phone,
-      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,paymentMethod:v}))
-
+      onChangeText: (v) =>
+        setAdditionalInfo({ ...additionalInfo, paymentMethod: v }),
     },
     {
       id: 4,
       withLabel: "Item to Purchased",
       placeholder: "Products/Items Description",
       icon: images.user,
-    //   onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,pickup:v}))
-
+      //   onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,pickup:v}))
     },
     {
       id: 5,
       withLabel: "Note to Pabili Driver",
       placeholder: "Write note here...",
-      onChangeText:(v)=>(setAdditionalInfo({...additionalInfo,note:v}))
-
+      onChangeText: (v) => setAdditionalInfo({ ...additionalInfo, note: v }),
     },
   ];
   useEffect(() => {
-        //   console.log(cars[0])
+    //   console.log(cars[0])
     setTimeout(() => {
-        console.log(cars?.[0]?.name,cars?.[0]?.id)
-    // selectCarType(allCarTypes, key);
-    if(screenName==="Ride"){
-        selectCarType(cars?.[0],cars?.[0]?.id);
-    }else if(screenName==="Car"){
-        selectCarType(cars?.[1],cars?.[1]?.id);
-    }else{
-        selectCarType(cars?.[1],cars?.[1]?.id);
-    }
+      console.log(cars?.[0]?.name, cars?.[0]?.id);
+      // selectCarType(allCarTypes, key);
+      if (screenName === "Ride") {
+        selectCarType(cars?.[0], cars?.[0]?.id);
+      } else if (screenName === "Car") {
+        selectCarType(cars?.[1], cars?.[1]?.id);
+      } else {
+        selectCarType(cars?.[1], cars?.[1]?.id);
+      }
     }, 1000);
   }, []);
   useEffect(() => {
     setNext(false);
   }, [isFocused]);
-  
-  useEffect(() => {
-    gList.push(1)
-  }, [counter])
 
   useEffect(() => {
-    console.log('first')
+    gList.push(1);
+  }, [counter]);
+
+  useEffect(() => {
+    console.log("first");
     dispatch({
-        type: 'ADD_ADDITIONAL_DATA',
-        payload: additionalInfo
+      type: "ADD_ADDITIONAL_DATA",
+      payload: additionalInfo,
     });
-  }, [additionalInfo])
-  
+  }, [additionalInfo]);
+
   //* <<=====================>>
   const CashButton = ({ name, index, cash, onPress }) => (
     <TouchableOpacity
@@ -1218,7 +1220,7 @@ export default function MapScreen(props) {
   );
 
   //! <<=====================>>
-  
+
   return (
     <>
       {/* <StatusBar hidden={true}/> */}
@@ -1504,8 +1506,10 @@ export default function MapScreen(props) {
                     selectCarType(prop, key);
                   }}
                   style={{
-                    backgroundColor:
-                      prop.active == true ? colors.BOX_BG : colors.WHITE,
+                    backgroundColor: colors.WHITE,
+                    borderColor:
+                      prop.active == true ? colors.primary : colors.WHITE,
+                    borderWidth: 2,
                     elevation: 5,
                     borderRadius: 10,
                     flexDirection: "row",
@@ -1517,6 +1521,14 @@ export default function MapScreen(props) {
                     marginVertical: 10,
                   }}
                 >
+                    
+                    <View style={{position:"absolute",right:10}}>
+                        { prop.active == true ?
+                        <Feather name="check-circle" size={24} color={colors.primary} />
+                        :
+                        <></>
+                        }
+                    </View>
                   <View style={{ flex: 4, alignItems: "center" }}>
                     <Image
                       resizeMode="contain"
@@ -1642,7 +1654,7 @@ export default function MapScreen(props) {
                         <Spacer height={20} />
                       </View>
                     ) : index === 3 ? (
-                      <View style={{maxHeight:300}}>
+                      <View style={{ maxHeight: 300 }}>
                         <CustomText
                           label={item?.withLabel}
                           fontSize={verticalScale(9)}
@@ -1653,40 +1665,39 @@ export default function MapScreen(props) {
                           marginLeft={20}
                         />
                         <ScrollView nestedScrollEnabled={true}>
-                        {gList.map(() => (
-                          <>
-                            <View
-                              style={{
-                                flexDirection: "row",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              <CustomTextInput
-                                //   withLabel={item?.withLabel}
-                                placeholder={item?.placeholder}
-                                fontSize={12}
-                                paddingLeft={20}
-                                // paddingTop={10}
-                                placeholderTextColor={"#9C9C9C"}
-                                fontFamily={"Roboto-Light"}
-                                width={width / 1.52}
-                                
-                              />
-                              <CustomTextInput
-                                //   withLabel={item?.withLabel}
-                                placeholder={"qty"}
-                                fontSize={12}
-                                //   paddingLeft={20}
-                                // paddingTop={10}
-                                placeholderTextColor={"#9C9C9C"}
-                                fontFamily={"Roboto-Light"}
-                                width={width / 7}
-                              />
-                              <Spacer width={1} />
-                            </View>
-                            <Spacer height={10} />
-                          </>
-                        ))}
+                          {gList.map(() => (
+                            <>
+                              <View
+                                style={{
+                                  flexDirection: "row",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                <CustomTextInput
+                                  //   withLabel={item?.withLabel}
+                                  placeholder={item?.placeholder}
+                                  fontSize={12}
+                                  paddingLeft={20}
+                                  // paddingTop={10}
+                                  placeholderTextColor={"#9C9C9C"}
+                                  fontFamily={"Roboto-Light"}
+                                  width={width / 1.52}
+                                />
+                                <CustomTextInput
+                                  //   withLabel={item?.withLabel}
+                                  placeholder={"qty"}
+                                  fontSize={12}
+                                  //   paddingLeft={20}
+                                  // paddingTop={10}
+                                  placeholderTextColor={"#9C9C9C"}
+                                  fontFamily={"Roboto-Light"}
+                                  width={width / 7}
+                                />
+                                <Spacer width={1} />
+                              </View>
+                              <Spacer height={10} />
+                            </>
+                          ))}
                         </ScrollView>
                         <View
                           style={{
@@ -1703,9 +1714,9 @@ export default function MapScreen(props) {
                             icon={images.add}
                             textColor={colors.primary}
                             onPress={() => {
-                                console.log(gList);
-                                // gList.push(1)
-                                setCounter(counter+1);
+                              console.log(gList);
+                              // gList.push(1)
+                              setCounter(counter + 1);
                             }}
                           />
                         </View>
@@ -2097,14 +2108,12 @@ export default function MapScreen(props) {
             // onPress={onPressBook}
             onPress={() => {
               if (screenName === "Ride" || screenName === "Car") {
-                
                 onPressBook();
-                console.log(tripdata)
+                console.log(tripdata);
               } else {
                 if (next) {
-                    
-                    onPressBook();
-                    console.log(tripdata)
+                  onPressBook();
+                  console.log(tripdata);
                 } else {
                   setNext(true);
                 }

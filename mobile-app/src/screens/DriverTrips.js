@@ -211,6 +211,7 @@ export default function DriverTrips(props) {
           style={{
             color: colors.BLACK,
             fontWeight: "bold",
+            marginRight:10
             // marginRight: Platform.OS == "ios" ? 10 : 10,
             // marginTop: 8,
           }}
@@ -248,8 +249,8 @@ export default function DriverTrips(props) {
 
   return (
     <SafeAreaView style={styles.mainViewStyle}>
-
-              {/* <Spacer height={Platform.OS=="android"? 20:0}/> */}
+<StatusBar hidden={false}/>
+              <Spacer height={Platform.OS=="android"? 30:0}/>
 
       <View style={{ paddingHorizontal: scale(15),}}>
       <Spacer height={Platform.OS=="android"? 20:0}/>

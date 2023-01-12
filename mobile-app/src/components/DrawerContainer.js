@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, Platform } from "react-native";
 import React from "react";
 import { colors } from "../../Utils/Colors";
 
@@ -21,8 +21,11 @@ const DrawerContainer = ({
         // borderColor:99,
         backgroundColor: backgroundColor || colors.white,
         position: position ||"absolute",
-        top: 0,
-        margin: margin || 20,
+        // top: 0,
+        marginTop: Platform.OS=="ios"? 20:40,
+        marginHorizontal:20,
+
+        // margin: margin || 30,
         alignItems: "center",
         justifyContent: "center",
         shadowColor: Platform.OS == "ios" ? "#ced4da" : colors.black,

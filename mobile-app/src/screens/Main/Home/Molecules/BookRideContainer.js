@@ -11,7 +11,7 @@ const BookRideContainer = ({item}) => {
     <TouchableOpacity 
     onPress={item?.onPress}
     style={styles.mainContainer}>
-        <View style={{width:30,height:30}}>
+        <View style={{width: item.imgWidth|| 30,height: item.imgHeigth ||30}}>
             <Image  resizeMode="contain" style={commonStyles.img} source={item?.img}/>
 
         </View>

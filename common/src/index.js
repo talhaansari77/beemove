@@ -208,7 +208,6 @@ const FirebaseProvider  = ({ config, appcat, children }) => {
     firebase.api =  {
         MinutesPassed: MinutesPassed, 
         GetDateString: GetDateString, 
-        
         fetchPlacesAutocomplete: (searchKeyword) => fetchPlacesAutocomplete(searchKeyword)(firebase), 
         fetchCoordsfromPlace: (place_id) => fetchCoordsfromPlace(place_id)(firebase), 
         fetchAddressfromCoords: (latlng) => fetchAddressfromCoords(latlng)(firebase), 
@@ -222,14 +221,10 @@ const FirebaseProvider  = ({ config, appcat, children }) => {
         GetTripDistance: GetTripDistance,
         saveUserLocation: (uid,location) => app.database().ref('users/' + uid + '/location').set(location),
         saveTracking: (bookingId, location) => app.database().ref('tracking/' + bookingId).push(location),
-
         saveUserNotification:(uid,notification) => app.database().ref("users/" + uid + "/notifications").push(notification),
-
         fetchUserNotifications:() => (dispatch) => fetchUserNotifications()(dispatch)(firebase), 
-
         validateReferer: (referralId) => validateReferer(referralId)(firebase), 
         checkUserExists: (regData) => checkUserExists(regData)(firebase), 
-        
         fetchUser: () => (dispatch) => fetchUser()(dispatch)(firebase), 
         requestEmailOtp: (email)=> (dispatch) => requestEmailOtp(email)(dispatch)(firebase),
         verifyEmailOtp: (email,otp)=> (dispatch) => verifyEmailOtp(email,otp)(dispatch)(firebase),

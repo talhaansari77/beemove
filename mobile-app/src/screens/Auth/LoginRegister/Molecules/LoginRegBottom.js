@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
 import React from "react";
 import CustomButton from "../../../../components/CustomButton";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
@@ -6,8 +13,9 @@ import { colors } from "../../../../../Utils/Colors";
 import CustomText from "../../../../components/CustomText";
 import SepratorLine from "../../../../components/SepratorLine";
 import { Spacer } from "../../../../components/Spacer";
+import { images } from "../../../../../assets/images";
 
-const LoginRegBottom = ({onRegister,onLogin}) => {
+const LoginRegBottom = ({ onRegister, onLogin, onFaceBook, onGoogle }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.btnContainer}>
@@ -18,8 +26,7 @@ const LoginRegBottom = ({onRegister,onLogin}) => {
           color={"#1B1B1E"}
           fontSize={12}
           onPress={onLogin}
-
-          fontWeight={'bold'}
+          fontWeight={"bold"}
         />
 
         <CustomButton
@@ -32,7 +39,7 @@ const LoginRegBottom = ({onRegister,onLogin}) => {
           borderColor={colors.primary}
           color={colors.primary}
           borderWidth={1}
-          fontWeight={'bold'}
+          fontWeight={"bold"}
         />
       </View>
       <Spacer height={40} />
@@ -55,21 +62,24 @@ const LoginRegBottom = ({onRegister,onLogin}) => {
       </View>
       <Spacer height={20} />
       <View
-        style={{ ...styles.btnContainer, width: "45%", alignSelf: "center" }}
+        style={{ ...styles.btnContainer, width: "54%", alignSelf: "center" }}
       >
-        <View style={styles.authBtn}>
+        <TouchableOpacity onPress={onGoogle} style={styles.authBtn}>
           <Image
             style={styles.img}
             source={require("../../../../../assets/images/google.png")}
           />
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.authBtn}>
+        <TouchableOpacity
+          onPress={Platform.OS == "android" ? onFaceBook : onGoogle}
+          style={styles.authBtn}
+        >
           <Image
             style={styles.img}
             source={require("../../../../../assets/images/facebook.png")}
           />
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -91,8 +101,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor:colors.white,
-    elevation:2
+    backgroundColor: colors.white,
+    elevation: 2,
   },
   img: {
     width: 30,
