@@ -921,6 +921,8 @@ export default function MapScreen(props) {
             {/* {tripdata.pickup && tripdata.pickup.add ? tripdata.pickup.add : t('map_screen_where_input_text')} */}
             
             <ScrollView style={styles.container}>
+            <StatusBar hidden={false}/>
+              <Spacer height={Platform.OS=="android"? 30:0}/>
             <View style={{
                     // todo=======>> fix style
                     // top: Platform.OS == 'android'? (__DEV__? 20: 40): (hasNotch ? 40 : 20),

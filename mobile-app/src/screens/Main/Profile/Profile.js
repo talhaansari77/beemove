@@ -9,6 +9,7 @@ import {
   ScrollView,
   Switch,
   ActivityIndicator,
+  StatusBar,
 } from "react-native";
 import React, { useEffect } from "react";
 import CustomHeader from "../../../components/CustomHeader";
@@ -84,6 +85,8 @@ const Profile = ({
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
+      <StatusBar hidden={false}/>
+              <Spacer height={Platform.OS=="android"? 30:0}/>
       <ScrollView>
         <View style={{ height: screenHeight / 3 }}>
           <Image
