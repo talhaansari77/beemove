@@ -14,7 +14,7 @@ import {
   Linking,
   SafeAreaView,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from "react-native";
 import MaterialButtonDark from "../components/MaterialButtonDark";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -70,7 +70,7 @@ export default function LoginScreen(props) {
     countryCodeList: formatCountries(),
     countryCode: null,
   });
-    console.log("countryCodeList",state.contact);
+  console.log("countryCodeList", state.contact);
 
   const pageActive = useRef(false);
   const [loading, setLoading] = useState(false);
@@ -271,11 +271,11 @@ export default function LoginScreen(props) {
 
   return (
     <SafeAreaView style={commonStyles.container}>
-        <TouchableWithoutFeedback
-      onPress={Keyboard.dismiss}
-      accessible={false}
-        style={styles.container}>
-   
+      <TouchableWithoutFeedback
+        onPress={Keyboard.dismiss}
+        accessible={false}
+        style={styles.container}
+      >
         <View style={commonStyles.PH30}>
           <FirebaseRecaptchaVerifierModal
             ref={recaptchaVerifier}
@@ -405,34 +405,33 @@ style={styles.materialButtonDark}
               )}
             </>
           )}
-          {
-            state.verificationId ? null :
+          {state.verificationId ? null : (
             <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <CustomText
-              label="Don’t have an account?"
-              color={colors.lightBlack}
-              fontFamily={"Roboto-Regular"}
-              fontSize={11}
-            />
-            <CustomText
-              label="Sign Up"
-              onPress={()=>{
-                openRegister()
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
               }}
-              color={colors.primary}
-              marginLeft={2}
-              fontFamily={"Roboto-Bold"}
-              fontSize={11}
-            />
-          </View>
-          }
- 
+            >
+              <CustomText
+                label="Don’t have an account?"
+                color={colors.lightBlack}
+                fontFamily={"Roboto-Regular"}
+                fontSize={11}
+              />
+              <CustomText
+                label="Sign Up"
+                onPress={() => {
+                  openRegister();
+                }}
+                color={colors.primary}
+                marginLeft={2}
+                fontFamily={"Roboto-Bold"}
+                fontSize={11}
+              />
+            </View>
+          )}
+
           {/* {!!state.verificationId ?
                     <View style={styles.box2}>
                         <TextInput
