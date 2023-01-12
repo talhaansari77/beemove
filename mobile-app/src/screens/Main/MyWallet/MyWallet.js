@@ -142,8 +142,8 @@ const MyWallet = ({
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
-      <StatusBar hidden={false}/>
-              <Spacer height={Platform.OS=="android"? 30:0}/>
+      <StatusBar hidden={false} />
+      <Spacer height={Platform.OS == "android" ? 30 : 0} />
       <View
         style={{
           paddingVertical: 10,

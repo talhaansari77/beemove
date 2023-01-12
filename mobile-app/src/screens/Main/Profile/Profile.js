@@ -86,8 +86,8 @@ const Profile = ({
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
       <StatusBar hidden={false}/>
-              <Spacer height={Platform.OS=="android"? 30:0}/>
       <ScrollView>
+      <Spacer height={Platform.OS=="android"? 25:0}/>
         <View style={{ height: screenHeight / 3 }}>
           <Image
             source={images.profileBg}
@@ -99,10 +99,9 @@ const Profile = ({
 
             <View
               style={{
-                paddingVertical: 10,
+                padding: 15,
                 justifyContent: "center",
                 width: screenWidth,
-                paddingHorizontal: 15,
               }}
             >
               <CustomHeader

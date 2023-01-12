@@ -1,9 +1,23 @@
-import { Dimensions, Image, SafeAreaView, StyleSheet, Text, View,TouchableOpacity, Platform } from "react-native";
+import {
+  Dimensions,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
 import React from "react";
 import { colors } from "../../../../Utils/Colors";
 import CustomText from "../../../components/CustomText";
 import { Spacer } from "../../../components/Spacer";
-import { AntDesign, Feather, Octicons,MaterialIcons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Feather,
+  Octicons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import CustomHeader from "../../../components/CustomHeader";
 import { moderateScale } from "react-native-size-matters";
 import commonStyles from "../../../../Utils/CommonStyles";
@@ -12,51 +26,53 @@ import { images } from "../../../../assets/images";
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
-const MyBookings = ({navigation}) => {
-
+const MyBookings = ({ navigation }) => {
   return (
-    <SafeAreaView style={{flex:1}}>
-        <View
-            style={{
-              paddingVertical: 10,
-              justifyContent: "center",
-              width: screenWidth,
-              paddingHorizontal: 15,
-            }}
+    <SafeAreaView style={{ flex: 1 }}>
+      <View
+        style={{
+          paddingVertical: 10,
+          justifyContent: "center",
+          width: screenWidth,
+          paddingHorizontal: 15,
+        }}
+      >
+        <CustomHeader
+          LeftSide={() => (
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={() => navigation.openDrawer()}
+              style={commonStyles.iconContainer}
             >
-            <CustomHeader
-               LeftSide={() => (
-           
-            
-                <TouchableOpacity 
-                activeOpacity={0.6}
-                onPress={()=>navigation.openDrawer()}
-                style={commonStyles.iconContainer}>
-                  <Image
-                    resizeMode="contain"
-                    source={images.sort}
-                    style={commonStyles.img}
-                  />
-                </TouchableOpacity>
-              )}
-            
-       
-              Center={() => (
-                <View style={{flexDirection:'row',alignItems:"center",marginLeft:"-10%"}}>
-                <MaterialIcons name="work" color={colors.primary} size={20}/>
-                <Spacer width={10}/>
-                <CustomText
-                  label="My Booking"
-                  alignSelf={"center"}
-                  fontSize={16}
-                  fontFamily="Roboto-Medium"
-                  // fontWeight={"bold"}
-                  color={colors.lightText}
-                /></View>
-              )}
-              
-            />
-          </View>
+              <Image
+                resizeMode="contain"
+                source={images.sort}
+                style={commonStyles.img}
+              />
+            </TouchableOpacity>
+          )}
+          Center={() => (
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginLeft: "-10%",
+              }}
+            >
+              <MaterialIcons name="work" color={colors.primary} size={20} />
+              <Spacer width={10} />
+              <CustomText
+                label="My Booking"
+                alignSelf={"center"}
+                fontSize={16}
+                fontFamily="Roboto-Medium"
+                // fontWeight={"bold"}
+                color={colors.lightText}
+              />
+            </View>
+          )}
+        />
+      </View>
       <Card />
     </SafeAreaView>
   );
@@ -90,8 +106,8 @@ const Card = () => (
         justifyContent: "center",
         borderRadius: 99,
         backgroundColor: colors.white,
-        borderWidth:0.5,
-        borderColor:colors.grayBorder,
+        borderWidth: 0.5,
+        borderColor: colors.grayBorder,
         elevation: 5,
         position: "absolute",
         top: -20,
@@ -105,7 +121,7 @@ const Card = () => (
       />
     </View>
     {/* Card Body */}
-    <View >
+    <View>
       <View
         style={{
           flexDirection: "row",

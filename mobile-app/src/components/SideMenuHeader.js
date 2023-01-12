@@ -10,6 +10,7 @@ const isRTL = i18n.locale.indexOf('he') === 0 || i18n.locale.indexOf('ar') === 0
 const SideMenuHeader = ({headerStyle,userPhoto,userName,userEmail,language}) =>{
    return (
         <View style={[styles.viewStyle,headerStyle]}>
+            <Spacer height={Platform.OS=="android"? 20:0}/>
             <TouchableOpacity style={styles.userImageView} >
                  <Image 
                     source={userPhoto == null?require('../../assets/images/profilePic.png'):{uri:userPhoto}}
@@ -40,7 +41,7 @@ const styles = {
         // backgroundColor:colors.b,
         justifyContent:'center',
         alignItems:'center',
-        height:180,
+        // height:180,
         paddingTop:Platform.OS=='ios'?50:StatusBar.currentHeight,
         shadowColor:colors.black,
         shadowOffset:{width:0,height:2},
