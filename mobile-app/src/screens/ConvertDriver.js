@@ -178,6 +178,10 @@ export default function ConvertDriver(props) {
             showActionSheet={showActionSheet}
             capturedImage={capturedImage}
             cancelPhoto={cancelPhoto}
+            dropDownCars={props.cars}
+            carTypes={carTypes}
+            isRTL={isRTL}
+            appcat={appcat}
             />
             {
                     uploadImage()
