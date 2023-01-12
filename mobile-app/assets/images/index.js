@@ -21,6 +21,8 @@ export const images = {
   bike: require("./bike.png"),
   time: require("./time.png"),
   cart: require("./card.png"),
+  user: require("./user.png"),
+  phone: require("./telephone.png"),
 
 
 };
