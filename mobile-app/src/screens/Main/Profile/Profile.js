@@ -96,7 +96,6 @@ const Profile = ({
           {/* profile detail container*/}
           <View style={{ position: "absolute" }}>
           {/* <Spacer height={Platform.OS=="android"? 20:0}/> */}
-
             <View
               style={{
                 padding: 15,
@@ -129,7 +128,7 @@ const Profile = ({
                 )}
                 RightSide={() => (
                   <View style={{flexDirection:"row",alignItems:"center"}}>
-             
+  
            <TouchableOpacity activeOpacity={0.7} onPress={editProfile}>
                     <Feather name="edit" size={18} color={colors.lightText} />
                   </TouchableOpacity>

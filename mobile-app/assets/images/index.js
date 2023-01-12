@@ -21,6 +21,11 @@ export const images = {
   bike: require("./bike.png"),
   time: require("./time.png"),
   cart: require("./card.png"),
+  bellnoti: require("./bellnoti.png"),
+  bell: require("./bell.png"),
+
+  pabili: require("./pabili.png"),
+
   apple: require("./apple.png"),
 
 

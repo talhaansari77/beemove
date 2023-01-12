@@ -62,6 +62,8 @@ export default function MapScreen(props) {
     const dispatch = useDispatch();
     const { t } = i18n;
     const isRTL = i18n.locale.indexOf('he') === 0 || i18n.locale.indexOf('ar') === 0;
+
+    const notificationdata=useSelector(state=>state.notificationdata)
     
     const auth = useSelector(state => state.auth);
     const settings = useSelector(state => state.settingsdata.settings);
@@ -120,6 +122,16 @@ export default function MapScreen(props) {
     const [tripInstructions, setTripInstructions] = useState('');
  
     useEffect(()=>{
+        // if(notificationdata.notifications){
+        //     console.log("ha",notificationdata)
+
+
+        // }
+        // else{
+        //     console.log("nhi",notificationdata)
+
+        // }
+
         if(usersdata.users){
             setDrivers(usersdata.users);
         }
@@ -922,7 +934,7 @@ export default function MapScreen(props) {
             
             <ScrollView style={styles.container}>
             <StatusBar hidden={false}/>
-              <Spacer height={Platform.OS=="android"? 30:0}/>
+              <Spacer height={Platform.OS=="android"? 30:20}/>
             <View style={{
                     // todo=======>> fix style
                     // top: Platform.OS == 'android'? (__DEV__? 20: 40): (hasNotch ? 40 : 20),
@@ -930,14 +942,13 @@ export default function MapScreen(props) {
                     paddingHorizontal:20,
                     // zIndex:100,
                 }}>
-
                     <Spacer height={20} />
                     <MainTopHeader
                         txt={props?.route?.params?.name}
+                        rightImg={notificationdata.notifications?images.bellnoti:images.bell}
                         // navigation={navigation}
-
-                        img={props?.route?.params?.name==="Car"?images.car:props?.route?.params?.name==="Ride"?images.bike:props?.route?.params?.name==="Padala"?images.time:images.cart}
-                        openDrawer={() => { props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
+                        img={props?.route?.params?.img}
+                        openDrawer={() => { props.navigation.dispatch(DrawerActions.toggleDrawer())}}
                     />
                     <Spacer height={20} />
 
@@ -1054,7 +1065,15 @@ export default function MapScreen(props) {
                 {props?.route?.params?.name==="Padala"?
                 <View>
                     {allCarTypes.map((prop, key) => (
-                   <TouchableOpacity onPress={() => { selectCarType(prop, key) }} style={{backgroundColor: prop.active == true ? colors.BOX_BG : colors.WHITE , elevation:5,borderRadius:10,flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",paddingHorizontal:30,paddingVertical:10,marginHorizontal:30,marginVertical:10}}>
+                   <TouchableOpacity onPress={() => { selectCarType(prop, key) }} style={{backgroundColor: prop.active == true ? colors.BOX_BG : colors.WHITE , elevation:5,borderRadius:10,flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",paddingHorizontal:30,paddingVertical:10,marginHorizontal:30,marginVertical:10,
+                   shadowColor: Platform.OS == "ios" ? "#ced4da" : colors.BLACK,
+      shadowRadius: 5,
+    //   elevation: 5,
+      // alignItems: "center",
+      shadowOpacity: 0.3,
+
+      shadowOffset: { width: 2, height: 2 },
+                   }}>
                    <View >
                        <Image  resizeMode="contain" source={prop?.image ? { uri: prop?.image } : require('../../assets/images/microBlackCar.png')} style={{height:40,width:40,tintColor:colors.primary}}/>
                    </View>

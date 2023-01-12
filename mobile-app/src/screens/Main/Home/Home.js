@@ -23,40 +23,40 @@ const Home = ({ navigation }) => {
   const BookingData = [
     {
       id: 1,
-      img: require("../../../../assets/images/bike.png"),
+      img: images.bike,
       txt1: "Ride",
       txt2: "Maximum one passenger",
       imgWidth: 35,
       imgHeigth: 35,
       onPress: () => {
-        navigation.navigate("SelectRide", { name: "Ride" });
+        navigation.navigate("SelectRide", { name: "Ride",img:images.bike });
       },
     },
     {
       id: 2,
-      img: require("../../../../assets/images/car.png"),
+      img: images.car,
       txt1: "Car",
       txt2: "Maximum four passengers",
       onPress: () => {
-        navigation.navigate("SelectRide", { name: "Car" });
+        navigation.navigate("SelectRide", { name: "Car",img:images.car });
       },
     },
     {
       id: 3,
-      img: require("../../../../assets/images/card.png"),
+      img:images.cart,
       txt1: "Padala",
       txt2: "Real time delivery within the city only",
       onPress: () => {
-        navigation.navigate("SelectRide", { name: "Padala" });
+        navigation.navigate("SelectRide", { name: "Padala",img:images.cart });
       },
     },
     {
       id: 4,
-      img: require("../../../../assets/images/pabili.png"),
+      img: images.pabili,
       txt1: "Pabili",
       txt2: "For Foods, Grocery & Goods",
       onPress: () => {
-        navigation.navigate("SelectRide", { name: "Pabili" });
+        navigation.navigate("SelectRide", { name: "Pabili",img:images.pabili });
       },
     },
   ];
