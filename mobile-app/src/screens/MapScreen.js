@@ -1068,7 +1068,7 @@ export default function MapScreen(props) {
                    <TouchableOpacity onPress={() => { selectCarType(prop, key) }} style={{backgroundColor: prop.active == true ? colors.BOX_BG : colors.WHITE , elevation:5,borderRadius:10,flexDirection:"row",alignItems:"center",justifyContent:"space-evenly",paddingHorizontal:30,paddingVertical:10,marginHorizontal:30,marginVertical:10,
                    shadowColor: Platform.OS == "ios" ? "#ced4da" : colors.BLACK,
       shadowRadius: 5,
-    //   elevation: 5,
+      elevation: 5,
       // alignItems: "center",
       shadowOpacity: 0.3,
 
