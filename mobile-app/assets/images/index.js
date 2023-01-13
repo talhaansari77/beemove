@@ -25,6 +25,7 @@ export const images = {
   bell: require("./bell.png"),
   pabili: require("./pabili.png"),
   apple: require("./apple.png"),
+  gCash: require("./GCash.png"),
 
 
 

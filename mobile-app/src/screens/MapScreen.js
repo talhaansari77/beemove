@@ -37,8 +37,9 @@ import RideBottomContainer from "./Main/Ride/Molecules/RideBottomContainer";
 import CustomTextInput from "../components/CustomTextInput";
 import commonStyles from "../../Utils/CommonStyles";
 import CustomText from "../components/CustomText";
-import { Ionicons,Feather } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
 import AddlButton from "../components/AddlButton";
+import Collapsible from "react-native-collapsible";
 
 const hasNotch =
   Platform.OS === "ios" &&
@@ -138,6 +139,8 @@ export default function MapScreen(props) {
   const [tripInstructions, setTripInstructions] = useState("");
   const [next, setNext] = useState(false);
   const screenName = props?.route?.params?.name;
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
   useEffect(() => {
     if (usersdata.users) {
       setDrivers(usersdata.users);
@@ -1099,7 +1102,7 @@ export default function MapScreen(props) {
       id: 3,
       withLabel: "Payment Method",
       placeholder: "",
-      icon: images.phone,
+      icon: images.gCash,
       onChangeText: (v) =>
         setAdditionalInfo({ ...additionalInfo, paymentMethod: v }),
     },
@@ -1148,7 +1151,7 @@ export default function MapScreen(props) {
   }, [additionalInfo]);
 
   //* <<=====================>>
-  const CashButton = ({ name, index, cash, onPress }) => (
+  const CashButton = ({ name, index, cash, onPress,icon }) => (
     <TouchableOpacity
       onPress={onPress}
       style={{
@@ -1187,12 +1190,15 @@ export default function MapScreen(props) {
           <></>
         )}
       </View>
-      <Spacer width={20} />
-      <CustomText
+      <Spacer width={icon?10:20} />
+      {icon?
+      <Image source={icon} resizeMode={"contain"} style={{height:70,width:70}} />
+      :<CustomText
         label={name}
         fontSize={verticalScale(9)}
         fontFamily={"Roboto-Regular"}
-      />
+      />}
+      
     </TouchableOpacity>
   );
   const BlurCircle = () => (
@@ -1282,11 +1288,135 @@ export default function MapScreen(props) {
           />
           <Spacer height={20} />
 
-          <TopRideContainer
-            tripdata={tripdata}
-            onAddShop={() => props?.navigation.navigate("BookPadala")}
-            tapAddress={tapAddress}
-          />
+          {screenName === "Pabili" ? (
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <View
+                style={{
+                  alignItems: "center",
+                  marginRight: scale(20),
+                  flex: 1,
+                }}
+              >
+                {/* <BlurCircle/> */}
+                {/* <Spacer height={5} /> */}
+                {/* <CustomText label="...." /> */}
+
+                <Image
+                  source={require("../../assets/images/location.png")}
+                  style={{ width: 20, height: 20 }}
+                />
+              </View>
+
+              <View
+                style={{
+                  marginRight: scale(20),
+                  justifyContent: "center",
+                  flex: 9,
+                }}
+              >
+                <>
+                  {!next ? (
+                    <TouchableOpacity
+                      onPressIn={() => tapAddress("pickup")}
+                      activeOpacity={0.6}
+                      style={{
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        borderColor: "#ccc",
+                        paddingVertical: 15,
+                        paddingHorizontal: 10,
+                      }}
+                    >
+                      <Text style={{}} numberOfLines={1}>
+                        {tripdata.pickup && tripdata.pickup.add
+                          ? tripdata.pickup.add
+                          : t("map_screen_where_input_text")}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <></>
+                  )}
+                  {/* <Spacer height={20} /> */}
+                  {next ? (
+                    <TouchableOpacity
+                      onPressIn={() => tapAddress("drop")}
+                      activeOpacity={0.6}
+                      style={{
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        borderColor: "#ccc",
+                        paddingVertical: 15,
+                        paddingHorizontal: 10,
+                      }}
+                    >
+                      <Text style={{}} numberOfLines={1}>
+                        {tripdata.drop && tripdata.drop.add
+                          ? tripdata.drop.add
+                          : t("map_screen_drop_input_text")}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <></>
+                  )}
+                </>
+              </View>
+            </View>
+          ) : screenName === "Padala" && next ? (
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <View
+                style={{
+                  alignItems: "center",
+                  marginRight: scale(20),
+                  flex: 1,
+                }}
+              >
+                <Image
+                  source={require("../../assets/images/location.png")}
+                  style={{ width: 20, height: 20 }}
+                />
+              </View>
+
+              <View
+                style={{
+                  marginRight: scale(20),
+                  justifyContent: "center",
+                  flex: 9,
+                }}
+              >
+                <>
+                  {/* <Spacer height={20} /> */}
+                  {next ? (
+                    <TouchableOpacity
+                      onPressIn={() => tapAddress("drop")}
+                      activeOpacity={0.6}
+                      style={{
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        borderColor: "#ccc",
+                        paddingVertical: 15,
+                        paddingHorizontal: 10,
+                      }}
+                    >
+                      <Text style={{}} numberOfLines={1}>
+                        {tripdata.drop && tripdata.drop.add
+                          ? tripdata.drop.add
+                          : t("map_screen_drop_input_text")}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <></>
+                  )}
+                </>
+              </View>
+            </View>
+          ) : (
+            <TopRideContainer
+              tripdata={tripdata}
+              onAddShop={() => props?.navigation.navigate("BookPadala")}
+              tapAddress={tapAddress}
+            />
+          )}
+
           <Spacer height={20} />
         </View>
         <StatusBar hidden={true} />
@@ -1504,6 +1634,7 @@ export default function MapScreen(props) {
                 <TouchableOpacity
                   onPress={() => {
                     selectCarType(prop, key);
+                    setIsCollapsed(false);
                   }}
                   style={{
                     backgroundColor: colors.WHITE,
@@ -1512,42 +1643,78 @@ export default function MapScreen(props) {
                     borderWidth: 2,
                     elevation: 5,
                     borderRadius: 10,
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-evenly",
-                    paddingRight: 50,
+                    // flexDirection: "row",
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    // paddingRight: 50,
                     paddingVertical: 10,
                     marginHorizontal: 30,
                     marginVertical: 10,
+                    transform: [{ scale: prop.active == true ? 1.04 : 1 }],
                   }}
                 >
-                    
-                    <View style={{position:"absolute",right:10}}>
-                        { prop.active == true ?
-                        <Feather name="check-circle" size={24} color={colors.primary} />
-                        :
-                        <></>
-                        }
-                    </View>
-                  <View style={{ flex: 4, alignItems: "center" }}>
-                    <Image
-                      resizeMode="contain"
-                      source={
-                        prop?.image
-                          ? { uri: prop?.image }
-                          : require("../../assets/images/microBlackCar.png")
-                      }
-                      style={{
-                        height: 40,
-                        width: 40,
-                        tintColor: colors.primary,
-                      }}
-                    />
+                  <View style={{ position: "absolute", right: 10, top: 10}}>
+                    {prop.active == true ? (
+                      <Feather
+                        name="check-circle"
+                        size={24}
+                        color={colors.primary}
+                        style={{}}
+                      />
+                    ) : (
+                      <></>
+                    )}
                   </View>
-                  <View style={{ flex: 6 }}>
-                    <Text style={styles.titleStyles}>
-                      {prop?.name.toUpperCase()}
-                    </Text>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <View style={{ flex: 4, alignItems: "center" }}>
+                      <Image
+                        resizeMode="contain"
+                        source={
+                          prop?.image
+                            ? { uri: prop?.image }
+                            : require("../../assets/images/microBlackCar.png")
+                        }
+                        style={{
+                          height: 40,
+                          width: 40,
+                          tintColor: colors.primary,
+                        }}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        flex: 6,
+                        alignItems:
+                          prop.active == true ? "flex-start" : "center",
+                        // flexDirection:prop.active == true ?"row":"column"
+                      }}
+                    >
+                      <Text style={{ ...styles.titleStyles, marginRight: 50 }}>
+                        {prop?.name.toUpperCase()}
+                      </Text>
+                      {prop.active == true ? (
+                        prop.extra_info && prop.extra_info != "" ? (
+                          <View style={{ justifyContent: "space-around" }}>
+                            {prop.extra_info.split().map((ln) => (
+                              <Text
+                                key={ln}
+                                style={[
+                                  styles.text2,
+                                  {
+                                    fontWeight: "bold",
+                                    color: colors.MAP_TEXT,
+                                  },
+                                ]}
+                              >
+                                {ln}
+                              </Text>
+                            ))}
+                          </View>
+                        ) : null
+                      ) : (
+                        <></>
+                      )}
+                    </View>
                   </View>
                 </TouchableOpacity>
               ))}
@@ -1647,6 +1814,7 @@ export default function MapScreen(props) {
                               name={c}
                               cash={cash}
                               index={index}
+                              icon={index===1?item.icon:''}
                               onPress={() => setCash(index)}
                             />
                           ))}
@@ -2466,7 +2634,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontFamily: "Roboto-Regular",
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: "900",
     color: colors.BORDER_TEXT,
   },
@@ -2507,7 +2675,7 @@ const styles = StyleSheet.create({
     color: colors.HEADER,
     paddingBottom: 2,
     fontWeight: "bold",
-    textAlign: "center",
+    // textAlign: "center",
   },
   subtitleStyle: {
     fontSize: 12,

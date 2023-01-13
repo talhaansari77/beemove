@@ -18,13 +18,15 @@ const TopRideContainer = ({
   completeJob = false,
   tripdata,
   tapAddress,
+  // showDropOff,
+  // showPickup,
 }) => {
   const dot = ["1", "2"];
   const fiveDot = ["1", "2", "3", "4", "5"];
   return (
     <View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <View style={{ alignItems: "center", marginRight: scale(20) }}>
+        <View style={{ alignItems: "center", marginRight: scale(20),flex:1 }}>
           <View
             style={{
               borderRadius: 30,
@@ -72,7 +74,7 @@ const TopRideContainer = ({
           />
         </View>
 
-        <View style={{ marginRight: scale(20), justifyContent: "center" }}>
+        <View style={{ marginRight: scale(20), justifyContent: "center",flex:9, }}>
           {completeJob ? (
             <>
               <View style={{ padding: 5 }}>
