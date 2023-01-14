@@ -678,6 +678,7 @@ export default function MapScreen(props) {
                 if (appcat == "delivery") {
                   estimateObject["instructionData"] = instructionData;
                 }
+                // console.log({...estimateObject.pickup,},'✋')
                 dispatch(getEstimate(estimateObject));
               } catch (err) {
                 setBookLoading(false);
@@ -926,6 +927,7 @@ export default function MapScreen(props) {
           carDetails: estimatedata.estimate.carDetails,
           userDetails: auth.info,
           estimate: estimatedata.estimate,
+          additionalInfo:additionalInfo,
           tripdate: bookingType
             ? new Date(bookingDate).getTime()
             : new Date().getTime(),
@@ -962,6 +964,7 @@ export default function MapScreen(props) {
           }
           addBookingObj["requestedDrivers"] = requestedDrivers;
         }
+        // console.log(addBookingObj)
         dispatch(addBooking(addBookingObj));
         setTripInstructions("");
         setRoundTrip(false);
@@ -1005,7 +1008,7 @@ export default function MapScreen(props) {
       intVal.current = 0;
     };
   }, []);
-
+ //! <<=====================>>
   const [check, setCheck] = useState(false);
   const [cash, setCash] = useState(-1);
   const [counter, setCounter] = useState(1);
@@ -1129,7 +1132,7 @@ export default function MapScreen(props) {
         selectCarType(cars?.[0], cars?.[0]?.id);
       } else if (screenName === "Car") {
         selectCarType(cars?.[1], cars?.[1]?.id);
-      } else {
+      } else if (screenName === "Pabili") {
         selectCarType(cars?.[1], cars?.[1]?.id);
       }
     }, 1000);

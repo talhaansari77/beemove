@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
   StatusBar,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CustomHeader from "../../../components/CustomHeader";
 import CustomText from "../../../components/CustomText";
 import { colors } from "../../../../Utils/Colors";
@@ -22,6 +22,7 @@ import { scale, verticalScale } from "react-native-size-matters";
 import { AntDesign, Feather, Octicons } from "@expo/vector-icons";
 import CustomButton from "../../../components/CustomButton";
 import PercentageSpacer from "../../../components/PercentageSpacer";
+import { useIsFocused } from "@react-navigation/native";
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
@@ -37,7 +38,8 @@ const Profile = ({
   deleteAccount,
   openDrawer,
 }) => {
-  const data = [
+  const isFocused = useIsFocused();
+  const [data, setData] = useState( [  
     {
       id: 1,
       label: "Phone",
@@ -58,35 +60,82 @@ const Profile = ({
       name: profileData?.usertype == "rider" ? "Customer" : "Driver",
       icon: () => <Feather name="user" size={20} color={colors.primary} />,
     },
+ 
+  ]) 
+  const riderData = [
+    {
+      id: 1,
+      label: "Phone",
+      name: profileData?.mobile,
+      icon: () => <Feather name="phone" size={20} color={colors.primary} />,
+    },
+    {
+      id: 2,
+      label: "Referral Id",
+      name: profileData?.referralId,
+      icon: () => (
+        <Octicons name="cross-reference" size={20} color={colors.primary} />
+      ),
+    },
+    {
+      id: 3,
+      label: "User Type",
+      name: profileData?.usertype == "rider" ? "Customer" : "Driver",
+      icon: () => <Feather name="user" size={20} color={colors.primary} />,
+    },
+ 
   ];
-  useEffect(() => {
-    if (profileData?.usertype == "driver") {
-      data.push([
-        {
-          id: 4,
-          label: "Vehicle Type",
-          name: profileData?.carType,
-          icon: () => <AntDesign name="car" size={20} color={colors.primary} />,
-        },
-        {
-          id: 5,
-          label: "Driver Rating",
-          name:
-            profileData && profileData.usertype && profileData.ratings
-              ? parseFloat(profileData.ratings.userrating)
-              : 0,
-          icon: () => (
-            <AntDesign name="like2" size={20} color={colors.primary} />
-          ),
-        },
-      ]);
-    }
-  }, []);
+  const driverData = [
+    {
+      id: 1,
+      label: "Phone",
+      name: profileData?.mobile,
+      icon: () => <Feather name="phone" size={20} color={colors.primary} />,
+    },
+    {
+      id: 2,
+      label: "Referral Id",
+      name: profileData?.referralId,
+      icon: () => (
+        <Octicons name="cross-reference" size={20} color={colors.primary} />
+      ),
+    },
+    {
+      id: 3,
+      label: "User Type",
+      name: profileData?.usertype == "rider" ? "Customer" : "Driver",
+      icon: () => <Feather name="user" size={20} color={colors.primary} />,
+    },
+    {
+      id: 4,
+      label: "Vehicle Type",
+      name: profileData?.carType,
+      icon: () => <AntDesign name="car" size={20} color={colors.primary} />,
+    },
+    {
+      id: 5,
+      label: "Driver Rating", 
+      name:
+        profileData && profileData.usertype && profileData.ratings
+          ? parseFloat(profileData.ratings.userrating)
+          : 0,
+      icon: () => (
+        <AntDesign name="like2" size={20} color={colors.primary} />
+      ),
+    },
+  ];
+  // useEffect(() => {
+  //   if (profileData?.usertype === "rider" ) {
+  //     setData(riderData)
+  //   }else{
+  //     setData(driverData)
+  //   }
+  //   console.log(data)
+  // }, [isFocused]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
       <StatusBar hidden={false}/>
-      <ScrollView>
       <Spacer height={Platform.OS=="android"? 25:0}/>
         <View style={{ height: screenHeight / 3 }}>
           <Image
@@ -234,7 +283,9 @@ const Profile = ({
             </View>
           </View>
         </View>
-        <PercentageSpacer height={"15%"}/>
+        <Spacer height={50} />
+      <ScrollView>
+        {/* <PercentageSpacer height={"15%"}/> */}
         {/* <Spacer height={40} /> */}
         {/* {profileData && profileData.usertype == "driver" ? (
           <View>
@@ -247,7 +298,12 @@ const Profile = ({
           </View>
         ) : null} */}
         <View style={{ paddingHorizontal: scale(25), }}>
-          {data.map((item) => (
+          {profileData?.usertype === "rider"?riderData.map((item) => (
+            <>
+              <InfoView label={item.label} name={item.name} icon={item.icon} />
+              <Spacer height={20} />
+            </>
+          )):driverData.map((item) => (
             <>
               <InfoView label={item.label} name={item.name} icon={item.icon} />
               <Spacer height={20} />
@@ -255,11 +311,11 @@ const Profile = ({
           ))}
         </View>
         {/* <Spacer height={40} /> */}
-        <Spacer height={60} />
+        {/* <Spacer height={60} /> */}
       </ScrollView>
       <View
         style={{
-          paddingHorizontal: scale(40),
+          paddingHorizontal: scale(40),paddingTop:20,
           ...commonStyles.rowSpacerBetween,
         }}
       >
