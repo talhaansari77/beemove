@@ -47,7 +47,7 @@ export default function App() {
         require("./assets/images/background.jpg"),
         require("./assets/images/logo165x90white.png"),
         require("./assets/images/bg.jpg"),
-        require("./assets/images/intro.jpg"),
+        require("./assets/images/intro.png"),
       ]),
       Font.loadAsync({
         "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
@@ -96,7 +96,7 @@ export default function App() {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require("./assets/images/intro.jpg")}
+          source={require("./assets/images/intro.png")}
           resizeMode="stretch"
           style={styles.imagebg}
         >
