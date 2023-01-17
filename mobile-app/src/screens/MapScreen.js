@@ -40,6 +40,7 @@ import CustomText from "../components/CustomText";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import AddlButton from "../components/AddlButton";
 import Collapsible from "react-native-collapsible";
+import GroceryListItem from "../components/GroceryListItem";
 
 const hasNotch =
   Platform.OS === "ios" &&
@@ -927,7 +928,7 @@ export default function MapScreen(props) {
           carDetails: estimatedata.estimate.carDetails,
           userDetails: auth.info,
           estimate: estimatedata.estimate,
-          additionalInfo:additionalInfo,
+          additionalInfo: additionalInfo,
           tripdate: bookingType
             ? new Date(bookingDate).getTime()
             : new Date().getTime(),
@@ -1008,11 +1009,11 @@ export default function MapScreen(props) {
       intVal.current = 0;
     };
   }, []);
- //! <<=====================>>
+  //! <<=====================>>
   const [check, setCheck] = useState(false);
   const [cash, setCash] = useState(-1);
   const [counter, setCounter] = useState(1);
-  const [gList, setGList] = useState([]);
+  const [gList, setGList] = useState([1]);
   //   const [carRideAdditionalInfo, setCarRideAdditionalInfo] = useState({
   //     pickup:"",
   //     dropOff:"",
@@ -1032,7 +1033,7 @@ export default function MapScreen(props) {
     merchantName: "",
     landmark: "",
     paymentMethod: "",
-    groceryList: "",
+    groceryList: gList,
     note: "",
     screenName: screenName,
   });
@@ -1139,11 +1140,12 @@ export default function MapScreen(props) {
   }, []);
   useEffect(() => {
     setNext(false);
-  }, [isFocused]);
+  console.log(gList)
+  }, [gList]);
 
-  useEffect(() => {
-    gList.push(1);
-  }, [counter]);
+  // useEffect(() => {
+  //   gList.push(1);
+  // }, [counter]);
 
   useEffect(() => {
     console.log("first");
@@ -1154,7 +1156,7 @@ export default function MapScreen(props) {
   }, [additionalInfo]);
 
   //* <<=====================>>
-  const CashButton = ({ name, index, cash, onPress,icon }) => (
+  const CashButton = ({ name, index, cash, onPress, icon }) => (
     <TouchableOpacity
       onPress={onPress}
       style={{
@@ -1193,15 +1195,20 @@ export default function MapScreen(props) {
           <></>
         )}
       </View>
-      <Spacer width={icon?10:20} />
-      {icon?
-      <Image source={icon} resizeMode={"contain"} style={{height:70,width:70}} />
-      :<CustomText
-        label={name}
-        fontSize={verticalScale(9)}
-        fontFamily={"Roboto-Regular"}
-      />}
-      
+      <Spacer width={icon ? 10 : 20} />
+      {icon ? (
+        <Image
+          source={icon}
+          resizeMode={"contain"}
+          style={{ height: 70, width: 70 }}
+        />
+      ) : (
+        <CustomText
+          label={name}
+          fontSize={verticalScale(9)}
+          fontFamily={"Roboto-Regular"}
+        />
+      )}
     </TouchableOpacity>
   );
   const BlurCircle = () => (
@@ -1656,7 +1663,7 @@ export default function MapScreen(props) {
                     transform: [{ scale: prop.active == true ? 1.04 : 1 }],
                   }}
                 >
-                  <View style={{ position: "absolute", right: 10, top: 10}}>
+                  <View style={{ position: "absolute", right: 10, top: 10 }}>
                     {prop.active == true ? (
                       <Feather
                         name="check-circle"
@@ -1817,7 +1824,7 @@ export default function MapScreen(props) {
                               name={c}
                               cash={cash}
                               index={index}
-                              icon={index===1?item.icon:''}
+                              icon={index === 1 ? item.icon : ""}
                               onPress={() => setCash(index)}
                             />
                           ))}
@@ -1836,36 +1843,15 @@ export default function MapScreen(props) {
                           marginLeft={20}
                         />
                         <ScrollView nestedScrollEnabled={true}>
-                          {gList.map(() => (
+                          {gList.map((p, i) => (
                             <>
-                              <View
-                                style={{
-                                  flexDirection: "row",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <CustomTextInput
-                                  //   withLabel={item?.withLabel}
-                                  placeholder={item?.placeholder}
-                                  fontSize={12}
-                                  paddingLeft={20}
-                                  // paddingTop={10}
-                                  placeholderTextColor={"#9C9C9C"}
-                                  fontFamily={"Roboto-Light"}
-                                  width={width / 1.52}
-                                />
-                                <CustomTextInput
-                                  //   withLabel={item?.withLabel}
-                                  placeholder={"qty"}
-                                  fontSize={12}
-                                  //   paddingLeft={20}
-                                  // paddingTop={10}
-                                  placeholderTextColor={"#9C9C9C"}
-                                  fontFamily={"Roboto-Light"}
-                                  width={width / 7}
-                                />
-                                <Spacer width={1} />
-                              </View>
+                              <GroceryListItem
+                                label={item.label}
+                                placeholder={item.placeholder}
+                                index={i}
+                                gList={gList}
+                                setGList={setGList}
+                              />
                               <Spacer height={10} />
                             </>
                           ))}
@@ -1885,9 +1871,8 @@ export default function MapScreen(props) {
                             icon={images.add}
                             textColor={colors.primary}
                             onPress={() => {
-                              console.log(gList);
-                              // gList.push(1)
-                              setCounter(counter + 1);
+                              console.log(gList.length)
+                              setGList([...gList, 1]);
                             }}
                           />
                         </View>
@@ -2287,6 +2272,7 @@ export default function MapScreen(props) {
                   console.log(tripdata);
                 } else {
                   setNext(true);
+                  // alert(JSON.stringify(gList))
                 }
               }
             }}

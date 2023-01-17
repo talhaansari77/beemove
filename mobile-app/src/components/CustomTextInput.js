@@ -29,6 +29,7 @@ const CustomTextInput = ({
   rightLabelIcon,
   editable,
   onPressIn,
+  defaultValue,
   ...props
 }) => {
   return (
@@ -81,6 +82,7 @@ const CustomTextInput = ({
               // alignSelf: props.alignItems || "center"
             },
           ]}
+          defaultValue={defaultValue}
           editable={editable}
           onPressIn={onPressIn}
           onChangeText={props.onChangeText}
