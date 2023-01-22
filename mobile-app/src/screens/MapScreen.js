@@ -41,6 +41,10 @@ import { Ionicons, Feather } from "@expo/vector-icons";
 import AddlButton from "../components/AddlButton";
 import Collapsible from "react-native-collapsible";
 import GroceryListItem from "../components/GroceryListItem";
+import { DetailsHeaderScrollView } from 'react-native-sticky-parallax-header'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import StickyParallaxHeader from 'react-native-sticky-parallax-header'
+
 
 const hasNotch =
   Platform.OS === "ios" &&
@@ -1239,6 +1243,7 @@ export default function MapScreen(props) {
 
   return (
     <>
+    
       {/* <StatusBar hidden={true}/> */}
 
       {/* <PadalaScreen
@@ -1267,7 +1272,7 @@ export default function MapScreen(props) {
             /> */}
       {/* {tripdata.pickup && tripdata.pickup.add ? tripdata.pickup.add : t('map_screen_where_input_text')} */}
 
-      <ScrollView style={styles.container}>
+      <DetailsHeaderScrollView  style={styles.container} >
         <View
           style={{
             // todo=======>> fix style
@@ -2348,7 +2353,7 @@ export default function MapScreen(props) {
           onConfirm={handleDateConfirm}
           onCancel={hideDatePicker}
         />
-      </ScrollView>
+      </DetailsHeaderScrollView>
     </>
   );
 }

@@ -12,7 +12,7 @@ export default function AuthLoadingScreen(props) {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../../assets/images/intro.png')}
+        source={require('../../assets/images/intro.jpg')}
         resizeMode="stretch"
         style={styles.imagebg}
       >
