@@ -11,6 +11,7 @@ import {
   ImageBackground,
   Dimensions,
   LogBox,
+  StatusBar,
 } from "react-native";
 import { Provider } from "react-redux";
 import { FirebaseProvider, store } from "common/src";
@@ -116,6 +117,7 @@ export default function App() {
       <FirebaseProvider config={FirebaseConfig} appcat={AppCat}>
         <AppCommon>
           <AppContainer />
+          <StatusBar barStyle="dark-content" translucent={true} backgroundColor="transparent" />
         </AppCommon>
       </FirebaseProvider>
     </Provider>

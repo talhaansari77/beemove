@@ -10,6 +10,7 @@ import {
   ScrollView,
   StatusBar,
   Animated,
+  useColorScheme,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Icon, Tooltip, Button } from "react-native-elements";
@@ -41,10 +42,9 @@ import { Ionicons, Feather } from "@expo/vector-icons";
 import AddlButton from "../components/AddlButton";
 import Collapsible from "react-native-collapsible";
 import GroceryListItem from "../components/GroceryListItem";
-import { DetailsHeaderScrollView } from 'react-native-sticky-parallax-header'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import StickyParallaxHeader from 'react-native-sticky-parallax-header'
-
+import { DetailsHeaderScrollView } from "react-native-sticky-parallax-header";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import StickyParallaxHeader from "react-native-sticky-parallax-header";
 
 const hasNotch =
   Platform.OS === "ios" &&
@@ -1144,7 +1144,7 @@ export default function MapScreen(props) {
   }, []);
   useEffect(() => {
     setNext(false);
-  console.log(gList)
+    console.log(gList);
   }, [gList]);
 
   // useEffect(() => {
@@ -1240,10 +1240,9 @@ export default function MapScreen(props) {
   );
 
   //! <<=====================>>
-
+  const isDarkTheme = useColorScheme() === 'light';
   return (
     <>
-    
       {/* <StatusBar hidden={true}/> */}
 
       {/* <PadalaScreen
@@ -1272,7 +1271,26 @@ export default function MapScreen(props) {
             /> */}
       {/* {tripdata.pickup && tripdata.pickup.add ? tripdata.pickup.add : t('map_screen_where_input_text')} */}
 
-      <DetailsHeaderScrollView  style={styles.container} >
+      <DetailsHeaderScrollView
+  
+        // leftTopIcon={() => <Text>dasd</Text>}
+        leftTopIconOnPress={() => <Text>dasd</Text>}
+        rightTopIcon={() => <Text>dasd</Text>}
+        contentContainerStyle={[
+          isDarkTheme ? {backgroundColor:colors.BLACK}: {backgroundColor:colors.WHITE},
+        ]}
+        // containerStyle={{ backgroundColor: colors.WHITE }}
+        contentIcon={() => <Text>dasd</Text>}
+        contentIconNumber={10}
+        backgroundColor={colors.WHITE}
+        hasBorderRadius
+        image={images.appLogo}
+        tag={() => <Text>dasd</Text>}
+        title={() => <Text>dasd</Text>}
+        titleStyle={{ color: colors.BLACK }}
+        showsVerticalScrollIndicator={false}
+        style={styles.container}
+      >
         <View
           style={{
             // todo=======>> fix style
@@ -1876,7 +1894,7 @@ export default function MapScreen(props) {
                             icon={images.add}
                             textColor={colors.primary}
                             onPress={() => {
-                              console.log(gList.length)
+                              console.log(gList.length);
                               setGList([...gList, 1]);
                             }}
                           />
