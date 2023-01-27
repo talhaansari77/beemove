@@ -2,6 +2,7 @@ import { View } from "react-native";
 import React from "react";
 // import styled from "react-native-styled-components";
 import commonStyles from "../../Utils/CommonStyles";
+import { Spacer } from "./Spacer";
 
 const CustomHeader = ({ LeftSide, Center, RightSide ,borderBottomWidth,borderBottomColor,paddingBottom}) => {
   return (
@@ -19,9 +20,9 @@ const CustomHeader = ({ LeftSide, Center, RightSide ,borderBottomWidth,borderBot
         
       }}
     >
-      {LeftSide ? <LeftSide /> : <View/>}
-      {Center ? <Center /> : <View/>}
-      {RightSide ? <RightSide /> : <View/>}
+      {LeftSide ? <LeftSide /> : <Spacer width={20}/>}
+      {Center ? <Center /> : <Spacer width={20}/>}
+      {RightSide ? <RightSide /> : <Spacer width={20}/>}
     </View>
   );
 };

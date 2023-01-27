@@ -21,6 +21,7 @@ import { FirebaseConfig } from "./config/FirebaseConfig";
 import { colors } from "./src/common/theme";
 import { Settings } from "react-native-fbsdk-next";
 import RootNavigator from "./src/navigation";
+import Swipup from "./src/components/Swipup";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

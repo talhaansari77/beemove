@@ -134,17 +134,17 @@ const Profile = ({
   // }, [isFocused]);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
-      <StatusBar hidden={false}/>
-      <Spacer height={Platform.OS=="android"? 25:0}/>
+    <View style={{ flex: 1, backgroundColor: colors.white, }}>
+      
         <View style={{ height: screenHeight / 3 }}>
           <Image
+          // resizeMode="contain"
             source={images.profileBg}
-            style={{ height: screenHeight / 3.5, width: "100%" }}
+            style={{ height: screenHeight / 3.5, width: screenWidth }}
           />
           {/* profile detail container*/}
           <View style={{ position: "absolute" }}>
-          {/* <Spacer height={Platform.OS=="android"? 20:0}/> */}
+          <Spacer height={Platform.OS=="ios"? 40:20}/>
             <View
               style={{
                 padding: 15,
@@ -340,7 +340,7 @@ const Profile = ({
         />
       </View>
       <Spacer height={40} />
-    </SafeAreaView>
+    </View>
   );
 };
 
