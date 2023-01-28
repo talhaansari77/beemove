@@ -1633,49 +1633,49 @@ export default function MapScreen(props) {
         ) : null}
         {region ? (
           tripdata.selected == "pickup" ? (
-            // <View pointerEvents="none" style={styles.mapFloatingPinView}>
-            //     <Image pointerEvents="none" style={[styles.mapFloatingPin,{ marginBottom: Platform.OS =='ios'? (hasNotch? (-10 + dragging) :33): 40}]} resizeMode="contain" source={require('../../assets/images/green_pin.png')} />
-            // </View>
-            <View style={{ position: "absolute" }}>
-              <View
-                style={{
-                  // display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: 40,
-                  width: 45,
-                  backgroundColor: colors.primary,
-                  borderRadius: 15,
-                }}
-              >
-                <AntDesign
-                  name="user"
-                  size={18}
-                  color={colors.WHITE}
-                  style={{
-                    alignSelf: "center",
-                  }}
-                />
-              </View>
-              <View style={{ justifyContent: "center", alignItems: "center" }}>
-                <AntDesign
-                  name="caretdown"
-                  size={20}
-                  color={colors.primary}
-                  style={{ alignSelf: "center", marginTop: -7 }}
-                />
-                <View
-                  style={{
-                    height: 12,
-                    width: 12,
-                    borderRadius: 6,
-                    backgroundColor: colors.primary,
-                    opacity: 0.5,
-                    marginTop: -9,
-                  }}
-                />
-              </View>
+            <View pointerEvents="none" style={styles.mapFloatingPinView}>
+                <Image pointerEvents="none" style={[styles.mapFloatingPin,{ marginBottom: Platform.OS =='ios'? (hasNotch? (-10 + dragging) :33): 40}]} resizeMode="contain" source={images.locationPin} />
             </View>
+            // <View style={{ position: "absolute" }}>
+            //   <View
+            //     style={{
+            //       // display: "flex",
+            //       justifyContent: "center",
+            //       alignItems: "center",
+            //       height: 40,
+            //       width: 45,
+            //       backgroundColor: colors.primary,
+            //       borderRadius: 15,
+            //     }}
+            //   >
+            //     <AntDesign
+            //       name="user"
+            //       size={18}
+            //       color={colors.WHITE}
+            //       style={{
+            //         alignSelf: "center",
+            //       }}
+            //     />
+            //   </View>
+            //   <View style={{ justifyContent: "center", alignItems: "center" }}>
+            //     <AntDesign
+            //       name="caretdown"
+            //       size={20}
+            //       color={colors.primary}
+            //       style={{ alignSelf: "center", marginTop: -7 }}
+            //     />
+            //     <View
+            //       style={{
+            //         height: 12,
+            //         width: 12,
+            //         borderRadius: 6,
+            //         backgroundColor: colors.primary,
+            //         opacity: 0.5,
+            //         marginTop: -9,
+            //       }}
+            //     />
+            //   </View>
+            // </View>
           ) : (
             <View pointerEvents="none" style={styles.mapFloatingPinView}>
               <Image
@@ -1692,7 +1692,7 @@ export default function MapScreen(props) {
                   },
                 ]}
                 resizeMode="contain"
-                source={require("../../assets/images/rsz_2red_pin.png")}
+                source={images.location1}
               />
             </View>
           )

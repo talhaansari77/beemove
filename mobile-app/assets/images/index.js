@@ -27,7 +27,6 @@ export const images = {
   apple: require("./apple.png"),
   gCash: require("./GCash.png"),
   locationPin: require("./locationPin.png"),
-
   location1: require("./location1.png"),
   location2: require("./location2.png"),
   location3: require("./location3.png"),
