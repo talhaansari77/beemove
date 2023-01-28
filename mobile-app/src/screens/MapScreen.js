@@ -397,7 +397,8 @@ export default function MapScreen(props) {
               add: res,
               source: source,
             })
-          );
+            );
+            // console.log("RESRESRESRESRESRESRES",res)
           if (source == "init") {
             dispatch(
               updateTripDrop({
@@ -422,16 +423,35 @@ export default function MapScreen(props) {
     });
   };
 
-  const onRegionChangeComplete = (newregion, gesture) => {
+  const onRegionChangeComplete = async (newregion, gesture) => {
+    const { latitude, longitude } = newregion;
+    let response = await Location.reverseGeocodeAsync({
+      latitude,
+      longitude,
+    });
+
+    // for (let item of response) {
+    //   let address = `${item.district}, ${item.city}, ${item.region}, ${item.country}`;
+
+    //   console.log(address, "<== address");
+    //   // console.log(response, "<== response");
+    //   // setText(address);
+    // }
+    // console.log(coords, "<== coords");
+      console.log(response, "<== response");
+
     if (gesture && gesture.isGesture) {
       updateAddresses(
         {
           latitude: newregion.latitude,
           longitude: newregion.longitude,
         },
-        "region-change"
+        "region-change",
+        // console.log("newregion========>>>>>>>>>",newregion)
       );
+      
     }
+    
   };
 
   const selectCarType = (value, key) => {
@@ -570,18 +590,21 @@ export default function MapScreen(props) {
       let allAddresses = profile.savedAddresses;
       for (let key in allAddresses) {
         savedAddresses.push(allAddresses[key]);
+        console.log("savedAddresses =>>>>>>",savedAddresses)
       }
       if (selection == "drop") {
         props.navigation.navigate("Search", {
           locationType: "drop",
           addParam: savedAddresses,
         });
+        // console.log("first123456")
       } else {
         props.navigation.navigate("Search", {
           locationType: "pickup",
           addParam: savedAddresses,
         });
       }
+      console.log("first123456")
     } else {
       setDragging(0);
       if (
@@ -1215,7 +1238,7 @@ export default function MapScreen(props) {
   // }, [counter]);
 
   useEffect(() => {
-    console.log("first");
+    // console.log("first");
     dispatch({
       type: "ADD_ADDITIONAL_DATA",
       payload: additionalInfo,

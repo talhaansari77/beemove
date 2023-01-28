@@ -129,6 +129,7 @@ const TopRideContainer = ({
                 <Text style={{}} numberOfLines={1}>
                   {tripdata.drop && tripdata.drop.add
                     ? tripdata.drop.add
+                    // ? tripdata.drop.add.split(",")[0] + "," + tripdata.drop.add.split(",")[1] + "," + tripdata.drop.add.split(",")[2]
                     : t("map_screen_drop_input_text")}
                 </Text>
               </TouchableOpacity>

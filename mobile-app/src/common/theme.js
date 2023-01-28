@@ -50,4 +50,5 @@ export const colors = {
   START_TRIP: "#018E16",
   RE_GREEN:"#7ED957",
   primary: "#F6AD00",
+  grayBorder: "#BFBFBF",
 }
