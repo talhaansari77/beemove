@@ -347,15 +347,21 @@ export default function SearchScreen(props) {
                   style={styles.resultItem}
                   onPress={() => updateLocation(item)}
                 >
-                  <View style={{display:"flex", flexDirection:"row"}} >
+                  <View style={{display:"flex", flexDirection:"row",alignItems:'center'}} >
                     <Image
-                      source={images.locationBlack}
-                      style={{ height: 20, width: 20 }}
+                      source={images.location1}
+                      style={{ height: 20, width: 20,tintColor:"#aaa" }}
                     />
+                    {/* <Feather name="circle" size={12} color={colors.grayBorder} /> */}
                     <Spacer width={10} />
-                    <Text numberOfLines={1} style={styles.description}>
+                    <View>
+                    <Text numberOfLines={1} style={{...styles.description,fontSize:14,fontWeight:"600"}}>
+                      {item.description.split(",")[0] }
+                    </Text>
+                    <Text numberOfLines={1} style={{...styles.description,color:'#aaa',fontSize:12}}>
                       {item.description.split(",")[0] + "," + item.description.split(",")[1] + "," + item.description.split(",")[2] + "," + item.description.split(",")[2]}
                     </Text>
+                    </View>
                   </View>
                 </TouchableOpacity>
               );

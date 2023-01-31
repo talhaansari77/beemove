@@ -1634,7 +1634,7 @@ export default function MapScreen(props) {
         {region ? (
           tripdata.selected == "pickup" ? (
             <View pointerEvents="none" style={styles.mapFloatingPinView}>
-                <Image pointerEvents="none" style={[styles.mapFloatingPin,{ marginBottom: Platform.OS =='ios'? (hasNotch? (-10 + dragging) :33): 40}]} resizeMode="contain" source={images.locationPin} />
+                <Image pointerEvents="none" style={[styles.mapFloatingPin,{ marginBottom: Platform.OS =='ios'? (hasNotch? (-10 + dragging) :33): 40}]} resizeMode="contain" source={images.userLocation} />
             </View>
             // <View style={{ position: "absolute" }}>
             //   <View
