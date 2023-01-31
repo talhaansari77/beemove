@@ -11,6 +11,7 @@ import {
   Platform,
 } from "react-native";
 import React from "react";
+import { Icon, Button, Header, Input } from "react-native-elements";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import CustomHeader from "../../../components/CustomHeader";
@@ -25,6 +26,8 @@ import { moderateScale, verticalScale } from "react-native-size-matters";
 import DrawerContainer from "../../../components/DrawerContainer";
 import commonStyles from "../../../../Utils/CommonStyles";
 import { REQUEST_OTP_SUCCESS } from "common/src/store/types";
+import { Ionicons } from "@expo/vector-icons";
+import RNPickerSelect from "react-native-picker-select";
 
 const { height, width } = Dimensions.get("window");
 
@@ -36,7 +39,11 @@ const ConvertToDriver = ({
   showActionSheet,
   capturedImage,
   cancelPhoto,
-  openDrawer
+  openDrawer,
+  dropDownCars,
+  carTypes,
+  isRTL,
+  appcat,
 }) => {
   const CenterContent = () => (
     <View style={{ flexDirection: "row" }}>
@@ -129,6 +136,7 @@ const ConvertToDriver = ({
           paddingHorizontal: 15,
         }}
       >
+        <Spacer height={Platform.OS=="android"? 20:0}/>
         <CustomHeader
           LeftSide={() => (
             <TouchableOpacity
@@ -147,10 +155,110 @@ const ConvertToDriver = ({
         />
       </View>
       <ScrollView>
-        {inputData.map((item) => {
+        <View
+          style={[
+            styles.textInputContainerStyle,
+            { marginBottom: 10, flexDirection: isRTL ? "row-reverse" : "row" },
+          ]}
+        >
+          {/* {appcat == "delivery" ? (
+            <Icon
+              name="truck-fast"
+              type="material-community"
+              color={colors.WHITE}
+              size={18}
+              containerStyle={[
+                styles.iconContainer,
+                isRTL ? { marginRight: 20 } : { marginLeft: 0 },
+              ]}
+            />
+          ) : (
+            <Icon
+              name="car"
+              type="font-awesome"
+              color={colors.WHITE}
+              size={18}
+              containerStyle={[
+                styles.iconContainer,
+                isRTL ? { marginRight: 20 } : { marginLeft: 0 },
+              ]}
+            />
+          )} */}
+          {/* {carTypes ? (
+            <RNPickerSelect
+              placeholder={{}}
+              value={state.carType}
+              useNativeAndroidPickerStyle={false}
+              style={{
+                inputIOS: [
+                  styles.pickerStyle,
+                  { textAlign: isRTL ? "right" : "left" },
+                ],
+                placeholder: {
+                  color: "white",
+                },
+                inputAndroid: [
+                  styles.pickerStyle,
+                  { textAlign: isRTL ? "right" : "left" },
+                ],
+              }}
+              onValueChange={(value) => setState({ ...state, carType: value })}
+              items={carTypes}
+              Icon={() => {
+                return (
+                  <Ionicons
+                    style={{ top: 5, marginRight: isRTL ? "85%" : 0 }}
+                    name="md-arrow-down"
+                    size={24}
+                    color="gray"
+                  />
+                );
+              }}
+            />
+          ) : null} */}
+        </View>
+        {inputData.map((item, index) => {
           return (
             <>
-              <View style={{ width: "90%", alignSelf: "center" }}>
+              {index === 0 ? (
+                carTypes ? (
+                  <View
+                    style={{
+                      borderRadius: 10,
+                      borderWidth: 1,
+                      borderColor: "#bdc3c7",
+                      overflow: "hidden",
+                      width: "90%",
+                      alignSelf: "center",
+                      height: 55,
+                    }}
+                  >
+                  <RNPickerSelect
+                    placeholder={{}}
+                    value={state.carType}
+                    // useNativeAndroidPickerStyle={false}
+                    style={{
+                      inputAndroid: [styles.pickerStyle],
+                    }}
+                    onValueChange={(value) =>
+                      setState({ ...state, carType: value })
+                    }
+                    items={carTypes}
+                    // Icon={() => {
+                    //   return (
+                    //     <Ionicons
+                    //       style={{ top: 5, marginRight: isRTL ? "85%" : 0 }}
+                    //       name="md-arrow-down"
+                    //       size={24}
+                    //       color="gray"
+                    //     />
+                    //   );
+                    // }}
+                  />
+                  </View>
+                ) : null
+              ) : (
+                <View style={{ width: "90%", alignSelf: "center" }}>
                 <CustomTextInput
                   onChangeText={item.changeValue}
                   //   withLabel={item.withLabel}
@@ -162,10 +270,14 @@ const ConvertToDriver = ({
                   fontFamily={"Roboto-Light"}
                 />
               </View>
+              )}
+
+             
               <Spacer height={20} />
             </>
           );
         })}
+
         {capturedImage ? (
           <View style={styles.imagePosition}>
             <TouchableOpacity style={styles.photoClick} onPress={cancelPhoto}>
@@ -276,5 +388,12 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: 30,
     height: height / 15,
+  },
+  pickerStyle: {
+    width: "100%",
+    height:"100%",
+    fontSize: 15,
+    alignSelf: "center",
+    backgroundColor: colors.gray1,
   },
 });

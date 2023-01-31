@@ -10,11 +10,17 @@ const INITIAL_STATE = {
     pickup: null,
     drop: null,
     carType: null,
-    selected:'pickup'
+    selected:'pickup',
+    additionalData:[]
 }
 
 export const tripreducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case "ADD_ADDITIONAL_DATA":
+            return {
+                ...state,
+                additionalData:action.payload
+            };
         case UPDATE_TRIP_PICKUP:
             return {
                 ...state,

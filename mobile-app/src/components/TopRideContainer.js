@@ -7,19 +7,26 @@ import { scale, verticalScale } from "react-native-size-matters";
 import { colors } from "../../Utils/Colors";
 import AddlButton from "./AddlButton";
 import CustomButton from "./CustomButton";
-import i18n from 'i18n-js';
-
+import i18n from "i18n-js";
 
 const { t } = i18n;
-    const isRTL = i18n.locale.indexOf('he') === 0 || i18n.locale.indexOf('ar') === 0;
-    
-const TopRideContainer = ({ onAddShop, completeJob = false,tripdata,tapAddress }) => {
+const isRTL =
+  i18n.locale.indexOf("he") === 0 || i18n.locale.indexOf("ar") === 0;
+
+const TopRideContainer = ({
+  onAddShop,
+  completeJob = false,
+  tripdata,
+  tapAddress,
+  // showDropOff,
+  // showPickup,
+}) => {
   const dot = ["1", "2"];
   const fiveDot = ["1", "2", "3", "4", "5"];
   return (
     <View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <View style={{ alignItems: "center", marginRight: scale(20) }}>
+        <View style={{ alignItems: "center", marginRight: scale(20),flex:1 }}>
           <View
             style={{
               borderRadius: 30,
@@ -67,7 +74,7 @@ const TopRideContainer = ({ onAddShop, completeJob = false,tripdata,tapAddress }
           />
         </View>
 
-        <View style={{ marginRight: scale(20), justifyContent: "center" }}>
+        <View style={{ marginRight: scale(20), justifyContent: "center",flex:9, }}>
           {completeJob ? (
             <>
               <View style={{ padding: 5 }}>
@@ -88,10 +95,42 @@ const TopRideContainer = ({ onAddShop, completeJob = false,tripdata,tapAddress }
             </>
           ) : (
             <>
-            <TouchableOpacity>
-              
-            </TouchableOpacity>
-              <CustomTextInput
+              <TouchableOpacity
+              onPressIn={()=>tapAddress('pickup')}
+              activeOpacity={0.6}
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 8,
+                  borderColor: "#ccc",
+                  paddingVertical: 15,
+                  paddingHorizontal: 10,
+                }}
+              >
+                <Text style={{}} numberOfLines={1}>
+                  {tripdata.pickup && tripdata.pickup.add
+                    ? tripdata.pickup.add
+                    : t("map_screen_where_input_text")}
+                </Text>
+              </TouchableOpacity>
+              <Spacer height={20} />
+              <TouchableOpacity
+              onPressIn={()=>tapAddress('drop')}
+              activeOpacity={0.6}
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 8,
+                  borderColor: "#ccc",
+                  paddingVertical: 15,
+                  paddingHorizontal: 10,
+                }}
+              >
+                <Text style={{}} numberOfLines={1}>
+                  {tripdata.drop && tripdata.drop.add
+                    ? tripdata.drop.add
+                    : t("map_screen_drop_input_text")}
+                </Text>
+              </TouchableOpacity>
+              {/* <CustomTextInput
               value={tripdata.pickup && tripdata.pickup.add ? tripdata.pickup.add : t('map_screen_where_input_text')}
               onPressIn={()=>tapAddress('pickup')}
               
@@ -104,9 +143,8 @@ const TopRideContainer = ({ onAddShop, completeJob = false,tripdata,tapAddress }
                 borderRadius={10}
                 paddingLeft={20}
                 fontSize={11}
-              />
-              <Spacer height={20} />
-              <CustomTextInput
+              /> */}
+              {/* <CustomTextInput
               value={tripdata.drop && tripdata.drop.add ? tripdata.drop.add : t('map_screen_drop_input_text')}
               onPressIn={()=>tapAddress('drop')}
               
@@ -120,7 +158,7 @@ const TopRideContainer = ({ onAddShop, completeJob = false,tripdata,tapAddress }
                 borderRadius={10}
                 paddingLeft={20}
                 fontSize={11}
-              />
+              /> */}
             </>
           )}
         </View>
@@ -142,7 +180,7 @@ const TopRideContainer = ({ onAddShop, completeJob = false,tripdata,tapAddress }
           />
         ) : (
           <>
-           {/* <AddlButton
+            {/* <AddlButton
              label="Add Stop"
              width={"42%"}
              height={verticalScale(37)}
@@ -150,7 +188,6 @@ const TopRideContainer = ({ onAddShop, completeJob = false,tripdata,tapAddress }
              icon={require("../../assets/images/add.png")}
              textColor={colors.primary}
            /> */}
-           
           </>
         )}
       </View>

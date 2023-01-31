@@ -253,6 +253,8 @@ export default function DriverTrips(props) {
               <Spacer height={Platform.OS=="android"? 30:0}/>
 
       <View style={{ paddingHorizontal: scale(15),}}>
+      <Spacer height={Platform.OS=="android"? 20:0}/>
+
         <CustomHeader
           LeftSide={() => (
             <TouchableOpacity

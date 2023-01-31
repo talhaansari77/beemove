@@ -107,6 +107,8 @@ export default function Notifications(props) {
             <StatusBar hidden={false}/>
               <Spacer height={Platform.OS=="android"? 30:0}/>
             <View style={{padding:10}}>
+            <Spacer height={Platform.OS=="android"? 20:0}/>
+
             <CustomHeader
     
     LeftSide={() => (

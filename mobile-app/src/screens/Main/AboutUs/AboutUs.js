@@ -26,6 +26,7 @@ const AboutUs = ({onPress}) => {
       <View
         style={{ flex: 1, paddingHorizontal: scale(15), paddingVertical: 10 }}
       >
+        <Spacer height={Platform.OS=="android"? 20:0}/>
         <CustomHeader
           LeftSide={() => (
             <TouchableOpacity
