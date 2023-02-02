@@ -20,7 +20,7 @@ export default {
     orientation: "portrait",
     icon: "./assets/images/logo.png",
     splash: {
-        "image": "./assets/images/splash.jpg",
+        "image": "./assets/images/splash.png",
         "resizeMode": "cover",
         "backgroundColor": "#ffffff"
     },
