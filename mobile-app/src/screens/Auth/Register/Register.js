@@ -162,6 +162,10 @@ const Register = ({
       onChange: (v) => setState({ ...state, bankName: v }),
     },
   ];
+
+  const openRegister = () => {
+    navigation.navigate("Login");
+  };
   return (
     <SafeAreaView style={{ backgroundColor: colors.white }}>
       <Spacer height={Platform.OS == "ios" ? 0 : 5} />
@@ -171,7 +175,6 @@ const Register = ({
         {/* <Spacer height={10} /> */}
         <View style={commonStyles.PH30}>
           <TopHeader
-            backIcon
             label1={"Register"}
             navigation={navigation}
             img={require("../../../../assets/images/appLogo.png")}
@@ -436,27 +439,31 @@ const Register = ({
           />
           <Spacer height={20} />
 
-          <View
+          <TouchableOpacity
+          activeOpacity={0.7}
             style={{
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
+            }}
+            onPress={() => {
+              openRegister();
             }}
           >
             <CustomText
               label="Already have an account?"
               color={colors.lightBlack}
               fontFamily={"Roboto-Regular"}
-              fontSize={11}
+              fontSize={12}
             />
             <CustomText
               label="Login"
               color={colors.primary}
               marginLeft={2}
               fontFamily={"Roboto-Bold"}
-              fontSize={11}
+              fontSize={12}
             />
-          </View>
+          </TouchableOpacity>
         </View>
         <Spacer height={100} />
       </ScrollView>

@@ -57,7 +57,7 @@ const OtpScreen = ({navigation,state,onVerify,setState,onResend}) => {
       />
       <Spacer height={20} />
 
-      <View
+      {/* <View
         style={{
           flexDirection: "row",
           alignItems: "center",
@@ -78,7 +78,7 @@ const OtpScreen = ({navigation,state,onVerify,setState,onResend}) => {
           fontFamily={"Roboto-Bold"}
           fontSize={11}
         />
-      </View>
+      </View> */}
       </>
 
   );

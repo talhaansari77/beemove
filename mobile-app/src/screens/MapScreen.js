@@ -1399,8 +1399,7 @@ export default function MapScreen(props) {
       <Spacer height={20} />
       <View
         style={{
-          // todo=======>> fix style
-          // top: Platform.OS == 'android'? (__DEV__? 20: 40): (hasNotch ? 40 : 20),
+          
           width: "100%",
           backgroundColor: "white",
           paddingHorizontal: 20,
@@ -1409,10 +1408,8 @@ export default function MapScreen(props) {
       >
         <Spacer height={20} />
 
-        {/* <Spacer height={Platform.OS == "android" ? 20 : 0} /> */}
         <MainTopHeader
           txt={props?.route?.params?.name}
-          // navigation={navigation}
 
           img={
             props?.route?.params?.name === "Car"
@@ -1549,7 +1546,6 @@ export default function MapScreen(props) {
               }}
             >
               <>
-                {/* <Spacer height={20} /> */}
                 {next ? (
                   <>
                     <TouchableOpacity

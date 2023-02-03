@@ -15,6 +15,7 @@ import {
   SafeAreaView,
   Keyboard,
   TouchableWithoutFeedback,
+  Pressable,
 } from "react-native";
 import MaterialButtonDark from "../components/MaterialButtonDark";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -149,7 +150,8 @@ export default function LoginScreen(props) {
             pageActive.current = true;
             dispatch(requestEmailOtp(state.contact));
           } else {
-            Alert.alert(t("alert"), t("proper_email"));
+            Alert.alert("Enter proper phone number")
+            // Alert.alert(t("alert"), t("proper_email"));
             setLoading(false);
           }
         } else {
@@ -406,7 +408,10 @@ style={styles.materialButtonDark}
             </>
           )}
           {state.verificationId ? null : (
-            <View
+            <Pressable
+            onPress={() => {
+              openRegister();
+            }}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -417,19 +422,17 @@ style={styles.materialButtonDark}
                 label="Don’t have an account?"
                 color={colors.lightBlack}
                 fontFamily={"Roboto-Regular"}
-                fontSize={11}
+                fontSize={12}
               />
               <CustomText
                 label="Sign Up"
-                onPress={() => {
-                  openRegister();
-                }}
+              
                 color={colors.primary}
                 marginLeft={2}
                 fontFamily={"Roboto-Bold"}
-                fontSize={11}
+                fontSize={12}
               />
-            </View>
+            </Pressable>
           )}
 
           {/* {!!state.verificationId ?
