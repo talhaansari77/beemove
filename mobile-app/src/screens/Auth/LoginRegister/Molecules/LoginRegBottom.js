@@ -18,6 +18,7 @@ import { images } from "../../../../../assets/images";
 const LoginRegBottom = ({ onRegister, onLogin, onFaceBook, onGoogle }) => {
   return (
     <View style={{ flex: 1 }}>
+      <Spacer height={20}/>
       <View style={styles.btnContainer}>
         <CustomButton
           width={"46%"}
@@ -43,7 +44,7 @@ const LoginRegBottom = ({ onRegister, onLogin, onFaceBook, onGoogle }) => {
         />
       </View>
       <Spacer height={40} />
-      <View
+      {/* <View
         style={{
           flexDirection: "row",
           alignItems: "center",
@@ -59,9 +60,9 @@ const LoginRegBottom = ({ onRegister, onLogin, onFaceBook, onGoogle }) => {
           fontFamily={"Roboto-Light"}
         />
         <SepratorLine height={0.7} />
-      </View>
+      </View> */}
       <Spacer height={20} />
-      <View
+      {/* <View
         style={{ ...styles.btnContainer, width: "54%", alignSelf: "center" }}
       >
         <TouchableOpacity onPress={onGoogle} style={styles.authBtn}>
@@ -80,7 +81,7 @@ const LoginRegBottom = ({ onRegister, onLogin, onFaceBook, onGoogle }) => {
             source={require("../../../../../assets/images/facebook.png")}
           />
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };

@@ -44,6 +44,9 @@ const ConvertToDriver = ({
   carTypes,
   isRTL,
   appcat,
+  setImages,
+  officialImages,
+  setPhotoName,
 }) => {
   const CenterContent = () => (
     <View style={{ flexDirection: "row" }}>
@@ -61,6 +64,69 @@ const ConvertToDriver = ({
       />
     </View>
   );
+  const ChoosePhoto = ({ capturedImage, photoName,label }) =>
+    capturedImage ? (
+      <View style={styles.imagePosition}>
+        <TouchableOpacity style={styles.photoClick} onPress={()=>cancelPhoto(photoName)}>
+          <Image
+            source={require("../../../../assets/images/cross.png")}
+            resizeMode={"contain"}
+            style={styles.imageStyle}
+          />
+        </TouchableOpacity>
+        <Image
+          source={{ uri: capturedImage }}
+          style={styles.photoResult}
+          resizeMode={"cover"}
+        />
+      </View>
+    ) : (
+      <TouchableOpacity activeOpacity={0.6}>
+        <View
+          style={{
+            width: "80%",
+            height: 140,
+            backgroundColor: colors.white,
+            borderRadius: 10,
+            alignSelf: "center",
+          }}
+        >
+          <CustomText
+            label={label}
+            alignSelf={"center"}
+            marginTop={10}
+            color={colors.primary}
+          />
+          <Spacer height={15} />
+          <View
+            style={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                showActionSheet();
+                setPhotoName(photoName);
+              }}
+              activeOpacity={0.6}
+            >
+              <AntDesign name="camerao" size={70} color={colors.grayBorder} />
+            </TouchableOpacity>
+            <View
+              style={{
+                height: 40,
+                width: 1,
+                backgroundColor: colors.black,
+              }}
+            />
+            <CustomText label="(Image Size: Max 2MB)" />
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
   // usertype: 'driver',
   // vehicleNumber: '',
   // vehicleMake:'',
@@ -124,19 +190,17 @@ const ConvertToDriver = ({
     },
   ];
   return (
-    <SafeAreaView>
-      <StatusBar hidden={false}/>
-              <Spacer height={Platform.OS=="android"? 30:0}/>
+    <View style={{ flex: 1, backgroundColor: colors.white }}>
+      <Spacer height={Platform.OS == "ios" ? 40 : 30} />
       <View
         style={{
           //   backgroundColor: colors.primary,
-          height: 80,
+          // height: 80,
           justifyContent: "center",
           width: "auto",
-          paddingHorizontal: 15,
+          padding: 15,
         }}
       >
-        <Spacer height={Platform.OS=="android"? 20:0}/>
         <CustomHeader
           LeftSide={() => (
             <TouchableOpacity
@@ -160,63 +224,7 @@ const ConvertToDriver = ({
             styles.textInputContainerStyle,
             { marginBottom: 10, flexDirection: isRTL ? "row-reverse" : "row" },
           ]}
-        >
-          {/* {appcat == "delivery" ? (
-            <Icon
-              name="truck-fast"
-              type="material-community"
-              color={colors.WHITE}
-              size={18}
-              containerStyle={[
-                styles.iconContainer,
-                isRTL ? { marginRight: 20 } : { marginLeft: 0 },
-              ]}
-            />
-          ) : (
-            <Icon
-              name="car"
-              type="font-awesome"
-              color={colors.WHITE}
-              size={18}
-              containerStyle={[
-                styles.iconContainer,
-                isRTL ? { marginRight: 20 } : { marginLeft: 0 },
-              ]}
-            />
-          )} */}
-          {/* {carTypes ? (
-            <RNPickerSelect
-              placeholder={{}}
-              value={state.carType}
-              useNativeAndroidPickerStyle={false}
-              style={{
-                inputIOS: [
-                  styles.pickerStyle,
-                  { textAlign: isRTL ? "right" : "left" },
-                ],
-                placeholder: {
-                  color: "white",
-                },
-                inputAndroid: [
-                  styles.pickerStyle,
-                  { textAlign: isRTL ? "right" : "left" },
-                ],
-              }}
-              onValueChange={(value) => setState({ ...state, carType: value })}
-              items={carTypes}
-              Icon={() => {
-                return (
-                  <Ionicons
-                    style={{ top: 5, marginRight: isRTL ? "85%" : 0 }}
-                    name="md-arrow-down"
-                    size={24}
-                    color="gray"
-                  />
-                );
-              }}
-            />
-          ) : null} */}
-        </View>
+        ></View>
         {inputData.map((item, index) => {
           return (
             <>
@@ -233,111 +241,81 @@ const ConvertToDriver = ({
                       height: 55,
                     }}
                   >
-                  <RNPickerSelect
-                    placeholder={{}}
-                    value={state.carType}
-                    // useNativeAndroidPickerStyle={false}
-                    style={{
-                      inputAndroid: [styles.pickerStyle],
-                    }}
-                    onValueChange={(value) =>
-                      setState({ ...state, carType: value })
-                    }
-                    items={carTypes}
-                    // Icon={() => {
-                    //   return (
-                    //     <Ionicons
-                    //       style={{ top: 5, marginRight: isRTL ? "85%" : 0 }}
-                    //       name="md-arrow-down"
-                    //       size={24}
-                    //       color="gray"
-                    //     />
-                    //   );
-                    // }}
-                  />
+                    <RNPickerSelect
+                      placeholder={{}}
+                      value={state.carType}
+                      // useNativeAndroidPickerStyle={false}
+                      style={{
+                        inputAndroid: [styles.pickerStyle],
+                      }}
+                      onValueChange={(value) =>
+                        setState({ ...state, carType: value })
+                      }
+                      items={carTypes}
+                      // Icon={() => {
+                      //   return (
+                      //     <Ionicons
+                      //       style={{ top: 5, marginRight: isRTL ? "85%" : 0 }}
+                      //       name="md-arrow-down"
+                      //       size={24}
+                      //       color="gray"
+                      //     />
+                      //   );
+                      // }}
+                    />
                   </View>
                 ) : null
               ) : (
                 <View style={{ width: "90%", alignSelf: "center" }}>
-                <CustomTextInput
-                  onChangeText={item.changeValue}
-                  //   withLabel={item.withLabel}
-                  placeholder={item.placeholder}
-                  fontSize={12}
-                  paddingLeft={20}
-                  rightLabel={item.rightLabel}
-                  placeholderTextColor={"#9C9C9C"}
-                  fontFamily={"Roboto-Light"}
-                />
-              </View>
+                  <CustomTextInput
+                    onChangeText={item.changeValue}
+                    //   withLabel={item.withLabel}
+                    placeholder={item.placeholder}
+                    fontSize={12}
+                    paddingLeft={20}
+                    rightLabel={item.rightLabel}
+                    placeholderTextColor={"#9C9C9C"}
+                    fontFamily={"Roboto-Light"}
+                  />
+                </View>
               )}
 
-             
               <Spacer height={20} />
             </>
           );
         })}
 
-        {capturedImage ? (
-          <View style={styles.imagePosition}>
-            <TouchableOpacity style={styles.photoClick} onPress={cancelPhoto}>
-              <Image
-                source={require("../../../../assets/images/cross.png")}
-                resizeMode={"contain"}
-                style={styles.imageStyle}
-              />
-            </TouchableOpacity>
-            <Image
-              source={{ uri: capturedImage }}
-              style={styles.photoResult}
-              resizeMode={"cover"}
-            />
-          </View>
-        ) : (
-          <TouchableOpacity activeOpacity={0.6}>
-            <View
-              style={{
-                width: "80%",
-                height: 140,
-                backgroundColor: colors.white,
-                borderRadius: 10,
-                alignSelf: "center",
-              }}
-            >
-              <CustomText
-                label="Upload Your Driving License"
-                alignSelf={"center"}
-                marginTop={10}
-                color={colors.primary}
-              />
-              <Spacer height={15} />
-              <View
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <TouchableOpacity onPress={showActionSheet} activeOpacity={0.6}>
-                  <AntDesign
-                    name="camerao"
-                    size={70}
-                    color={colors.grayBorder}
-                  />
-                </TouchableOpacity>
-                <View
-                  style={{
-                    height: 40,
-                    width: 1,
-                    backgroundColor: colors.black,
-                  }}
-                />
-                <CustomText label="(Image Size: Max 2MB)" />
-              </View>
-            </View>
-          </TouchableOpacity>
-        )}
+        <ChoosePhoto
+          capturedImage={officialImages.license}
+          photoName={"license"}
+          label={"Upload Your Driving License"}
+        />
+        <ChoosePhoto
+          capturedImage={officialImages.carPhoto}
+          photoName={"carPhoto"}
+          label={"Upload Your Car Photo"}
+        />
+        <ChoosePhoto
+          capturedImage={officialImages.cr}
+          photoName={"cr"}
+          label={"Upload Certificate of Registration"}
+        />
+        <ChoosePhoto
+          capturedImage={officialImages.or}
+          photoName={"or"}
+          label={"Upload Your Official Receipt of Vehicle Registration"}
+        />
+        <ChoosePhoto
+          capturedImage={officialImages.deedOfSale}
+          photoName={"deedOfSale"}
+          label={"Upload Your Deed of Sale If 2nd, 3rd Owner of Vehicle"}
+        />
+        <ChoosePhoto
+          capturedImage={officialImages.loa}
+          photoName={"loa"}
+          label={"Upload Your Letter of Authorization If No Deed"}
+        />
+
         <Spacer height={20} />
 
         <CustomButton
@@ -349,7 +327,7 @@ const ConvertToDriver = ({
         />
         <Spacer height={100} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -391,7 +369,7 @@ const styles = StyleSheet.create({
   },
   pickerStyle: {
     width: "100%",
-    height:"100%",
+    height: "100%",
     fontSize: 15,
     alignSelf: "center",
     backgroundColor: colors.gray1,

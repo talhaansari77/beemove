@@ -14,7 +14,7 @@ import {
   TextInput,
   TouchableOpacity,
   SafeAreaView,
-  StatusBar
+  StatusBar,
 } from "react-native";
 import { Button, Header } from "react-native-elements";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
@@ -206,12 +206,17 @@ export default function DriverTrips(props) {
 
   const rCom = () => {
     return (
-      <View style={{ flexDirection: isRTL ? "row-reverse" : "row" ,alignItems:"center"}}>
+      <View
+        style={{
+          flexDirection: isRTL ? "row-reverse" : "row",
+          alignItems: "center",
+        }}
+      >
         <Text
           style={{
             color: colors.BLACK,
             fontWeight: "bold",
-            marginRight:10
+            marginRight: 10,
             // marginRight: Platform.OS == "ios" ? 10 : 10,
             // marginTop: 8,
           }}
@@ -249,11 +254,11 @@ export default function DriverTrips(props) {
 
   return (
     <SafeAreaView style={styles.mainViewStyle}>
-<StatusBar hidden={false}/>
-              <Spacer height={Platform.OS=="android"? 30:0}/>
+      <StatusBar hidden={false} />
+      <Spacer height={Platform.OS == "android" ? 30 : 0} />
 
-      <View style={{ paddingHorizontal: scale(15),}}>
-      <Spacer height={Platform.OS=="android"? 20:0}/>
+      <View style={{ paddingHorizontal: scale(15) }}>
+        <Spacer height={Platform.OS == "android" ? 20 : 0} />
 
         <CustomHeader
           LeftSide={() => (
@@ -294,7 +299,7 @@ export default function DriverTrips(props) {
           )}
         />
       </View>
-      <Spacer height={10}/>
+      <Spacer height={10} />
 
       {/* <Header
                 backgroundColor={colors.HEADER}
@@ -584,6 +589,8 @@ export default function DriverTrips(props) {
                     isRTL ? { paddingRight: 10 } : { paddingLeft: 10 },
                   ]}
                 >
+                  {console.log(item)}
+                  <View><Text>{item?.additional?.pickup}</Text></View>
                   <View
                     style={{
                       flexDirection: isRTL ? "row-reverse" : "row",
@@ -631,11 +638,11 @@ export default function DriverTrips(props) {
                               alignItems: "center",
                             }}
                           >
-              <Image
-                source={require("../../assets/images/location.png")}
-                style={{ height: 20, width: 20 }}
-                resizeMode={"contain"}
-              />
+                            <Image
+                              source={require("../../assets/images/location.png")}
+                              style={{ height: 20, width: 20 }}
+                              resizeMode={"contain"}
+                            />
                             {/* <View style={styles.redDot}></View> */}
                             <Text
                               style={[
@@ -658,11 +665,11 @@ export default function DriverTrips(props) {
                       alignItems: "center",
                     }}
                   >
-              <Image
-                source={require("../../assets/images/location.png")}
-                style={{ height: 20, width: 20 }}
-                resizeMode={"contain"}
-              />
+                    <Image
+                      source={require("../../assets/images/location.png")}
+                      style={{ height: 20, width: 20 }}
+                      resizeMode={"contain"}
+                    />
                     {/* <View style={styles.redDot}></View> */}
                     <Text
                       style={[

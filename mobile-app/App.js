@@ -11,6 +11,7 @@ import {
   ImageBackground,
   Dimensions,
   LogBox,
+  StatusBar,
 } from "react-native";
 import { Provider } from "react-redux";
 import { FirebaseProvider, store } from "common/src";
@@ -20,6 +21,7 @@ import { FirebaseConfig } from "./config/FirebaseConfig";
 import { colors } from "./src/common/theme";
 import { Settings } from "react-native-fbsdk-next";
 import RootNavigator from "./src/navigation";
+import Swipup from "./src/components/Swipup";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -50,10 +52,11 @@ export default function App() {
         require("./assets/images/intro.jpg"),
       ]),
       Font.loadAsync({
-        "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
-        "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
-        "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
-        "Roboto-Light": require("./assets/fonts/Roboto-Light.ttf"),
+        "Roboto-Bold": require("./assets/fonts/HelveticaNeue-Bold.otf"),
+        "Roboto-Regular": require("./assets/fonts/Helvetica.ttf"),
+        "Roboto-Medium": require("./assets/fonts/HelveticaNeue-Medium.otf"),
+        "Roboto-Light": require("./assets/fonts/Helvetica_Light-Normal.ttf"),
+        // Helvetica_Light-Normal.ttf
       }),
     ]);
   };
@@ -116,6 +119,7 @@ export default function App() {
       <FirebaseProvider config={FirebaseConfig} appcat={AppCat}>
         <AppCommon>
           <AppContainer />
+          <StatusBar barStyle="dark-content" translucent={true} backgroundColor="transparent" />
         </AppCommon>
       </FirebaseProvider>
     </Provider>

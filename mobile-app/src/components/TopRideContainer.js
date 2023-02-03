@@ -8,6 +8,7 @@ import { colors } from "../../Utils/Colors";
 import AddlButton from "./AddlButton";
 import CustomButton from "./CustomButton";
 import i18n from "i18n-js";
+import Animated from "react-native-reanimated";
 
 const { t } = i18n;
 const isRTL =
@@ -18,13 +19,14 @@ const TopRideContainer = ({
   completeJob = false,
   tripdata,
   tapAddress,
+  displayAnimationStyle
   // showDropOff,
   // showPickup,
 }) => {
   const dot = ["1", "2"];
   const fiveDot = ["1", "2", "3", "4", "5"];
   return (
-    <View>
+    <Animated.View style={[displayAnimationStyle]}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View style={{ alignItems: "center", marginRight: scale(20),flex:1 }}>
           <View
@@ -127,6 +129,7 @@ const TopRideContainer = ({
                 <Text style={{}} numberOfLines={1}>
                   {tripdata.drop && tripdata.drop.add
                     ? tripdata.drop.add
+                    // ? tripdata.drop.add.split(",")[0] + "," + tripdata.drop.add.split(",")[1] + "," + tripdata.drop.add.split(",")[2]
                     : t("map_screen_drop_input_text")}
                 </Text>
               </TouchableOpacity>
@@ -164,7 +167,7 @@ const TopRideContainer = ({
         </View>
       </View>
 
-      <Spacer height={20} />
+      {/* <Spacer height={20} /> */}
 
       <View style={{ alignSelf: "center" }}>
         {completeJob ? (
@@ -191,7 +194,7 @@ const TopRideContainer = ({
           </>
         )}
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

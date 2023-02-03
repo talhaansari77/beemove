@@ -11,6 +11,8 @@ export const updateTripPickup = (pickupAddress) => (dispatch) => (firebase) => {
         type: UPDATE_TRIP_PICKUP,
         payload: pickupAddress
     });
+    // console.log("pickupAddress=>=>=>=>=>=>=>",pickupAddress)
+
 };
 
 export const updateTripDrop = (dropAddress) => (dispatch) => (firebase) => {

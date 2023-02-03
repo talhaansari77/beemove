@@ -176,7 +176,7 @@ export default function taxiModal(props) {
                                     loadingProps={{ size: "large", color: colors.WHITE }}
                                     titleStyle={{ color: colors.WHITE, fontWeight: 'bold' }}
                                     onPress={onPressCancel}
-                                    buttonStyle={{ height: '100%', backgroundColor: colors.DRIVER_TRIPS_TEXT }}
+                                    buttonStyle={{ height: '100%', backgroundColor: colors.DULL_RED }}
                                     containerStyle={{ height: '100%' }}
                                 />
                             </View>
@@ -186,7 +186,7 @@ export default function taxiModal(props) {
                                     loadingProps={{ size: "large", color: colors.BUTTON_LOADING }}
                                     titleStyle={{ color: colors.WHITE, fontWeight: 'bold' }}
                                     onPress={bookNow}
-                                    buttonStyle={{ height: '100%', backgroundColor: colors.BUTTON_RIGHT }}
+                                    buttonStyle={{ height: '100%', backgroundColor: colors.primary }}
                                     containerStyle={{ height: '100%' }}
                                 />
                             </View>

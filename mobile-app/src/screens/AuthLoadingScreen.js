@@ -5,6 +5,7 @@ import {
   Dimensions,
   ImageBackground,
   ActivityIndicator,
+  StatusBar,
 } from 'react-native';
 import { colors } from '../common/theme';
 
@@ -17,7 +18,10 @@ export default function AuthLoadingScreen(props) {
         style={styles.imagebg}
       >
         <ActivityIndicator style={{ paddingBottom: 100 }} color={colors.INDICATOR_BLUE} size='large' />
-      </ImageBackground>
+      </ImageBackground>         
+       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
+
+
     </View>
   );
 }

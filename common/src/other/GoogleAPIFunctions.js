@@ -60,6 +60,7 @@ export const fetchCoordsfromPlace = (place_id) => (firebase) => {
 
 
 export const fetchAddressfromCoords = (latlng) => (firebase) => {
+    console.log("latlng latlng latlng", latlng)
     return new Promise((resolve,reject)=>{
         const { config } = firebase;
         fetch(`https://${config.projectId}.web.app/googleapis-getaddress`, {
@@ -77,6 +78,8 @@ export const fetchAddressfromCoords = (latlng) => (firebase) => {
         .then(json => {
             if(json && json.address) {
                 resolve(json.address);
+                // console.log("response.json()response.json()", json.address)
+                // console.log("json json json json",json)
             }else{
                 reject(json.error);
             }

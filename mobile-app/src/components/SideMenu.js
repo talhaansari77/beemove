@@ -173,13 +173,13 @@ export default function SideMenu(props) {
           language={language}
         ></SideMenuHeader>
       ) : null}
-      <View style={styles.compViewStyle}>
+      <View style={{}}>
         {/* <View style={[styles.vertialLine, { height: (width <= 320) ? width / 1.32 : width / 1.40, left: isRTL? 231 : 22 }]}></View> */}
         {!!settings && auth.info && auth.info.profile ? (
           <FlatList
             data={sideMenuList}
             keyExtractor={(item, index) => index.toString()}
-            style={{ marginTop: 20, width: "95%", padding: 5 }}
+            style={{ marginTop: 20, width: "95%", padding: 5, }}
             bounces={false}
             renderItem={({ item, index }) => {
               if (
@@ -441,8 +441,8 @@ export default function SideMenu(props) {
           />
         ) : null}
       </View>
-      <View style={{ alignItems: "center",  }}>
-        <Image resizeMode="contain"  source={images.appLogo} style={{ width: "80%" }} />
+      <View style={{ alignItems: "center" }}>
+        <Image resizeMode="contain"  source={images.appLogo} style={{ width: "80%",height:"40%" }} />
       </View>
     </View>
   );

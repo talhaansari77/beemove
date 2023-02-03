@@ -15,7 +15,7 @@ export const clearBooking = () => (dispatch) => (firebase) => {
 }
 
 export const addBooking = (bookingData) => (dispatch) => async (firebase) => {
-
+console.log(bookingData.additionalInfo)
     const   {
         bookingRef,
         appcat,
@@ -53,6 +53,18 @@ export const addBooking = (bookingData) => (dispatch) => async (firebase) => {
     const reference = [...Array(6)].map(_ => c[~~(Math.random()*c.length)]).join('');
     const settings = settingsdata.val();
     var data = {
+        additional:{
+            pickup:bookingData.additionalInfo.pickup,
+            dropOff:bookingData.additionalInfo.dropOff,
+            phone:bookingData.additionalInfo.phone,
+            name:bookingData.additionalInfo.name,
+            merchantName:bookingData.additionalInfo.merchantName,
+            landmark:bookingData.additionalInfo.landmark,
+            paymentMethod:bookingData.additionalInfo.paymentMethod,
+            groceryList:bookingData.additionalInfo.groceryList,
+            note:bookingData.additionalInfo.note,
+            screenName:bookingData.additionalInfo.screenName,
+        },
         carType: bookingData.carDetails.name,
         carImage: bookingData.carDetails.image,
         customer: bookingData.userDetails.uid,
